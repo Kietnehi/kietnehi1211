@@ -1484,7 +1484,7 @@ html.dark .loader-label .sub{ color:#94a3b8; }
             </div>
           </figure>
 
-          <!-- Streak Stats -->
+          <!-- GitHub Activity & Achievements -->
           <figure
             class="group rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden card-hover slide-right"
           >
@@ -1492,34 +1492,91 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               class="px-5 py-4 border-b border-gray-100 flex items-center justify-between"
             >
               <div>
-                <p class="text-sm font-semibold text-gray-900">Streak</p>
-                <p class="text-xs text-gray-500">Recent contribution streak</p>
+                <p class="text-sm font-semibold text-gray-900">Quick Stats</p>
+                <p class="text-xs text-gray-500">Key metrics & achievements</p>
               </div>
               <span
-                class="text-xs px-2 py-1 rounded-full bg-pink-50 text-pink-700"
-                >Live</span
+                class="text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-700"
+                >Active</span
               >
             </figcaption>
 
-            <div class="p-4 min-h-[200px] flex items-center justify-center">
-              <!-- Actual Image with inline loading handler -->
-              <img
-                src="https://streak-stats.demolab.com?user=Kietnehi&hide_border=true&background=ffffff&ring=6366f1&fire=ec4899&currStreakNum=1e293b&sideNums=1e293b&currStreakLabel=6366f1&sideLabels=1e293b&dates=475569&cache_seconds=1800"
-                alt="Kietnehi's GitHub Streak"
-                class="w-full rounded-xl border border-gray-100"
-                referrerpolicy="no-referrer"
-                style="min-height: 170px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
-                onload="this.style.background='none'; this.style.animation='none';"
-                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22200%22%3E%3Crect width=%22500%22 height=%22200%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3EContribution Streak%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EView on GitHub%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi','_blank')}; this.style.cursor='pointer';"
-              />
+            <div class="p-6 min-h-[200px]">
+              <!-- Stats Grid -->
+              <div class="grid grid-cols-2 gap-4">
+                <!-- Stat 1: Repositories -->
+                <div class="bg-gradient-to-br from-indigo-50 to-purple-50 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center">
+                      <i class="fas fa-code-branch text-indigo-600 text-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-2xl font-bold text-gray-900">15+</p>
+                    </div>
+                  </div>
+                  <p class="text-xs font-medium text-gray-600">Public Repos</p>
+                </div>
+
+                <!-- Stat 2: Focus Area -->
+                <div class="bg-gradient-to-br from-pink-50 to-rose-50 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 bg-pink-100 rounded-lg flex items-center justify-center">
+                      <i class="fas fa-brain text-pink-600 text-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-2xl font-bold text-gray-900">AI/ML</p>
+                    </div>
+                  </div>
+                  <p class="text-xs font-medium text-gray-600">Primary Focus</p>
+                </div>
+
+                <!-- Stat 3: Active Status -->
+                <div class="bg-gradient-to-br from-emerald-50 to-teal-50 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 bg-emerald-100 rounded-lg flex items-center justify-center">
+                      <i class="fas fa-fire text-emerald-600 text-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-2xl font-bold text-gray-900">2025</p>
+                    </div>
+                  </div>
+                  <p class="text-xs font-medium text-gray-600">Active Year</p>
+                </div>
+
+                <!-- Stat 4: Languages -->
+                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-xl p-4 hover:scale-105 transition-transform duration-300">
+                  <div class="flex items-center gap-3 mb-2">
+                    <div class="w-10 h-10 bg-amber-100 rounded-lg flex items-center justify-center">
+                      <i class="fas fa-layer-group text-amber-600 text-lg"></i>
+                    </div>
+                    <div>
+                      <p class="text-2xl font-bold text-gray-900">5+</p>
+                    </div>
+                  </div>
+                  <p class="text-xs font-medium text-gray-600">Languages</p>
+                </div>
+              </div>
+
+              <!-- Quick Links -->
+              <div class="mt-4 pt-4 border-t border-gray-100">
+                <a 
+                  href="https://github.com/Kietnehi" 
+                  target="_blank"
+                  class="text-xs text-indigo-600 hover:text-indigo-700 font-medium flex items-center gap-2 hover:gap-3 transition-all"
+                >
+                  <span>View Full Profile</span>
+                  <i class="fas fa-arrow-right"></i>
+                </a>
+              </div>
             </div>
           </figure>
         </div>
 
-        <!-- Top Languages -->
-        <div class="mt-6 sm:mt-8">
+        <!-- Top Languages & Trophies Row -->
+        <div class="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
+          <!-- Top Languages -->
           <figure
-            class="max-w-xl sm:max-w-2xl mx-auto rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden"
+            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden slide-left"
           >
             <figcaption
               class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
@@ -1538,16 +1595,85 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               >
             </figcaption>
 
-            <div class="p-3 sm:p-4 min-h-[180px] flex items-center justify-center">
-              <!-- Actual Image with inline loading handler -->
+            <div class="p-3 sm:p-4 min-h-[200px] flex items-center justify-center">
               <img
                 src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kietnehi&layout=compact&theme=default&hide_border=true&bg_color=ffffff&title_color=6366f1&text_color=1e293b&cache_seconds=1800"
                 alt="Top Languages"
                 class="w-full rounded-xl border border-gray-100"
                 referrerpolicy="no-referrer"
-                style="min-height: 150px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                style="min-height: 180px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
                 onload="this.style.background='none'; this.style.animation='none';"
                 onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22180%22%3E%3Crect width=%22400%22 height=%22180%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3ETop Languages%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EView Repositories%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi?tab=repositories','_blank')}; this.style.cursor='pointer';"
+              />
+            </div>
+          </figure>
+
+          <!-- GitHub Trophies -->
+          <figure
+            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden slide-right"
+          >
+            <figcaption
+              class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <p class="text-xs sm:text-sm font-semibold text-gray-900">
+                  🏆 GitHub Achievements
+                </p>
+                <p class="text-[10px] sm:text-xs text-gray-500">
+                  Trophies earned from GitHub activities
+                </p>
+              </div>
+              <span
+                class="text-[10px] sm:text-xs px-2 py-1 rounded-full bg-yellow-50 text-yellow-700"
+                >Earned</span
+              >
+            </figcaption>
+
+            <div class="p-3 sm:p-4 min-h-[200px] flex items-center justify-center">
+              <img
+                src="https://github-profile-trophy.vercel.app/?username=Kietnehi&theme=flat&no-frame=true&no-bg=true&margin-w=4&row=2&column=3&cache_seconds=1800"
+                alt="GitHub Trophies"
+                class="w-full rounded-xl"
+                referrerpolicy="no-referrer"
+                style="min-height: 180px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                onload="this.style.background='none'; this.style.animation='none';"
+                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22180%22%3E%3Crect width=%22400%22 height=%22180%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3E%F0%9F%8F%86 GitHub Achievements%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EPull Shark x2 %7C Quickdraw%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi','_blank')}; this.style.cursor='pointer';"
+              />
+            </div>
+          </figure>
+        </div>
+
+        <!-- GitHub Activity Graph -->
+        <div class="mt-6 sm:mt-8">
+          <figure
+            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden fade-in"
+          >
+            <figcaption
+              class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <p class="text-xs sm:text-sm font-semibold text-gray-900">
+                  📊 Contribution Activity Graph
+                </p>
+                <p class="text-[10px] sm:text-xs text-gray-500">
+                  1,025+ contributions in the last year
+                </p>
+              </div>
+              <span
+                class="text-[10px] sm:text-xs px-2 py-1 rounded-full bg-purple-50 text-purple-700"
+                >Live</span
+              >
+            </figcaption>
+
+            <div class="p-3 sm:p-4 min-h-[200px] flex items-center justify-center">
+              <img
+                src="https://github-readme-activity-graph.vercel.app/graph?username=Kietnehi&theme=github-compact&hide_border=true&bg_color=ffffff&color=6366f1&line=6366f1&point=1e293b&area=true&area_color=c7d2fe&cache_seconds=1800"
+                alt="GitHub Activity Graph"
+                class="w-full rounded-xl border border-gray-100"
+                referrerpolicy="no-referrer"
+                style="min-height: 180px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                onload="this.style.background='none'; this.style.animation='none';"
+                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%221000%22 height=%22200%22%3E%3Crect width=%221000%22 height=%22200%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3EActivity Graph%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3E1,025+ contributions this year%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi','_blank')}; this.style.cursor='pointer';"
               />
             </div>
           </figure>
