@@ -1,0 +1,2905 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Phu Kiet (Kietnehi)</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1", // Indigo
+              secondary: "#0f172a", // Slate 900
+              accent: "#ec4899", // Pink for AI/ML vibes
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .typing-cursor::after {
+        content: "|";
+        animation: blink 1s step-start infinite;
+      }
+      @keyframes blink {
+        50% {
+          opacity: 0;
+        }
+      }
+      
+      /* Custom scrollbar */
+      ::-webkit-scrollbar {
+        width: 8px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #c7c7c7;
+        border-radius: 4px;
+      }
+      ::-webkit-scrollbar-thumb:hover {
+        background: #a1a1a1;
+      }
+
+      /* Scroll Progress Bar */
+      #scroll-progress {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 3px;
+        background: linear-gradient(90deg, #6366f1, #ec4899);
+        z-index: 9999;
+        transition: width 0.1s ease-out;
+      }
+
+      /* Fade In Animation */
+      .fade-in {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .fade-in.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      /* ---------- fancy background ---------- */
+.blob {
+  position: absolute;
+  width: 520px;
+  height: 520px;
+  filter: blur(60px);
+  opacity: 0.45;
+  border-radius: 9999px;
+  animation: blobFloat 10s ease-in-out infinite;
+}
+
+.blob-1 {
+  top: -180px;
+  left: -180px;
+  background: radial-gradient(circle at 30% 30%, rgba(99,102,241,0.85), rgba(168,85,247,0.2));
+}
+
+.blob-2 {
+  bottom: -220px;
+  right: -220px;
+  background: radial-gradient(circle at 30% 30%, rgba(168,85,247,0.85), rgba(99,102,241,0.2));
+  animation-delay: 1.2s;
+}
+
+@keyframes blobFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(18px, -14px) scale(1.06); }
+}
+
+.grid-overlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(99,102,241,0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99,102,241,0.08) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: radial-gradient(circle at 50% 35%, rgba(0,0,0,0.9), transparent 70%);
+  opacity: 0.6;
+}
+
+/* ---------- card glow ---------- */
+.card-glow {
+  position: relative;
+}
+.card-glow::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, rgba(99,102,241,0.35), rgba(168,85,247,0.35), rgba(99,102,241,0.15));
+  opacity: 0.55;
+  filter: blur(18px);
+  z-index: -1;
+}
+
+/* ---------- text gradient ---------- */
+.text-gradient {
+  background: linear-gradient(90deg, #4f46e5, #a855f7);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ---------- ping dot ---------- */
+.dot-ping {
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: #4f46e5;
+  position: relative;
+}
+.dot-ping::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: rgba(79,70,229,0.4);
+  animation: ping 1.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes ping {
+  0% { transform: scale(1); opacity: 0.9; }
+  80%, 100% { transform: scale(2.2); opacity: 0; }
+}
+
+/* ---------- shiny button ---------- */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+  transform: translateZ(0);
+}
+.btn-shine:hover { transform: translateY(-2px); }
+.btn-shine::after {
+  content: "";
+  position: absolute;
+  top: -20%;
+  left: -60%;
+  width: 40%;
+  height: 140%;
+  transform: skewX(-20deg);
+  background: linear-gradient(to right, transparent, rgba(255,255,255,0.35), transparent);
+  transition: left 0.6s ease;
+}
+.btn-shine:hover::after { left: 130%; }
+
+/* ---------- icon micro interaction ---------- */
+.icon-pop {
+  transition: transform 200ms ease;
+}
+a:hover .icon-pop {
+  transform: translateY(-1px) scale(1.08);
+}
+
+/* ---------- social pills + underline ---------- */
+.social-pill {
+  width: 34px;
+  height: 34px;
+  border-radius: 9999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255,255,255,0.8);
+  border: 1px solid rgba(229,231,235,1);
+  box-shadow: 0 8px 24px -18px rgba(0,0,0,0.25);
+  transition: transform 200ms ease, box-shadow 200ms ease;
+}
+.group:hover .social-pill {
+  transform: translateY(-2px) rotate(6deg);
+  box-shadow: 0 18px 38px -24px rgba(0,0,0,0.35);
+}
+
+.link-underline {
+  position: relative;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 0%;
+  height: 2px;
+  background: currentColor;
+  opacity: 0.7;
+  transition: width 250ms ease;
+}
+.group:hover .link-underline::after { width: 100%; }
+
+/* ---------- footer icons ---------- */
+.icon-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: rgba(255,255,255,0.9);
+  border: 1px solid rgba(229,231,235,1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: rgba(75,85,99,1);
+  transition: transform 200ms ease, background 200ms ease, color 200ms ease, border-color 200ms ease;
+}
+.icon-btn:hover {
+  transform: translateY(-2px) scale(1.06) rotate(8deg);
+  background: #111827;
+  border-color: #111827;
+  color: white;
+}
+.icon-btn-blue:hover { background: #2563eb; border-color: #2563eb; }
+.icon-btn-pink:hover { background: #ec4899; border-color: #ec4899; }
+
+.footer-glow {
+  position: absolute;
+  inset: -120px;
+  background: radial-gradient(circle at 50% 0%, rgba(99,102,241,0.16), transparent 55%);
+  filter: blur(18px);
+}
+
+/* ---------- scroll reveal ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition: opacity 700ms ease, transform 700ms ease;
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- back to top ---------- */
+.to-top-btn {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  width: 44px;
+  height: 44px;
+  border-radius: 9999px;
+  border: 1px solid rgba(229,231,235,1);
+  background: rgba(255,255,255,0.9);
+  color: #111827;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 18px 40px -26px rgba(0,0,0,0.35);
+  transform: translateY(20px);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 250ms ease, transform 250ms ease;
+  z-index: 50;
+}
+.to-top-btn.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+.to-top-btn:hover {
+  transform: translateY(-2px);
+}
+
+      /* Slide In from Left */
+      .slide-left {
+        opacity: 0;
+        transform: translateX(-50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .slide-left.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Slide In from Right */
+      .slide-right {
+        opacity: 0;
+        transform: translateX(50px);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .slide-right.active {
+        opacity: 1;
+        transform: translateX(0);
+      }
+
+      /* Scale In Animation */
+      .scale-in {
+        opacity: 0;
+        transform: scale(0.8);
+        transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      }
+      .scale-in.active {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      /* Floating Animation */
+      @keyframes float {
+        0%, 100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .float-animation {
+        animation: float 3s ease-in-out infinite;
+      }
+
+      /* Pulse Animation */
+      @keyframes pulse {
+        0%, 100% {
+          transform: scale(1);
+          opacity: 1;
+        }
+        50% {
+          transform: scale(1.05);
+          opacity: 0.8;
+        }
+      }
+      .pulse-animation {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      /* Rotate Animation */
+      @keyframes rotate {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      .rotate-animation {
+        animation: rotate 20s linear infinite;
+      }
+
+      /* Gradient Animation */
+      @keyframes gradient-shift {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+      .gradient-animate {
+        background-size: 200% 200%;
+        animation: gradient-shift 5s ease infinite;
+      }
+
+      /* Dark Mode Styles */
+      html.dark {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      
+      .dark body {
+        background-color: #0f172a;
+        color: #e2e8f0;
+      }
+      
+      .dark nav {
+        background-color: rgba(15, 23, 42, 0.95) !important;
+        backdrop-filter: blur(12px);
+      }
+      
+      .dark .text-gray-900 {
+        color: #f1f5f9 !important;
+      }
+      
+      .dark .text-gray-600 {
+        color: #cbd5e1 !important;
+      }
+      
+      .dark .text-gray-800 {
+        color: #e2e8f0 !important;
+      }
+      
+      .dark .text-gray-500 {
+        color: #94a3b8 !important;
+      }
+      
+      .dark .text-gray-400 {
+        color: #64748b !important;
+      }
+      
+      .dark .text-gray-500 {
+        color: #94a3b8 !important;
+      }
+      
+      .dark .bg-white {
+        background-color: #1e293b !important;
+      }
+      
+      .dark .bg-gray-50 {
+        background-color: #0f172a !important;
+      }
+      
+      .dark .bg-slate-50 {
+        background-color: #0f172a !important;
+      }
+      
+      .dark .bg-gray-100 {
+        background-color: #334155 !important;
+      }
+      
+      .dark .border-gray-100 {
+        border-color: #334155 !important;
+      }
+      
+      .dark .border-gray-200 {
+        border-color: #475569 !important;
+      }
+      
+      .dark .bg-gray-800 {
+        background-color: #1e293b !important;
+      }
+      
+      .dark .bg-gray-900 {
+        background-color: #1e293b !important;
+      }
+      
+      .dark .bg-indigo-50 {
+        background-color: rgba(99, 102, 241, 0.1) !important;
+      }
+      
+      .dark .shadow-sm {
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.3) !important;
+      }
+      
+      .dark .shadow-lg {
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+      }
+      
+      .dark .shadow-xl {
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5) !important;
+      }
+      
+      .dark .shadow-2xl {
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6) !important;
+      }
+      
+      /* Dark mode - Contact & Footer specific */
+      .dark section#contact {
+        background-color: #0f172a !important;
+      }
+      
+      .dark section#contact .bg-white\/70 {
+        background-color: rgba(30, 41, 59, 0.8) !important;
+      }
+      
+      .dark section#contact .text-gray-600 {
+        color: #cbd5e1 !important;
+      }
+      
+      .dark section#contact .text-gray-500 {
+        color: #94a3b8 !important;
+      }
+      
+      .dark section#contact .bg-indigo-50\/70 {
+        background-color: rgba(99, 102, 241, 0.15) !important;
+      }
+      
+      .dark section#contact .border-indigo-100 {
+        border-color: rgba(99, 102, 241, 0.2) !important;
+      }
+      
+      .dark footer {
+        background-color: #0f172a !important;
+        border-top-color: #334155 !important;
+      }
+      
+      .dark footer .text-gray-500 {
+        color: #94a3b8 !important;
+      }
+      
+      .dark footer .text-gray-400 {
+        color: #cbd5e1 !important;
+      }
+      
+      .dark footer .border-gray-200 {
+        border-color: #334155 !important;
+      }
+      
+      /* Projects section - Light mode override */
+      section#projects.bg-gray-900 {
+        background-color: #f9fafb !important;
+        color: #1f2937 !important;
+      }
+      
+      section#projects .text-white {
+        color: #1f2937 !important;
+      }
+      
+      section#projects .text-indigo-400 {
+        color: #6366f1 !important;
+      }
+      
+      section#projects .text-gray-400 {
+        color: #6b7280 !important;
+      }
+      
+      section#projects .bg-gray-800 {
+        background-color: #ffffff !important;
+        border-color: #e5e7eb !important;
+      }
+      
+      section#projects .border-gray-700 {
+        border-color: #e5e7eb !important;
+      }
+      
+      /* Dark mode - Projects section */
+      html.dark section#projects.bg-gray-900 {
+        background-color: #1e293b !important;
+        color: #f1f5f9 !important;
+      }
+      
+      html.dark section#projects .text-white {
+        color: #f1f5f9 !important;
+      }
+      
+      html.dark section#projects .text-gray-400 {
+        color: #94a3b8 !important;
+      }
+      
+      html.dark section#projects .text-indigo-400 {
+        color: #a5b4fc !important;
+      }
+      
+      html.dark section#projects .bg-gray-800 {
+        background-color: #334155 !important;
+        border-color: #475569 !important;
+      }
+      
+      html.dark section#projects .border-gray-700 {
+        border-color: #475569 !important;
+      }
+      
+      html.dark section#projects .hover\:border-indigo-500:hover {
+        border-color: #6366f1 !important;
+      }
+      
+      html.dark section#projects .bg-gray-900\/40 {
+        background-color: rgba(30, 41, 59, 0.6) !important;
+      }
+      
+      html.dark section#projects .hover\:text-white:hover {
+        color: #f1f5f9 !important;
+      }
+      
+      html.dark section#projects .border-b {
+        border-bottom-color: #475569 !important;
+      }
+      
+      html.dark section#projects .hover\:border-white:hover {
+        border-bottom-color: #e2e8f0 !important;
+      }
+      
+      /* Dark mode smooth transition */
+      body, nav, section, div, a, button, span {
+        transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+      }
+
+      /* Stagger Animation Delays */
+      .stagger-1 { transition-delay: 0.1s; }
+      .stagger-2 { transition-delay: 0.2s; }
+      .stagger-3 { transition-delay: 0.3s; }
+      .stagger-4 { transition-delay: 0.4s; }
+      .stagger-5 { transition-delay: 0.5s; }
+      .stagger-6 { transition-delay: 0.6s; }
+
+      /* Card Hover Effects */
+      .card-hover {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .card-hover:hover {
+        transform: translateY(-8px);
+        box-shadow: 0 20px 40px rgba(99, 102, 241, 0.15);
+      }
+
+      /* Glow Effect */
+      .glow-on-hover {
+        position: relative;
+        overflow: hidden;
+      }
+      .glow-on-hover::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%);
+        transition: width 0.6s, height 0.6s;
+      }
+      .glow-on-hover:hover::before {
+        width: 300px;
+        height: 300px;
+      }
+
+      /* Loading Spinner */
+      .spinner {
+        border: 3px solid rgba(99, 102, 241, 0.1);
+        border-top: 3px solid #6366f1;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        animation: spin 1s linear infinite;
+      }
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+
+      /* Parallax Effect */
+      .parallax {
+        transition: transform 0.1s ease-out;
+      }
+
+      /* Shimmer Effect */
+      @keyframes shimmer {
+        0% {
+          background-position: -1000px 0;
+        }
+        100% {
+          background-position: 1000px 0;
+        }
+      }
+      .shimmer {
+        background: linear-gradient(
+          90deg,
+          rgba(255, 255, 255, 0) 0%,
+          rgba(255, 255, 255, 0.3) 50%,
+          rgba(255, 255, 255, 0) 100%
+        );
+        background-size: 1000px 100%;
+        animation: shimmer 2s infinite;
+      }
+
+      /* Text Gradient Animation */
+      .text-gradient-animate {
+        background: linear-gradient(
+          90deg,
+          #6366f1,
+          #ec4899,
+          #8b5cf6,
+          #6366f1
+        );
+        background-size: 300% 100%;
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient-shift 3s ease infinite;
+      }
+
+      /* Back to Top Button */
+      #back-to-top {
+        position: fixed;
+        bottom: 30px;
+        left: 30px;
+        width: 50px;
+        height: 50px;
+        background: #6366f1;
+        color: white;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        opacity: 0;
+        visibility: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4);
+        z-index: 40;
+      }
+      #back-to-top.show {
+        opacity: 1;
+        visibility: visible;
+      }
+      #back-to-top:hover {
+        transform: translateY(-5px);
+        background: #4f46e5;
+        box-shadow: 0 6px 25px rgba(99, 102, 241, 0.6);
+      }
+
+
+@keyframes orbitSpin{ to{ transform: rotate(360deg); } }
+
+.loader-text .brand{
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  font-size: 18px;
+  color: #111827;
+}
+.dark .loader-text .brand{ color: #e2e8f0; }
+
+.loader-text .brand span{ color: #6366f1; }
+.loader-text .sub{
+  font-size: 12px;
+  color: #6b7280;
+  text-align: center;
+}
+.dark .loader-text .sub{ color: #94a3b8; }
+
+/* Hide state */
+.loader-overlay.hide{
+  opacity: 0;
+  visibility: hidden;
+}
+
+/* Mobile size */
+@media (max-width: 640px){
+  .orbit{ width: 68px; height: 68px; }
+}
+
+/* Reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .orbit{ animation: none; }
+  .loader-overlay{ transition: none; }
+}
+/* ===== BIGGER LOADER (override) ===== */
+.loader-card{
+  padding: 34px 40px;          /* tăng padding */
+  border-radius: 22px;
+  gap: 18px;
+  box-shadow: 0 40px 90px -55px rgba(79,70,229,0.55);
+  transform: scale(1.25);      /* phóng to toàn bộ card */
+  transform-origin: center;
+}
+
+/* vòng tròn orbit to hơn */
+.orbit{
+  width: 120px;
+  height: 120px;
+  border-width: 2px;
+}
+
+/* “hành tinh” to hơn */
+.planet{
+  width: 16px;
+  height: 16px;
+  top: -8px;
+}
+
+/* chữ to hơn */
+.loader-text .brand{
+  font-size: 22px;
+}
+
+.loader-text .sub{
+  font-size: 13px;
+}
+
+/* responsive: mobile thì nhỏ lại chút cho vừa */
+@media (max-width: 640px){
+  .loader-card{ transform: scale(1.05); padding: 26px 28px; }
+  .orbit{ width: 92px; height: 92px; }
+  .loader-text .brand{ font-size: 18px; }
+}
+/* lock scroll while loading */
+body.loading { overflow: hidden; }
+
+/* fullscreen overlay */
+.loader-container{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(99,102,241,0.20), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(236,72,153,0.18), transparent 50%),
+    #ffffff;
+  transition: opacity 600ms ease, visibility 600ms ease;
+}
+.dark .loader-container{
+  background:
+    radial-gradient(circle at 20% 25%, rgba(99,102,241,0.22), transparent 48%),
+    radial-gradient(circle at 80% 75%, rgba(236,72,153,0.20), transparent 55%),
+    #0f172a;
+}
+.loader-container.hide{ opacity: 0; visibility: hidden; }
+
+/* ===== Atom Loader ===== */
+.atom{
+  width: 160px;                 /* <<< chỉnh size ở đây */
+  height: 160px;
+  position: relative;
+  filter: drop-shadow(0 18px 30px rgba(79,70,229,0.25));
+}
+.atom::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  margin:auto;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#6366f1,#ec4899);
+  box-shadow: 0 0 0 10px rgba(99,102,241,0.08);
+}
+
+/* 3 quỹ đạo */
+.electron, .electron-alpha, .electron-omega{
+  position:absolute;
+  inset: 0;
+  margin:auto;
+  width: 100%;
+  height: 60%;
+  border-radius: 9999px;
+  border: 2px solid rgba(99,102,241,0.35);
+  animation: spin 1.05s linear infinite;
+}
+.electron-alpha{
+  transform: rotate(60deg);
+  animation-duration: 1.25s;
+  border-color: rgba(168,85,247,0.30);
+}
+.electron-omega{
+  transform: rotate(120deg);
+  animation-duration: 1.45s;
+  border-color: rgba(236,72,153,0.28);
+}
+
+/* hạt electron chạy trên quỹ đạo */
+.electron::after,
+.electron-alpha::after,
+.electron-omega::after{
+  content:"";
+  position:absolute;
+  top: -7px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 14px;
+  height: 14px;
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#6366f1,#ec4899);
+  box-shadow: 0 10px 24px -12px rgba(79,70,229,0.9);
+}
+
+@keyframes spin{ to{ transform: rotate(360deg); } }
+
+/* label */
+.loader-label{
+  margin-top: 18px;
+  text-align:center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(229,231,235,1);
+}
+.dark .loader-label{
+  background: rgba(30,41,59,0.55);
+  border-color: rgba(71,85,105,1);
+}
+.loader-label .brand{
+  font-weight: 800;
+  font-size: 22px;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+.dark .loader-label .brand{ color:#e2e8f0; }
+.loader-label .brand span{ color:#6366f1; }
+.loader-label .sub{
+  font-size: 13px;
+  color: #6b7280;
+}
+.dark .loader-label .sub{ color:#94a3b8; }
+
+/* responsive */
+@media (max-width: 640px){
+  .atom{ width: 120px; height: 120px; }
+  .loader-label .brand{ font-size: 18px; }
+}
+/* lock scroll while loading */
+body.loading { overflow: hidden; }
+
+/* ===== PRELOADER overlay ===== */
+.loader-container{
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(circle at 20% 25%, rgba(99,102,241,0.20), transparent 45%),
+    radial-gradient(circle at 80% 75%, rgba(236,72,153,0.18), transparent 50%),
+    #ffffff;
+  transition: opacity 600ms ease, visibility 600ms ease;
+}
+
+html.dark .loader-container{
+  background:
+    radial-gradient(circle at 20% 25%, rgba(99,102,241,0.22), transparent 48%),
+    radial-gradient(circle at 80% 75%, rgba(236,72,153,0.20), transparent 55%),
+    #0f172a;
+}
+
+.loader-container.hide{ opacity: 0; visibility: hidden; }
+
+.loader-wrap{
+  display: grid;
+  place-items: center;
+  gap: 16px;
+}
+
+/* ===== Atom size (chỉnh ở đây để to/nhỏ) ===== */
+:root{ --atom-size: 170px; }        /* tăng lên 200px nếu muốn to hơn */
+@media (max-width: 640px){
+  :root{ --atom-size: 130px; }
+}
+
+.atom{
+  width: var(--atom-size);
+  height: var(--atom-size);
+  position: relative;
+  filter: drop-shadow(0 18px 30px rgba(79,70,229,0.25));
+}
+
+/* nucleus */
+.atom::before{
+  content:"";
+  position:absolute;
+  inset: 0;
+  margin:auto;
+  width: calc(var(--atom-size) * 0.16);
+  height: calc(var(--atom-size) * 0.16);
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#6366f1,#ec4899);
+  box-shadow: 0 0 0 12px rgba(99,102,241,0.08);
+}
+
+/* 3 orbit rings */
+.electron, .electron-alpha, .electron-omega{
+  position:absolute;
+  inset: 0;
+  margin:auto;
+  width: 100%;
+  height: 62%;
+  border-radius: 9999px;
+  border: 2px solid rgba(99,102,241,0.35);
+  animation: atomSpin 1.05s linear infinite;
+}
+
+.electron-alpha{
+  transform: rotate(60deg);
+  animation-duration: 1.25s;
+  border-color: rgba(168,85,247,0.30);
+}
+.electron-omega{
+  transform: rotate(120deg);
+  animation-duration: 1.45s;
+  border-color: rgba(236,72,153,0.28);
+}
+
+/* moving dots */
+.electron::after,
+.electron-alpha::after,
+.electron-omega::after{
+  content:"";
+  position:absolute;
+  top: -8px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(var(--atom-size) * 0.09);
+  height: calc(var(--atom-size) * 0.09);
+  border-radius: 9999px;
+  background: linear-gradient(90deg,#6366f1,#ec4899);
+  box-shadow: 0 10px 24px -12px rgba(79,70,229,0.9);
+}
+
+@keyframes atomSpin{ to{ transform: rotate(360deg); } }
+
+/* label card */
+.loader-label{
+  text-align:center;
+  padding: 14px 18px;
+  border-radius: 16px;
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(229,231,235,1);
+}
+
+html.dark .loader-label{
+  background: rgba(30,41,59,0.55);
+  border-color: rgba(71,85,105,1);
+}
+
+.loader-label .brand{
+  font-weight: 800;
+  font-size: 22px;
+  color: #111827;
+  letter-spacing: -0.02em;
+}
+html.dark .loader-label .brand{ color:#e2e8f0; }
+
+.loader-label .brand span{ color:#6366f1; }
+
+.loader-label .sub{
+  margin-top: 2px;
+  font-size: 13px;
+  color: #6b7280;
+}
+html.dark .loader-label .sub{ color:#94a3b8; }
+
+/* reduce motion */
+@media (prefers-reduced-motion: reduce){
+  .electron, .electron-alpha, .electron-omega{ animation: none; }
+  .loader-container{ transition: none; }
+}
+
+    </style>
+  </head>
+  <body
+    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-700"
+  >
+<body class="loading">
+  <!-- ===== PRELOADER like PhucNDA ===== -->
+  <div class="loader-container" id="preloader" aria-label="Loading">
+    <div class="loader-wrap">
+      <div class="atom" aria-hidden="true">
+        <div class="electron"></div>
+        <div class="electron-alpha"></div>
+        <div class="electron-omega"></div>
+      </div>
+
+      <div class="loader-label">
+        <div class="brand">Kiet<span>nehi</span>.</div>
+        <div class="sub">Loading experience…</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ... phần còn lại của trang ... -->
+</body>
+
+
+    <!-- Scroll Progress Bar -->
+    <div id="scroll-progress"></div>
+    
+    <!-- Back to Top Button -->
+    <div id="back-to-top">
+      <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Navigation -->
+    <nav
+      class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300"
+      id="navbar"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex justify-between items-center h-16">
+          <!-- Logo -->
+          <div class="flex-shrink-0 flex items-center">
+            <a
+              href="#"
+              class="text-2xl font-bold text-gray-900 tracking-tighter"
+            >
+              Kiet<span class="text-primary">nehi</span>.
+            </a>
+          </div>
+
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex space-x-8 items-center">
+            <a
+              href="#about"
+              class="text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5"
+              data-en="About"
+              data-vi="Giới thiệu"
+              >About</a
+            >
+            <a
+              href="#github-stats"
+              class="text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5"
+              data-en="Stats"
+              data-vi="Thống kê"
+              >Stats</a
+            >
+            <a
+              href="#skills"
+              class="text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5"
+              data-en="Tech Stack"
+              data-vi="Công nghệ"
+              >Tech Stack</a
+            >
+            <a
+              href="#projects"
+              class="text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5"
+              data-en="Projects"
+              data-vi="Dự án"
+              >Projects</a
+            >
+            <a
+              href="#contact"
+              class="px-5 py-2 bg-gray-900 text-white rounded-lg hover:bg-primary transition shadow-md transform hover:scale-105"
+              data-en="Contact"
+              data-vi="Liên hệ"
+              >Contact</a
+            >
+            
+            <!-- Theme Toggle -->
+            <button
+              id="theme-toggle"
+              class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+            
+            <!-- Language Toggle -->
+            <button
+              id="lang-toggle"
+              class="px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition font-medium text-sm"
+              title="Change language"
+            >
+              <span id="lang-text">EN</span>
+            </button>
+          </div>
+
+          <!-- Mobile Menu Button -->
+          <div class="md:hidden flex items-center gap-2">
+            <!-- Theme Toggle Mobile -->
+            <button
+              id="theme-toggle-mobile"
+              class="p-2 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+            >
+              <i class="fas fa-moon dark:hidden text-lg"></i>
+              <i class="fas fa-sun hidden dark:inline text-lg"></i>
+            </button>
+            
+            <!-- Language Toggle Mobile -->
+            <button
+              id="lang-toggle-mobile"
+              class="px-2 py-1 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition font-medium text-sm"
+            >
+              <span id="lang-text-mobile">EN</span>
+            </button>
+            
+            <button
+              id="mobile-menu-btn"
+              class="text-gray-600 hover:text-primary focus:outline-none p-2"
+            >
+              <i class="fas fa-bars text-2xl"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Panel -->
+      <div
+        class="md:hidden hidden bg-white border-t absolute w-full transition-all duration-300 ease-in-out"
+        id="mobile-menu"
+      >
+        <div class="px-4 pt-2 pb-4 space-y-1">
+          <a
+            href="#about"
+            class="block px-3 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg font-medium"
+            >About</a
+          >
+          <a
+            href="#github-stats"
+            class="block px-3 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg font-medium"
+            >GitHub Stats</a
+          >
+          <a
+            href="#skills"
+            class="block px-3 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg font-medium"
+            >Tech Stack</a
+          >
+          <a
+            href="#projects"
+            class="block px-3 py-3 text-gray-600 hover:bg-gray-50 hover:text-primary rounded-lg font-medium"
+            >Projects</a
+          >
+          <a
+            href="#contact"
+            class="block px-3 py-3 text-primary font-bold bg-indigo-50 mt-2 rounded-lg"
+            >Contact Me</a
+          >
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section
+      id="about"
+      class="pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-48 lg:pb-32 overflow-hidden relative"
+    >
+      <!-- Background decoration -->
+      <div
+        class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 sm:w-96 sm:h-96 bg-primary/10 rounded-full blur-3xl rotate-animation"
+      ></div>
+      <div
+        class="absolute bottom-0 left-0 -ml-20 -mb-20 w-56 h-56 sm:w-80 sm:h-80 bg-purple-500/10 rounded-full blur-3xl rotate-animation"
+        style="animation-direction: reverse;"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
+          <div class="mb-12 lg:mb-0 text-center lg:text-left fade-in">
+            <div
+              class="inline-block px-3 py-1 bg-indigo-50 text-primary rounded-full text-sm font-semibold mb-4 border border-indigo-100 pulse-animation"
+            >
+              👋 Welcome to my portfolio
+            </div>
+            <h1
+              class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-gray-900 mb-4 sm:mb-6 leading-tight tracking-tight"
+            >
+              Hi, I'm <br />
+              <span
+                class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 gradient-animate"
+                >Phu Kiet</span
+              >
+            </h1>
+            <div class="h-8 mb-4 sm:mb-6">
+              <span
+                class="text-lg sm:text-xl md:text-2xl text-gray-600 font-medium typing-cursor"
+                id="typing-text"
+              ></span>
+            </div>
+            <p
+              class="text-base sm:text-lg text-gray-600 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+            >
+              I am an IT student at <b>Saigon University (SGU)</b>. I have a
+              deep passion for <b>Machine Learning</b>, specifically
+              <b>Deep Learning for Computer Vision</b>. I enjoy exploring how
+              machines understand and process visual data just like humans do.
+            </p>
+            <div
+              class="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 sm:gap-4"
+            >
+              <a
+                href="https://drive.google.com/file/d/1aX361jTHc0TKhQ3ktOA2mtMEC_wD83mq/view?usp=sharing"
+                target="_blank"
+                class="px-6 py-3 sm:px-8 sm:py-3.5 bg-gray-900 text-white rounded-xl font-medium hover:bg-primary transition shadow-lg hover:shadow-indigo-500/30 transform hover:-translate-y-1 flex items-center justify-center gap-2 text-sm sm:text-base glow-on-hover"
+              >
+                <i class="fas fa-file-download"></i> Download CV
+              </a>
+              <a
+                href="https://github.com/Kietnehi"
+                target="_blank"
+                class="px-6 py-3 sm:px-8 sm:py-3.5 bg-white text-gray-800 border-2 border-gray-200 rounded-xl font-medium hover:border-gray-900 hover:bg-gray-50 transition flex items-center justify-center gap-2 text-sm sm:text-base glow-on-hover"
+              >
+                <i class="fab fa-github text-xl"></i> Github
+              </a>
+            </div>
+
+            <div
+              class="mt-8 sm:mt-10 flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-gray-400"
+            >
+              <span
+                class="text-xs sm:text-sm font-medium uppercase tracking-wider text-gray-500 w-full sm:w-auto text-center lg:text-left sm:mr-2"
+                >Follow me:</span
+              >
+              <a
+                href="https://github.com/Kietnehi"
+                target="_blank"
+                class="hover:text-gray-900 transition hover:scale-110 transform"
+                title="GitHub"
+                ><i class="fab fa-github text-2xl"></i
+              ></a>
+              <a
+                href="https://www.linkedin.com/in/kiet-truong-63b302306/"
+                target="_blank"
+                class="hover:text-blue-600 transition hover:scale-110 transform"
+                title="LinkedIn"
+                ><i class="fab fa-linkedin text-2xl"></i
+              ></a>
+              <a
+                href="https://www.instagram.com/kitnehi_18/"
+                target="_blank"
+                class="hover:text-pink-500 transition hover:scale-110 transform"
+                title="Instagram"
+                ><i class="fab fa-instagram text-2xl"></i
+              ></a>
+              <a
+                href="mailto:truongquockiet1211@gmail.com"
+                class="hover:text-red-500 transition hover:scale-110 transform"
+                title="Email"
+                ><i class="fas fa-envelope text-2xl"></i
+              ></a>
+            </div>
+            <!-- Animated Badge -->
+            <div class="mt-6 sm:mt-8 flex justify-center lg:justify-start">
+              <a
+                href="https://github.com/Kietnehi"
+                target="_blank"
+                class="inline-block transform hover:scale-110 transition-transform duration-300"
+              >
+                <img
+                  src="https://datalushq.com/wp-content/uploads/2022/07/icon_2.gif"
+                  alt="Kietnehi"
+                  class="h-48 sm:h-64 md:h-80 lg:h-96 w-auto"
+                />
+              </a>
+            </div>
+          </div>
+
+          <div class="space-y-6 sm:space-y-8">
+            <!-- Output GIF Display -->
+            <div class="flex justify-center lg:justify-start">
+              <img
+                src="images/output.gif"
+                alt="Portfolio Preview"
+                class="w-64 h-auto sm:w-80 md:w-96 rounded-2xl shadow-2xl border-4 border-white transform hover:scale-105 transition-transform duration-300"
+              />
+            </div>
+
+            <!-- Avatar / Hero Image -->
+            <div
+              class="relative mx-auto lg:mx-0 w-64 h-64 sm:w-72 sm:h-72 md:w-96 md:h-96 lg:w-[450px] lg:h-[450px] scale-in"
+            >
+            <!-- Blob shape background -->
+            <div
+              class="absolute inset-0 bg-gradient-to-tr from-indigo-200 to-purple-200 rounded-xl sm:rounded-[2rem] rotate-6 transform transition-transform hover:rotate-3"
+            ></div>
+            <div
+              class="absolute inset-0 bg-gray-100 rounded-xl sm:rounded-[2rem] -rotate-3 transform border border-gray-200"
+            ></div>
+
+            <!-- Main Image -->
+            <img
+            src="images/avatar.jpg"
+            alt="Kietnehi Avatar"
+            class="absolute inset-0 w-full h-full object-contain rounded-xl sm:rounded-[2rem] shadow-2xl z-10 transition-transform duration-500 hover:scale-[1.02]"
+            />
+
+            <!-- Floating Badge: AI -->
+            <div
+              class="absolute -top-4 -right-4 sm:-top-6 sm:-right-6 bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-xl z-20 animate-bounce"
+              style="animation-duration: 3s"
+            >
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div
+                  class="w-8 h-8 sm:w-10 sm:h-10 bg-green-100 rounded-full flex items-center justify-center text-green-600"
+                >
+                  <i class="fas fa-brain text-sm sm:text-base"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase"
+                  >
+                    Focus
+                  </p>
+                  <p class="text-sm sm:text-base font-bold text-gray-800">
+                    AI / ML
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Floating Badge: Uni -->
+            <div
+              class="absolute -bottom-4 -left-4 sm:-bottom-6 sm:-left-6 bg-white p-3 sm:p-4 rounded-lg sm:rounded-xl shadow-xl z-20 animate-bounce"
+              style="animation-duration: 4.5s"
+            >
+              <div class="flex items-center gap-2 sm:gap-3">
+                <div
+                  class="w-8 h-8 sm:w-10 sm:h-10 bg-blue-100 rounded-full flex items-center justify-center text-blue-600"
+                >
+                  <i class="fas fa-university text-sm sm:text-base"></i>
+                </div>
+                <div>
+                  <p
+                    class="text-[10px] sm:text-xs text-gray-500 font-semibold uppercase"
+                  >
+                    Student at
+                  </p>
+                  <p class="text-sm sm:text-base font-bold text-gray-800">
+                    SGU
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GitHub Stats Section (NEW) -->
+    <section
+      id="github-stats"
+      class="py-12 sm:py-14 bg-white border-y border-gray-100"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <!-- Header -->
+        <div class="text-center mb-8 sm:mb-10 fade-in">
+          <span
+            class="text-indigo-600 font-semibold tracking-wider uppercase text-xs sm:text-sm"
+          >
+            Open Source Activity
+          </span>
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-2"
+          >
+            GitHub Statistics
+          </h2>
+          <p
+            class="mt-2 sm:mt-3 text-sm sm:text-base text-gray-500 max-w-2xl mx-auto px-4"
+          >
+            Overview of GitHub activity, contribution streaks, and most used
+            languages.
+          </p>
+        </div>
+
+        <!-- Cards -->
+        <div
+          class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch"
+        >
+          <!-- General Stats -->
+          <figure
+            class="group rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden card-hover slide-left"
+          >
+            <figcaption
+              class="px-5 py-4 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <p class="text-sm font-semibold text-gray-900">General Stats</p>
+                <p class="text-xs text-gray-500">
+                  Stars, commits, PRs, issues, and more
+                </p>
+              </div>
+              <span
+                class="text-xs px-2 py-1 rounded-full bg-indigo-50 text-indigo-700"
+                >Live</span
+              >
+            </figcaption>
+
+            <div class="p-4 min-h-[200px] flex items-center justify-center">
+              <!-- Actual Image with inline loading handler -->
+              <img
+                src="https://github-readme-stats.vercel.app/api?username=Kietnehi&show_icons=true&theme=default&hide_border=true&bg_color=ffffff&title_color=6366f1&icon_color=6366f1&text_color=1e293b&cache_seconds=1800"
+                alt="Kietnehi's GitHub Stats"
+                class="w-full rounded-xl border border-gray-100"
+                referrerpolicy="no-referrer"
+                style="min-height: 170px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                onload="this.style.background='none'; this.style.animation='none';"
+                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22200%22%3E%3Crect width=%22500%22 height=%22200%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3EGitHub Stats%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EView on GitHub%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi','_blank')}; this.style.cursor='pointer';"
+              />
+            </div>
+          </figure>
+
+          <!-- Streak Stats -->
+          <figure
+            class="group rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden card-hover slide-right"
+          >
+            <figcaption
+              class="px-5 py-4 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <p class="text-sm font-semibold text-gray-900">Streak</p>
+                <p class="text-xs text-gray-500">Recent contribution streak</p>
+              </div>
+              <span
+                class="text-xs px-2 py-1 rounded-full bg-pink-50 text-pink-700"
+                >Live</span
+              >
+            </figcaption>
+
+            <div class="p-4 min-h-[200px] flex items-center justify-center">
+              <!-- Actual Image with inline loading handler -->
+              <img
+                src="https://streak-stats.demolab.com?user=Kietnehi&hide_border=true&background=ffffff&ring=6366f1&fire=ec4899&currStreakNum=1e293b&sideNums=1e293b&currStreakLabel=6366f1&sideLabels=1e293b&dates=475569&cache_seconds=1800"
+                alt="Kietnehi's GitHub Streak"
+                class="w-full rounded-xl border border-gray-100"
+                referrerpolicy="no-referrer"
+                style="min-height: 170px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                onload="this.style.background='none'; this.style.animation='none';"
+                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22500%22 height=%22200%22%3E%3Crect width=%22500%22 height=%22200%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2218%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3EContribution Streak%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EView on GitHub%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi','_blank')}; this.style.cursor='pointer';"
+              />
+            </div>
+          </figure>
+        </div>
+
+        <!-- Top Languages -->
+        <div class="mt-6 sm:mt-8">
+          <figure
+            class="max-w-xl sm:max-w-2xl mx-auto rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden"
+          >
+            <figcaption
+              class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
+            >
+              <div>
+                <p class="text-xs sm:text-sm font-semibold text-gray-900">
+                  Most Used Languages
+                </p>
+                <p class="text-[10px] sm:text-xs text-gray-500">
+                  Top languages based on repository statistics
+                </p>
+              </div>
+              <span
+                class="text-[10px] sm:text-xs px-2 py-1 rounded-full bg-emerald-50 text-emerald-700"
+                >Live</span
+              >
+            </figcaption>
+
+            <div class="p-3 sm:p-4 min-h-[180px] flex items-center justify-center">
+              <!-- Actual Image with inline loading handler -->
+              <img
+                src="https://github-readme-stats.vercel.app/api/top-langs/?username=Kietnehi&layout=compact&theme=default&hide_border=true&bg_color=ffffff&title_color=6366f1&text_color=1e293b&cache_seconds=1800"
+                alt="Top Languages"
+                class="w-full rounded-xl border border-gray-100"
+                referrerpolicy="no-referrer"
+                style="min-height: 150px; background: linear-gradient(90deg, #f3f4f6 25%, #e5e7eb 50%, #f3f4f6 75%); background-size: 200% 100%; animation: shimmer 1.5s infinite;"
+                onload="this.style.background='none'; this.style.animation='none';"
+                onerror="this.style.animation='none'; this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22180%22%3E%3Crect width=%22400%22 height=%22180%22 fill=%22%23f9fafb%22/%3E%3Ctext x=%2250%25%22 y=%2245%25%22 font-family=%22Arial%22 font-size=%2216%22 fill=%22%236b7280%22 text-anchor=%22middle%22%3ETop Languages%3C/text%3E%3Ctext x=%2250%25%22 y=%2260%25%22 font-family=%22Arial%22 font-size=%2212%22 fill=%22%239ca3af%22 text-anchor=%22middle%22%3EView Repositories%3C/text%3E%3C/svg%3E'; this.onclick=function(){window.open('https://github.com/Kietnehi?tab=repositories','_blank')}; this.style.cursor='pointer';"
+              />
+            </div>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-16 sm:py-20 md:py-24 bg-slate-50 relative">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-10 sm:mb-12 md:mb-16 fade-in">
+          <span
+            class="text-primary font-semibold tracking-wider uppercase text-xs sm:text-sm pulse-animation"
+            >Tech Stack</span
+          >
+          <h2
+            class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mt-2 mb-3 sm:mb-4"
+          >
+            Skills & Technologies
+          </h2>
+          <div
+            class="w-12 sm:w-16 h-1 bg-gradient-to-r from-indigo-500 to-purple-500 mx-auto rounded-full gradient-animate"
+          ></div>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6"
+        >
+          <!-- Skill 1: Languages & Frontend -->
+          <div
+            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-1"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-orange-100 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-code text-2xl text-orange-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">Lang & Front</h3>
+            </div>
+            <div class="grid grid-cols-4 gap-4">
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg"
+                  alt="Python"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Python"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Python</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg"
+                  alt="Java"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Java"
+                />
+                <span class="text-[10px] font-medium text-gray-500">Java</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg"
+                  alt="C++"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="C++"
+                />
+                <span class="text-[10px] font-medium text-gray-500">C++</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg"
+                  alt="C#"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="C#"
+                />
+                <span class="text-[10px] font-medium text-gray-500">C#</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg"
+                  alt="JavaScript"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="JavaScript"
+                />
+                <span class="text-[10px] font-medium text-gray-500">JS</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg"
+                  alt="HTML5"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="HTML5"
+                />
+                <span class="text-[10px] font-medium text-gray-500">HTML5</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg"
+                  alt="CSS3"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="CSS3"
+                />
+                <span class="text-[10px] font-medium text-gray-500">CSS</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg"
+                  alt="React"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="React"
+                />
+                <span class="text-[10px] font-medium text-gray-500">React</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill 2: AI & Data Science -->
+          <div
+            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-2"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-purple-100 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-brain text-2xl text-purple-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">AI & Data</h3>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg"
+                  alt="PyTorch"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="PyTorch"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >PyTorch</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg"
+                  alt="TensorFlow"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="TensorFlow"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >TensorFlow</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/numpy/numpy-original.svg"
+                  alt="NumPy"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="NumPy"
+                />
+                <span class="text-[10px] font-medium text-gray-500">NumPy</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/apachespark/apachespark-original.svg"
+                  alt="Spark"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Apache Spark"
+                />
+                <span class="text-[10px] font-medium text-gray-500">Spark</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <div
+                  class="w-10 h-10 bg-green-500 rounded flex items-center justify-center text-white font-bold text-[10px] shadow-sm"
+                >
+                  CUDA
+                </div>
+                <span class="text-[10px] font-medium text-gray-500">CUDA</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/hadoop/hadoop-original.svg"
+                  alt="Hadoop"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Hadoop"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Hadoop</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill 3: Backend & Database -->
+          <div
+            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-3"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-blue-100 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-server text-2xl text-blue-600"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">Back & DB</h3>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg"
+                  alt="Node.js"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Node.js"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Node.js</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg"
+                  alt="Flask"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Flask"
+                />
+                <span class="text-[10px] font-medium text-gray-500">Flask</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg"
+                  alt="MongoDB"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="MongoDB"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >MongoDB</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg"
+                  alt="MySQL"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="MySQL"
+                />
+                <span class="text-[10px] font-medium text-gray-500">MySQL</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/microsoftsqlserver/microsoftsqlserver-original.svg"
+                  alt="SQL Server"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="SQL Server"
+                />
+                <span
+                  class="text-[10px] font-medium text-gray-500 text-center leading-tight"
+                  >SQL Server</span
+                >
+              </div>
+            </div>
+          </div>
+
+          <!-- Skill 4: DevOps & Cloud -->
+          <div
+            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-4"
+          >
+            <div class="flex items-center gap-4 mb-6">
+              <div
+                class="w-12 h-12 bg-green-100 rounded-xl flex items-center justify-center"
+              >
+                <i class="fas fa-cloud text-2xl text-green-500"></i>
+              </div>
+              <h3 class="text-xl font-bold text-gray-800">DevOps</h3>
+            </div>
+            <div class="grid grid-cols-3 gap-4">
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+                  alt="AWS"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="AWS"
+                />
+                <span class="text-[10px] font-medium text-gray-500">AWS</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg"
+                  alt="Docker"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Docker"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Docker</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/kubernetes/kubernetes-plain.svg"
+                  alt="Kubernetes"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Kubernetes"
+                />
+                <span class="text-[10px] font-medium text-gray-500">K8s</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg"
+                  alt="Git"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Git"
+                />
+                <span class="text-[10px] font-medium text-gray-500">Git</span>
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/grafana/grafana-original.svg"
+                  alt="Grafana"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Grafana"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Grafana</span
+                >
+              </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/prometheus/prometheus-original.svg"
+                  alt="Prometheus"
+                  class="w-10 h-10 group-hover/icon:scale-110 transition-transform"
+                  title="Prometheus"
+                />
+                <span class="text-[10px] font-medium text-gray-500"
+                  >Prometheus</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section
+      id="projects"
+      class="py-16 sm:py-20 md:py-24 bg-gray-900 text-white"
+    >
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div
+          class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 sm:mb-12 md:mb-16 gap-4"
+        >
+          <div class="fade-in">
+            <span
+              class="text-indigo-400 font-semibold tracking-wider uppercase text-xs sm:text-sm"
+              >Portfolio</span
+            >
+            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
+              All Projects
+            </h2>
+            <p class="text-gray-400 mt-2 text-xs sm:text-sm">
+              A collection of my work in AI/ML, Web Development, and University
+              Projects.
+            </p>
+          </div>
+          <a
+            href="https://github.com/Kietnehi?tab=repositories"
+            target="_blank"
+            class="text-gray-400 hover:text-white flex items-center gap-2 transition pb-2 border-b border-gray-700 hover:border-white text-sm fade-in"
+          >
+            View GitHub Profile <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+
+        <div
+          class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+        >
+          <!-- Project 1: YOLO -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-1"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/yolo.jpg"
+                alt="Object Detection"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-300 rounded"
+                  >Python</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded"
+                  >YOLO</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Object Detection Using YOLO
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Object detection project using YOLO (You Only Look Once)
+                algorithm, applied in Computer Vision tasks.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/ObjectDetection_Using_YOLO"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 2: Image Classification -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-2"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/image_classifications.jpg"
+                alt="Image Classification"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded"
+                  >Deep Learning</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-pink-500/20 text-pink-300 rounded"
+                  >CNN</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Image Classification
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Building Convolutional Neural Networks (CNNs) to classify images
+                into different categories with high accuracy.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/ImageClassification"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 3: Fake News -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-3"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/fake_news.jpg"
+                alt="Fake News"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-yellow-500/20 text-yellow-300 rounded"
+                  >NLP</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded"
+                  >Sklearn</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Fake News Detection
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                System using Natural Language Processing (NLP) and machine
+                learning to detect and classify fake news articles.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/Fake-news-detection"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 4: Housing Price -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/housing_prediction.jpg"
+                alt="Housing Price"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-red-500/20 text-red-300 rounded"
+                  >Regression</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded"
+                  >Data Analysis</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Housing Price Prediction
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Housing price prediction model based on dataset attributes,
+                utilizing regression algorithms for accurate estimations.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/Housing_price_prediction"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 5: Web Scraping -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/web_scraping.png"
+                alt="Web Scraping"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-orange-500/20 text-orange-300 rounded"
+                  >Selenium</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-teal-500/20 text-teal-300 rounded"
+                  >Data Mining</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Web Scraping & Prediction
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Automated tools to scrape data from websites and build
+                predictive models based on the collected data.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/WebScrapingAndMakePredict"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 6: Fabric Agency -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/fabric_agency.png"
+                alt="Fabric Agency"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-blue-600/20 text-blue-300 rounded"
+                  >Web Dev</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-gray-600/20 text-gray-300 rounded"
+                  >Project</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                Fabric Agency Website
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                A website project designed for a fabric agency, showcasing
+                products and agency information.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/DoAnFabricAgency"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 7: FOODFAST (Collab) -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/foodfast.jpg"
+                alt="FOODFAST"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-orange-600/20 text-orange-300 rounded"
+                  >Food App</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-green-600/20 text-green-300 rounded"
+                  >Collab</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                FOODFAST Application
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                A food ordering application project. Developed in collaboration
+                with team members.
+              </p>
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/ductoanoxo/FOODFAST"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  ><i class="fab fa-github"></i> View Source</a
+                >
+              </div>
+            </div>
+          </article>
+
+          <!-- Project 8: SGU Projects (Grouped) -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/SGU.png"
+                alt="SGU Projects"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex gap-2 mb-3">
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded"
+                  >SGU</span
+                >
+                <span
+                  class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded"
+                  >Academic</span
+                >
+              </div>
+              <h3
+                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+              >
+                University Coursework
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Various academic projects including Distributed Databases,
+                Software Engineering (KTPM), and Python assignments.
+              </p>
+              <div
+                class="mt-auto pt-4 border-t border-gray-700 flex flex-col gap-2"
+              >
+                <a
+                  href="https://github.com/Kietnehi/Python_2025_SGU"
+                  target="_blank"
+                  class="text-gray-300 hover:text-white text-xs flex items-center gap-2"
+                  ><i class="fas fa-angle-right text-indigo-500"></i> Python
+                  2025 SGU</a
+                >
+                <a
+                  href="https://github.com/Kietnehi/C-s-d-li-u-ph-n-t-n-SGU"
+                  target="_blank"
+                  class="text-gray-300 hover:text-white text-xs flex items-center gap-2"
+                  ><i class="fas fa-angle-right text-indigo-500"></i>
+                  Distributed Databases</a
+                >
+                <a
+                  href="https://github.com/Kietnehi/sgu25_KTPM"
+                  target="_blank"
+                  class="text-gray-300 hover:text-white text-xs flex items-center gap-2"
+                  ><i class="fas fa-angle-right text-indigo-500"></i> Software
+                  Engineering</a
+                >
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+<!-- Contact Section -->
+<section id="contact" class="relative py-16 sm:py-20 md:py-24 bg-white overflow-hidden">
+  <!-- Animated background blobs -->
+  <div class="pointer-events-none absolute inset-0">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="grid-overlay"></div>
+  </div>
+
+  <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div
+      class="reveal card-glow bg-white/70 backdrop-blur-xl rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 border border-indigo-100 text-center shadow-[0_20px_60px_-25px_rgba(79,70,229,0.35)]"
+    >
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-indigo-100 bg-indigo-50/70 text-indigo-700 text-xs sm:text-sm font-semibold mb-4">
+        <span class="dot-ping"></span>
+        Available for collaboration
+      </div>
+
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-gray-900 mb-3 sm:mb-4 tracking-tight">
+        Let’s build something <span class="text-gradient">awesome</span> ✨
+      </h2>
+
+      <p class="text-sm sm:text-base text-gray-600 mb-6 sm:mb-8 max-w-xl mx-auto px-2 leading-relaxed">
+        Bạn có cùng đam mê AI/ML hoặc muốn trao đổi về công nghệ? Nhắn mình một câu là mình phản hồi liền.
+      </p>
+
+      <div class="flex flex-col sm:flex-row justify-center gap-3 sm:gap-4">
+        <a
+          href="mailto:truongquockiet1211@gmail.com"
+          class="btn-shine px-6 py-2.5 sm:px-8 sm:py-3 bg-gray-900 text-white rounded-lg sm:rounded-xl font-bold transition shadow-lg flex items-center justify-center gap-2 text-sm sm:text-base"
+        >
+          <i class="fas fa-envelope icon-pop"></i> Send Email
+        </a>
+
+        <a
+          href="https://www.linkedin.com/in/kiet-truong-63b302306/"
+          target="_blank"
+          class="px-6 py-2.5 sm:px-8 sm:py-3 bg-white/80 text-gray-800 border border-gray-200 rounded-lg sm:rounded-xl font-bold hover:bg-white transition shadow-sm flex items-center justify-center gap-2 text-sm sm:text-base hover:-translate-y-0.5 hover:shadow-md"
+        >
+          <i class="fab fa-linkedin icon-pop text-blue-600"></i> LinkedIn
+        </a>
+      </div>
+
+      <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 text-gray-500">
+        <a
+          href="https://www.instagram.com/kitnehi_18/"
+          target="_blank"
+          class="group inline-flex items-center gap-2 hover:text-pink-600 transition"
+        >
+          <span class="social-pill">
+            <i class="fab fa-instagram"></i>
+          </span>
+          <span class="link-underline">kitnehi_18</span>
+        </a>
+
+        <span class="hidden sm:inline text-gray-300">•</span>
+
+        <a
+          href="https://github.com/Kietnehi"
+          target="_blank"
+          class="group inline-flex items-center gap-2 hover:text-gray-900 transition"
+        >
+          <span class="social-pill">
+            <i class="fab fa-github"></i>
+          </span>
+          <span class="link-underline">Kietnehi</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="relative bg-gray-50 border-t border-gray-200 pt-12 sm:pt-16 pb-6 sm:pb-8 overflow-hidden">
+  <div class="pointer-events-none absolute inset-0">
+    <div class="footer-glow"></div>
+  </div>
+
+  <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="reveal flex flex-col md:flex-row justify-between items-center gap-6">
+      <div class="text-center md:text-left">
+        <span class="text-xl sm:text-2xl font-extrabold text-gray-900 tracking-tight">
+          Kiet<span class="text-primary">nehi</span><span class="text-gray-300">.</span>
+        </span>
+        <p class="text-gray-500 text-xs sm:text-sm mt-2">
+          IT Student @ Saigon University
+        </p>
+      </div>
+
+      <div class="flex space-x-4 sm:space-x-6">
+        <a
+          href="https://github.com/Kietnehi"
+          target="_blank"
+          class="icon-btn hover:shadow-[0_12px_30px_-18px_rgba(0,0,0,0.5)]"
+          aria-label="GitHub"
+        ><i class="fab fa-github"></i></a>
+
+        <a
+          href="https://www.linkedin.com/in/kiet-truong-63b302306/"
+          target="_blank"
+          class="icon-btn icon-btn-blue hover:shadow-[0_12px_30px_-18px_rgba(37,99,235,0.6)]"
+          aria-label="LinkedIn"
+        ><i class="fab fa-linkedin-in"></i></a>
+
+        <a
+          href="https://www.instagram.com/kitnehi_18/"
+          target="_blank"
+          class="icon-btn icon-btn-pink hover:shadow-[0_12px_30px_-18px_rgba(236,72,153,0.6)]"
+          aria-label="Instagram"
+        ><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+
+    <div class="mt-10 pt-8 border-t border-gray-200 text-center text-gray-400 text-sm">
+      <p>&copy; 2025 Phu Kiet (Kietnehi). All rights reserved.</p>
+    </div>
+
+    <!-- Scroll to top -->
+    <button
+      id="toTop"
+      class="to-top-btn"
+      aria-label="Back to top"
+      title="Back to top"
+    >
+      <i class="fas fa-arrow-up"></i>
+    </button>
+  </div>
+</footer>
+
+
+    <!-- JavaScript -->
+    <script>
+      // ===== MOBILE MENU =====
+      const btn = document.getElementById("mobile-menu-btn");
+      const menu = document.getElementById("mobile-menu");
+
+      btn.addEventListener("click", () => {
+        menu.classList.toggle("hidden");
+      });
+
+      menu.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          menu.classList.add("hidden");
+        });
+      });
+
+      // ===== TYPING EFFECT =====
+      const textElement = document.getElementById("typing-text");
+      const phrases = [
+        "Saigon University Student",
+        "Machine Learning Enthusiast",
+        "Computer Vision Lover",
+      ];
+      let phraseIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function type() {
+        const currentPhrase = phrases[phraseIndex];
+
+        if (isDeleting) {
+          textElement.textContent = currentPhrase.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          textElement.textContent = currentPhrase.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        if (!isDeleting && charIndex === currentPhrase.length) {
+          isDeleting = true;
+          setTimeout(type, 2000);
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          setTimeout(type, 500);
+        } else {
+          setTimeout(type, isDeleting ? 50 : 100);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", type);
+
+      // ===== NAVBAR SCROLL EFFECT =====
+      window.addEventListener("scroll", () => {
+        const navbar = document.getElementById("navbar");
+        if (window.scrollY > 20) {
+          navbar.classList.add("shadow-md");
+          navbar.classList.add("bg-white/95");
+        } else {
+          navbar.classList.remove("shadow-md");
+          navbar.classList.remove("bg-white/95");
+        }
+      });
+
+      // ===== SCROLL PROGRESS BAR =====
+      window.addEventListener("scroll", () => {
+        const scrollProgress = document.getElementById("scroll-progress");
+        const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (window.scrollY / windowHeight) * 100;
+        scrollProgress.style.width = scrolled + "%";
+      });
+
+      // ===== BACK TO TOP BUTTON =====
+      const backToTopButton = document.getElementById("back-to-top");
+      
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 300) {
+          backToTopButton.classList.add("show");
+        } else {
+          backToTopButton.classList.remove("show");
+        }
+      });
+
+      backToTopButton.addEventListener("click", () => {
+        window.scrollTo({
+          top: 0,
+          behavior: "smooth"
+        });
+      });
+
+      // ===== SCROLL ANIMATIONS =====
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -100px 0px"
+      };
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("active");
+          }
+        });
+      }, observerOptions);
+
+      // Observe all animated elements
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements = document.querySelectorAll(
+          ".fade-in, .slide-left, .slide-right, .scale-in"
+        );
+        animatedElements.forEach(el => observer.observe(el));
+      });
+
+      // ===== PARALLAX EFFECT =====
+      document.addEventListener("mousemove", (e) => {
+        const parallaxElements = document.querySelectorAll(".parallax");
+        const mouseX = e.clientX / window.innerWidth;
+        const mouseY = e.clientY / window.innerHeight;
+
+        parallaxElements.forEach((el, index) => {
+          const speed = (index + 1) * 20;
+          const x = (mouseX - 0.5) * speed;
+          const y = (mouseY - 0.5) * speed;
+          el.style.transform = `translate(${x}px, ${y}px)`;
+        });
+      });
+
+      // ===== SMOOTH SCROLL FOR LINKS =====
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function(e) {
+          e.preventDefault();
+          const targetId = this.getAttribute("href");
+          if (targetId === "#") return;
+          
+          const targetElement = document.querySelector(targetId);
+          if (targetElement) {
+            const offsetTop = targetElement.offsetTop - 80;
+            window.scrollTo({
+              top: offsetTop,
+              behavior: "smooth"
+            });
+          }
+        });
+      });
+
+      // ===== CARD HOVER 3D EFFECT =====
+      document.querySelectorAll(".card-hover").forEach(card => {
+        card.addEventListener("mousemove", (e) => {
+          const rect = card.getBoundingClientRect();
+          const x = e.clientX - rect.left;
+          const y = e.clientY - rect.top;
+          
+          const centerX = rect.width / 2;
+          const centerY = rect.height / 2;
+          
+          const rotateX = (y - centerY) / 10;
+          const rotateY = (centerX - x) / 10;
+          
+          card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-8px)`;
+        });
+        
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "";
+        });
+      });
+
+      // ===== LAZY LOAD IMAGES WITH FADE-IN =====
+      const imageObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const img = entry.target;
+            img.style.opacity = "0";
+            img.style.transition = "opacity 0.5s ease-in";
+            
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+            }
+            
+            img.onload = () => {
+              img.style.opacity = "1";
+            };
+            
+            imageObserver.unobserve(img);
+          }
+        });
+      });
+
+      document.querySelectorAll("img[loading='lazy']").forEach(img => {
+        imageObserver.observe(img);
+      });
+
+      // ===== STAGGER ANIMATION FOR LISTS =====
+      document.addEventListener("DOMContentLoaded", () => {
+        const lists = document.querySelectorAll(".grid, .flex");
+        lists.forEach(list => {
+          const children = Array.from(list.children);
+          children.forEach((child, index) => {
+            if (child.classList.contains("fade-in") || 
+                child.classList.contains("slide-left") || 
+                child.classList.contains("slide-right")) {
+              child.style.transitionDelay = `${index * 0.1}s`;
+            }
+          });
+        });
+      });
+
+      // ===== CURSOR TRAIL EFFECT (OPTIONAL - SUBTLE) =====
+      let cursorTrail = [];
+      const trailLength = 5;
+
+      document.addEventListener("mousemove", (e) => {
+        cursorTrail.push({ x: e.clientX, y: e.clientY, time: Date.now() });
+        if (cursorTrail.length > trailLength) {
+          cursorTrail.shift();
+        }
+      });
+
+      // ===== PERFORMANCE OPTIMIZATION =====
+      let ticking = false;
+      
+      function updateAnimations() {
+        // Batch DOM updates here if needed
+        ticking = false;
+      }
+
+      window.addEventListener("scroll", () => {
+        if (!ticking) {
+          window.requestAnimationFrame(updateAnimations);
+          ticking = true;
+        }
+      });
+
+      // ===== PRELOAD CRITICAL ASSETS =====
+      window.addEventListener("load", () => {
+        // Add fade-in effect to body after load
+        document.body.style.opacity = "0";
+        document.body.style.transition = "opacity 0.3s ease-in";
+        setTimeout(() => {
+          document.body.style.opacity = "1";
+        }, 100);
+      });
+
+      // ===== EASTER EGG: KONAMI CODE =====
+      let konamiCode = [];
+      const konamiSequence = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
+      
+      document.addEventListener("keydown", (e) => {
+        konamiCode.push(e.key);
+        konamiCode = konamiCode.slice(-konamiSequence.length);
+        
+        if (konamiCode.join("") === konamiSequence.join("")) {
+          // Trigger special effect
+          document.body.style.animation = "rainbow 2s linear infinite";
+          setTimeout(() => {
+            document.body.style.animation = "";
+          }, 5000);
+        }
+      });
+
+      // ===== CONSOLE MESSAGE =====
+      console.log(
+        "%c👋 Hello Developer!",
+        "font-size: 20px; font-weight: bold; color: #6366f1;"
+      );
+      console.log(
+        "%cWelcome to my portfolio. Feel free to explore the code!",
+        "font-size: 14px; color: #64748b;"
+      );
+      console.log(
+        "%c💼 GitHub: https://github.com/Kietnehi",
+        "font-size: 12px; color: #ec4899;"
+      );
+
+      // ===== DARK MODE TOGGLE =====
+      const themeToggle = document.getElementById("theme-toggle");
+      const themeToggleMobile = document.getElementById("theme-toggle-mobile");
+      const html = document.documentElement;
+
+      // Check for saved theme preference or default to 'light' mode
+      const currentTheme = localStorage.getItem("theme") || "light";
+      if (currentTheme === "dark") {
+        html.classList.add("dark");
+      }
+
+      function toggleTheme() {
+        html.classList.toggle("dark");
+        const theme = html.classList.contains("dark") ? "dark" : "light";
+        localStorage.setItem("theme", theme);
+      }
+
+      themeToggle.addEventListener("click", toggleTheme);
+      themeToggleMobile.addEventListener("click", toggleTheme);
+
+      // ===== LANGUAGE TOGGLE =====
+      const langToggle = document.getElementById("lang-toggle");
+      const langToggleMobile = document.getElementById("lang-toggle-mobile");
+      const langText = document.getElementById("lang-text");
+      const langTextMobile = document.getElementById("lang-text-mobile");
+
+      // Check for saved language preference or default to 'en'
+      let currentLang = localStorage.getItem("language") || "en";
+
+      // Language content
+      const translations = {
+        en: {
+          welcome: "👋 Welcome to my portfolio",
+          hiIm: "Hi, I'm",
+          description: "I am an IT student at <b>Saigon University (SGU)</b>. I have a deep passion for <b>Machine Learning</b>, specifically <b>Deep Learning for Computer Vision</b>. I enjoy exploring how machines understand and process visual data just like humans do.",
+          downloadCV: "Download CV",
+          followMe: "Follow me:",
+          githubStatsTitle: "GitHub Statistics",
+          githubStatsDesc: "Overview of GitHub activity, contribution streaks, and most used languages.",
+          generalStats: "General Stats",
+          generalStatsDesc: "Stars, commits, PRs, issues, and more",
+          streak: "Streak",
+          streakDesc: "Recent contribution streak",
+          mostUsedLangs: "Most Used Languages",
+          mostUsedLangsDesc: "Top languages based on repository statistics",
+          skillsTitle: "Skills & Technologies",
+          projectsTitle: "All Projects",
+          projectsDesc: "A collection of my work in AI/ML, Web Development, and University Projects.",
+          viewGithub: "View GitHub Profile",
+          viewSource: "View Source",
+          contactTitle: "Let's Connect!",
+          contactDesc: "Do you share the same passion for AI/ML or want to discuss technology? Don't hesitate to reach out to me.",
+          sendEmail: "Send Email",
+          linkedinProfile: "LinkedIn Profile"
+        },
+        vi: {
+          welcome: "👋 Chào mừng đến portfolio của tôi",
+          hiIm: "Xin chào, tôi là",
+          description: "Tôi là sinh viên IT tại <b>Đại học Sài Gòn (SGU)</b>. Tôi có niềm đam mê sâu sắc với <b>Machine Learning</b>, đặc biệt là <b>Deep Learning cho Computer Vision</b>. Tôi thích khám phá cách máy móc hiểu và xử lý dữ liệu hình ảnh giống như con người.",
+          downloadCV: "Tải CV",
+          followMe: "Theo dõi tôi:",
+          githubStatsTitle: "Thống kê GitHub",
+          githubStatsDesc: "Tổng quan về hoạt động GitHub, chuỗi đóng góp và ngôn ngữ được sử dụng nhiều nhất.",
+          generalStats: "Thống kê chung",
+          generalStatsDesc: "Stars, commits, PRs, issues và nhiều hơn",
+          streak: "Chuỗi đóng góp",
+          streakDesc: "Chuỗi đóng góp gần đây",
+          mostUsedLangs: "Ngôn ngữ sử dụng nhiều",
+          mostUsedLangsDesc: "Ngôn ngữ hàng đầu dựa trên thống kê repository",
+          skillsTitle: "Kỹ năng & Công nghệ",
+          projectsTitle: "Tất cả Dự án",
+          projectsDesc: "Tổng hợp các dự án của tôi về AI/ML, Phát triển Web và Dự án Đại học.",
+          viewGithub: "Xem GitHub",
+          viewSource: "Xem mã nguồn",
+          contactTitle: "Hãy kết nối!",
+          contactDesc: "Bạn có cùng đam mê về AI/ML hoặc muốn thảo luận về công nghệ? Đừng ngại liên hệ với tôi.",
+          sendEmail: "Gửi Email",
+          linkedinProfile: "Hồ sơ LinkedIn"
+        }
+      };
+
+      function switchLanguage() {
+        currentLang = currentLang === "en" ? "vi" : "en";
+        localStorage.setItem("language", currentLang);
+        
+        langText.textContent = currentLang === "en" ? "VI" : "EN";
+        langTextMobile.textContent = currentLang === "en" ? "VI" : "EN";
+
+        // Update all elements with data-en and data-vi attributes
+        document.querySelectorAll("[data-en]").forEach(el => {
+          const text = currentLang === "en" ? el.dataset.en : el.dataset.vi;
+          if (text) {
+            el.textContent = text;
+          }
+        });
+
+        // Update specific content elements
+        updateContent();
+      }
+
+      function updateContent() {
+        const t = translations[currentLang];
+        
+        // Update welcome badge
+        const welcomeBadge = document.querySelector(".inline-block.px-3.py-1.bg-indigo-50");
+        if (welcomeBadge) welcomeBadge.textContent = t.welcome;
+
+        // Update description
+        const description = document.querySelector("section#about p.text-base");
+        if (description) description.innerHTML = t.description;
+
+        // Update buttons
+        const downloadBtn = document.querySelector("a[href*='drive.google.com']");
+        if (downloadBtn) {
+          downloadBtn.innerHTML = `<i class="fas fa-file-download"></i> ${t.downloadCV}`;
+        }
+
+        // Update Follow me text
+        const followText = document.querySelector("span.tracking-wider");
+        if (followText && followText.textContent.includes("Follow")) {
+          followText.textContent = t.followMe;
+        }
+
+        // Update GitHub Stats section
+        const githubTitle = document.querySelector("#github-stats h2");
+        if (githubTitle) githubTitle.textContent = t.githubStatsTitle;
+        
+        const githubDesc = document.querySelector("#github-stats p.mt-2");
+        if (githubDesc) githubDesc.textContent = t.githubStatsDesc;
+
+        // Update Skills section
+        const skillsTitle = document.querySelector("#skills h2");
+        if (skillsTitle) skillsTitle.textContent = t.skillsTitle;
+
+        // Update Projects section
+        const projectsTitle = document.querySelector("#projects h2");
+        if (projectsTitle) projectsTitle.textContent = t.projectsTitle;
+
+        const projectsDesc = document.querySelector("#projects p.text-gray-400");
+        if (projectsDesc) projectsDesc.textContent = t.projectsDesc;
+
+        // Update Contact section
+        const contactTitle = document.querySelector("#contact h2");
+        if (contactTitle) contactTitle.textContent = t.contactTitle;
+
+        const contactDesc = document.querySelector("#contact p.text-sm");
+        if (contactDesc) contactDesc.textContent = t.contactDesc;
+      }
+
+      // Initialize language
+      if (currentLang === "vi") {
+        langText.textContent = "EN";
+        langTextMobile.textContent = "EN";
+        switchLanguage();
+      } else {
+        langText.textContent = "VI";
+        langTextMobile.textContent = "VI";
+      }
+
+      langToggle.addEventListener("click", switchLanguage);
+      langToggleMobile.addEventListener("click", switchLanguage);
+
+        // Scroll reveal
+  const io = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) e.target.classList.add("is-visible");
+      });
+    },
+    { threshold: 0.12 }
+  );
+
+  document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+  // Back to top button
+  const toTop = document.getElementById("toTop");
+  const toggleToTop = () => {
+    if (window.scrollY > 500) toTop.classList.add("show");
+    else toTop.classList.remove("show");
+  };
+  window.addEventListener("scroll", toggleToTop);
+  toggleToTop();
+
+  toTop?.addEventListener("click", () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+window.addEventListener("load", () => {
+  const loader = document.getElementById("preloader");
+  if (!loader) return;
+
+  // giữ loader tối thiểu 800ms cho mượt (tránh nháy)
+  setTimeout(() => {
+    loader.classList.add("hide");
+    document.body.classList.remove("loading");
+    setTimeout(() => loader.remove(), 1500);
+  }, 800);
+});
+    </script>
+  </body>
+</html>
