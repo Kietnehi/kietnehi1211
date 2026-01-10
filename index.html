@@ -1945,6 +1945,10 @@ html.dark .loader-label .sub{ color:#94a3b8; }
                   >SQL Server</span
                 >
               </div>
+              <div class="flex flex-col items-center gap-2 group/icon">
+                <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" class="w-10 h-10 group-hover/icon:scale-110 transition-transform" title="PostgreSQL" />
+                <span class="text-[10px] font-medium text-gray-500 text-center leading-tight">PostgreSQL</span>
+              </div>
             </div>
           </div>
 
@@ -2077,32 +2081,38 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-300 rounded"
-                  >Python</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded"
-                  >YOLO</span
-                >
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/python/3776AB" class="w-3.5 h-3.5" alt="Python" />
+                  Python
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-green-500/10 text-green-400 border border-green-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/opencv/5C3EE8" class="w-3.5 h-3.5" alt="OpenCV" />
+                  OpenCV
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/ultralytics/blue" class="w-3.5 h-3.5" alt="YOLO" />
+                  YOLO
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Object Detection Using YOLO
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
-                Object detection project using YOLO (You Only Look Once)
-                algorithm, applied in Computer Vision tasks.
+                Object detection project using YOLO (You Only Look Once) algorithm, 
+                applied in Computer Vision tasks with OpenCV.
               </p>
               <div class="mt-auto pt-4 border-t border-gray-700">
                 <a
                   href="https://github.com/Kietnehi/ObjectDetection_Using_YOLO"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
@@ -2158,14 +2168,34 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span class="px-2 py-1 text-xs font-medium bg-yellow-500/20 text-yellow-300 rounded">NLP</span>
-                <span class="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded">Machine Translation</span>
-                <span class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded">Docker</span>
-                <span class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-300 rounded">Flask</span>
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/huggingface/FFD21E" class="w-3.5 h-3.5" alt="NLP" />
+                  NLP
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/googletranslate/4285F4" class="w-3.5 h-3.5" alt="Translation" />
+                  MT
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" class="w-3.5 h-3.5" alt="Docker" />
+                  Docker
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-gray-500/10 text-gray-300 border border-gray-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/flask/flask-original.svg" class="w-3.5 h-3.5 invert" alt="Flask" />
+                  Flask
+                </span>
               </div>
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">EN → FR Machine Translation</h3>
-              <p class="text-gray-400 text-sm mb-6 line-clamp-3">A simple web demo for English→French translation using an open-source model. Containerized with Docker for easy deployment.</p>
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+                EN → FR Machine Translation
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                A simple web demo for English→French translation using an open-source model. Containerized with Docker for easy deployment.
+              </p>
               <div class="mt-auto pt-4 border-t border-gray-700">
                 <a
                   href="https://github.com/Kietnehi/NLP_Machine_Translation_EN-FR"
@@ -2194,23 +2224,28 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded"
-                  >Deep Learning</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-pink-500/20 text-pink-300 rounded"
-                  >CNN</span
-                >
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tensorflow/tensorflow-original.svg" class="w-3.5 h-3.5" alt="TensorFlow" />
+                  Deep Learning
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-pink-500/10 text-pink-400 border border-pink-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/keras/keras-original.svg" class="w-3.5 h-3.5" alt="CNN" />
+                  CNN
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-3.5 h-3.5" alt="Python" />
+                  Python
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Image Classification
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
-                Building Convolutional Neural Networks (CNNs) to classify images
+                Building Convolutional Neural Networks (CNNs) using TensorFlow and Keras to classify images
                 into different categories with high accuracy.
               </p>
               <div class="mt-auto pt-4 border-t border-gray-700">
@@ -2218,8 +2253,9 @@ html.dark .loader-label .sub{ color:#94a3b8; }
                   href="https://github.com/Kietnehi/ImageClassification"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
@@ -2227,7 +2263,7 @@ html.dark .loader-label .sub{ color:#94a3b8; }
           <!-- Project 3: Fake News -->
           <article
             class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-3 project-card"
-            data-page="2"
+            data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
               <div
@@ -2240,32 +2276,38 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-yellow-500/20 text-yellow-300 rounded"
-                  >NLP</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded"
-                  >Sklearn</span
-                >
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/huggingface/FFD21E" class="w-3.5 h-3.5" alt="NLP" />
+                  NLP
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" class="w-3.5 h-3.5" alt="Sklearn" />
+                  Sklearn
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-3.5 h-3.5" alt="Python" />
+                  Python
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Fake News Detection
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
                 System using Natural Language Processing (NLP) and machine
-                learning to detect and classify fake news articles.
+                learning with Scikit-learn to detect and classify fake news articles.
               </p>
               <div class="mt-auto pt-4 border-t border-gray-700">
                 <a
                   href="https://github.com/Kietnehi/Fake-news-detection"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
@@ -2273,7 +2315,7 @@ html.dark .loader-label .sub{ color:#94a3b8; }
           <!-- Project 4: Housing Price -->
           <article
             class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
-            data-page="2"
+            data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
               <div
@@ -2286,36 +2328,44 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-red-500/20 text-red-300 rounded"
-                  >Regression</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded"
-                  >Data Analysis</span
-                >
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/scikitlearn/scikitlearn-original.svg" class="w-3.5 h-3.5" alt="Regression" />
+                  Regression
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pandas/pandas-original.svg" class="w-3.5 h-3.5" alt="Pandas" />
+                  Analysis
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-3.5 h-3.5" alt="Python" />
+                  Python
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Housing Price Prediction
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
                 Housing price prediction model based on dataset attributes,
                 utilizing regression algorithms for accurate estimations.
               </p>
+              
+              
+
               <div class="mt-auto pt-4 border-t border-gray-700">
                 <a
                   href="https://github.com/Kietnehi/Housing_price_prediction"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
-
           <!-- Project 5: Web Scraping -->
           <article
             class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
@@ -2332,23 +2382,28 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-orange-500/20 text-orange-300 rounded"
-                  >Selenium</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-teal-500/20 text-teal-300 rounded"
-                  >Data Mining</span
-                >
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/selenium/selenium-original.svg" class="w-3.5 h-3.5" alt="Selenium" />
+                  Selenium
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-teal-500/10 text-teal-300 border border-teal-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/databricks/00A2E8" class="w-3.5 h-3.5" alt="Data Mining" />
+                  Data Mining
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[11px] font-semibold bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-3.5 h-3.5" alt="Python" />
+                  Python
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Web Scraping & Prediction
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
-                Automated tools to scrape data from websites and build
+                Automated tools to scrape data from websites using Selenium and build
                 predictive models based on the collected data.
               </p>
               <div class="mt-auto pt-4 border-t border-gray-700">
@@ -2356,8 +2411,9 @@ html.dark .loader-label .sub{ color:#94a3b8; }
                   href="https://github.com/Kietnehi/WebScrapingAndMakePredict"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
@@ -2378,19 +2434,29 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-blue-600/20 text-blue-300 rounded"
-                  >Web Dev</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-gray-600/20 text-gray-300 rounded"
-                  >Project</span
-                >
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-xs font-medium bg-blue-600/20 text-blue-300 rounded border border-blue-500/10">
+                  <img src="https://cdn.simpleicons.org/codeclimate/3B82F6" class="w-3.5 h-3.5" alt="Web Dev" />
+                  Web Dev
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-xs font-medium bg-gray-600/20 text-gray-300 rounded border border-gray-500/10">
+                  <img src="https://cdn.simpleicons.org/gitbook/white" class="w-3.5 h-3.5 opacity-80" alt="Project" />
+                  Project
+                </span>
+                
+                <span class="flex items-center gap-1.5 px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded border border-indigo-500/10">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg" class="w-3.5 h-3.5" alt="PHP" />
+                  PHP
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-xs font-medium bg-yellow-500/20 text-yellow-300 rounded border border-yellow-500/10">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" class="w-3.5 h-3.5 rounded-sm" alt="JS" />
+                  JavaScript
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 Fabric Agency Website
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -2402,12 +2468,127 @@ html.dark .loader-label .sub{ color:#94a3b8; }
                   href="https://github.com/Kietnehi/DoAnFabricAgency"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
                 >
+                  <i class="fab fa-github"></i> View Source
+                </a>
+              </div>
+            </div>
+          </article>
+          <!-- Project: Copilot Visual Online -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            data-page="2"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/copilot_visual.jpg"
+                alt="Copilot Visual Online"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/googlegemini/8E75FF" class="w-3.5 h-3.5" alt="Gemini" />
+                  Gemini AI
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded-lg">
+                  <i class="fas fa-robot text-[10px]"></i>
+                  AI Assistant
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg" class="w-3.5 h-3.5" alt="Vite" />
+                  Vite
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-green-500/10 text-green-300 border border-green-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg" class="w-3.5 h-3.5" alt="Monaco" />
+                  Web App
+                </span>
+              </div>
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+                Copilot Visual Online
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                Visual Code Online is a browser-based code editor powered by Monaco and Vite, offering live preview, multi-file project management and auto-save. It includes an AI Code Copilot that indexes the repository with Jina embeddings, performs semantic retrieval with Faiss, and uses Google Gemini to generate context-aware answers about the code.
+              </p>
+
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/Copilot_Visual_Online"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                >
+                  <i class="fab fa-github"></i> View Source
+                </a>
               </div>
             </div>
           </article>
 
+          <!-- Project: Face Recognition Web -->
+          <article
+            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            data-page="2"
+          >
+            <div class="relative overflow-hidden h-48 shrink-0">
+              <div
+                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+              ></div>
+              <img
+                src="images/face_recognition.jpg"
+                alt="Face Recognition Web"
+                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+              />
+            </div>
+            <div class="p-6 flex flex-col flex-grow">
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-pink-500/10 text-pink-400 border border-pink-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/opencv/opencv-original.svg" class="w-3.5 h-3.5" alt="OpenCV" />
+                  Computer Vision
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-lg">
+                  <i class="fas fa-user-check text-[10px]"></i>
+                  Face Recognition
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-orange-500/10 text-orange-400 border border-orange-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/pytorch/pytorch-original.svg" class="w-3.5 h-3.5" alt="PyTorch" />
+                  PyTorch
+                </span>
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-green-500/10 text-green-300 border border-green-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" class="w-3.5 h-3.5" alt="Web" />
+                  Web App
+                </span>
+              </div>
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+                Face Recognition Web
+              </h3>
+              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+                A web-based face recognition system using deep learning models to identify and verify faces in real-time. Developed with PyTorch for model inference and OpenCV for image processing.
+              </p>
+
+              [Image of face recognition technology workflow using PyTorch]
+
+              <div class="mt-auto pt-4 border-t border-gray-700">
+                <a
+                  href="https://github.com/Kietnehi/FaceRecognition_WEB"
+                  target="_blank"
+                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                >
+                  <i class="fab fa-github"></i> View Source
+                </a>
+              </div>
+            </div>
+          </article>
           <!-- Project 7: FOODFAST (Collab) -->
           <article
             class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
@@ -2424,19 +2605,42 @@ html.dark .loader-label .sub{ color:#94a3b8; }
               />
             </div>
             <div class="p-6 flex flex-col flex-grow">
-              <div class="flex gap-2 mb-3">
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-orange-600/20 text-orange-300 rounded"
-                  >Food App</span
-                >
-                <span
-                  class="px-2 py-1 text-xs font-medium bg-green-600/20 text-green-300 rounded"
-                  >Collab</span
-                >
+              <!-- Tech tags with real icons -->
+              <div class="flex flex-wrap gap-2 mb-3">
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-indigo-600/20 text-indigo-300 rounded">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" class="w-4 h-4" alt="GitHub"/> GitHub
+                </span>
+                
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-blue-600/20 text-blue-300 rounded">
+                  <img src="https://img.icons8.com/?size=160&id=e6uRfPIDgoXi&format=png" class="w-4 h-4" alt="AWS"/> AWS
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-purple-600/20 text-purple-300 rounded">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" class="w-4 h-4" alt="K8S"/> K8S
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-pink-600/20 text-pink-300 rounded">
+                  <img src="https://cdn.worldvectorlogo.com/logos/vercel.svg" class="w-4 h-4" alt="Vercel"/> Vercel
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-rose-600/20 text-rose-300 rounded">
+                  <img src="https://railway.com/button.svg" class="w-4 h-4" alt="Railway"/> Railway
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-teal-600/20 text-teal-300 rounded">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/prometheus/prometheus-original.svg" class="w-4 h-4" alt="Prometheus"/> Prometheus
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-yellow-600/20 text-yellow-300 rounded">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/grafana/grafana-original.svg" class="w-4 h-4" alt="Grafana"/> Grafana
+                </span>
+
+                <span class="flex items-center gap-1 px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-200 rounded">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/githubactions/githubactions-original.svg" class="w-4 h-4" alt="CI/CD"/> CI/CD
+                </span>
               </div>
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 FOODFAST Application
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -2448,8 +2652,7 @@ html.dark .loader-label .sub{ color:#94a3b8; }
                   href="https://github.com/ductoanoxo/FOODFAST"
                   target="_blank"
                   class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                  ><i class="fab fa-github"></i> View Source</a
-                >
+                ><i class="fab fa-github"></i> View Source</a>
               </div>
             </div>
           </article>
@@ -2534,25 +2737,32 @@ html.dark .loader-label .sub{ color:#94a3b8; }
 
             <div class="p-6 flex flex-col flex-grow">
               <div class="flex flex-wrap gap-2 mb-3">
-                <span class="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded">
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-indigo-500/10 text-indigo-300 border border-indigo-500/20 rounded-lg">
+                  <i class="fas fa-brain text-[10px]"></i>
                   RAG
                 </span>
-                <span class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-300 rounded">
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-green-500/10 text-green-300 border border-green-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/ollama/white" class="w-3 h-3" alt="Ollama" />
                   LLM
                 </span>
-                <span class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded">
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 rounded-lg">
+                  <img src="https://cdn.simpleicons.org/huggingface/FFD21E" class="w-3.5 h-3.5" alt="HuggingFace" />
                   HuggingFace
                 </span>
-                <span class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded">
+
+                <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20 rounded-lg">
+                  <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg" class="w-3.5 h-3.5" alt="Docker" />
                   Docker
                 </span>
               </div>
 
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
+              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
                 RAG & Multimodal LLM System
               </h3>
+
+              
 
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
                 Built a Retrieval-Augmented Generation (RAG) system using open-source
@@ -2576,59 +2786,75 @@ html.dark .loader-label .sub{ color:#94a3b8; }
 
           <!-- Project 10: AI Agent -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
-            data-page="1"
-          >
-            <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
-              <img
-                src="images/AIAGENT.jpg"
-                alt="AI Agent"
-                class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
-                onerror="this.src='https://via.placeholder.com/400x300/1f2937/6366f1?text=AI+Agent'"
-              />
-            </div>
+  class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+  data-page="1"
+>
+  <div class="relative overflow-hidden h-48 shrink-0">
+    <div
+      class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
+    ></div>
+    <img
+      src="images/AIAGENT.jpg"
+      alt="AI Agent"
+      class="w-full h-full object-contain transform group-hover:scale-110 transition duration-700"
+      onerror="this.src='https://via.placeholder.com/400x300/1f2937/6366f1?text=AI+Agent'"
+    />
+  </div>
 
-            <div class="p-6 flex flex-col flex-grow">
-              <div class="flex flex-wrap gap-2 mb-3">
-                <span class="px-2 py-1 text-xs font-medium bg-purple-500/20 text-purple-300 rounded">
-                  AI Agent
-                </span>
-                <span class="px-2 py-1 text-xs font-medium bg-blue-500/20 text-blue-300 rounded">
-                  Python
-                </span>
-                <span class="px-2 py-1 text-xs font-medium bg-green-500/20 text-green-300 rounded">
-                  Data Analysis
-                </span>
-              </div>
+  <div class="p-6 flex flex-col flex-grow">
+    <div class="flex flex-wrap gap-2 mb-4">
+      <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-blue-500/10 text-blue-300 border border-blue-500/20 rounded-lg">
+        <img src="https://cdn.simpleicons.org/googlegemini/8E75FF" class="w-3 h-3" alt="Gemini" />
+        Gemini
+      </span>
 
-              <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
-              >
-                AI Agent System
-              </h3>
+      <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-blue-600/10 text-blue-400 border border-blue-600/20 rounded-lg">
+        <img src="https://cdn.simpleicons.org/meta/0467DF" class="w-3 h-3" alt="Meta" />
+        Meta
+      </span>
 
-              <p class="text-gray-400 text-sm mb-6 line-clamp-3">
-                An intelligent AI Agent capable of performing calculations, plotting graphs,
-                analyzing data, and searching for the latest information. The agent can
-                understand user requests and execute complex tasks autonomously with
-                real-time data processing capabilities.
-              </p>
+      <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-white/5 text-gray-300 border border-white/10 rounded-lg">
+        <svg class="w-3 h-3" viewBox="0 0 23 23" xmlns="http://www.w3.org/2000/svg">
+          <rect x="0" y="0" width="11" height="11" fill="#f25022"/>
+          <rect x="12" y="0" width="11" height="11" fill="#7fba00"/>
+          <rect x="0" y="12" width="11" height="11" fill="#00a4ef"/>
+          <rect x="12" y="12" width="11" height="11" fill="#ffb900"/>
+        </svg>
+        Microsoft
+      </span>
 
-              <div class="mt-auto pt-4 border-t border-gray-700">
-                <a
-                  href="https://github.com/Kietnehi/AI-AGENT"
-                  target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
-                >
-                  <i class="fab fa-github"></i> View Source
-                </a>
-              </div>
-            </div>
-          </article>
+      <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-purple-500/10 text-purple-300 border border-purple-500/20 rounded-lg">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/Qwen_logo.svg/250px-Qwen_logo.svg.png?20250327025131" class="w-3 h-3" alt="Qwen" />
+        Qwen
+      </span>
 
+      <span class="flex items-center gap-1.5 px-2 py-1 text-[10px] font-medium bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 rounded-lg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" class="w-3 h-3" alt="Python" />
+        Python
+      </span>
+    </div>
+
+    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+      AI Agent System
+    </h3>
+
+    <p class="text-gray-400 text-sm mb-6 line-clamp-3">
+      An intelligent AI Agent capable of performing calculations, plotting graphs,
+      analyzing data, and searching for the latest information. The agent leverages 
+      models from Google, Meta, Microsoft, and Alibaba.
+    </p>
+
+    <div class="mt-auto pt-4 border-t border-gray-700">
+      <a
+        href="https://github.com/Kietnehi/AI-AGENT"
+        target="_blank"
+        class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+      >
+        <i class="fab fa-github"></i> View Source
+      </a>
+    </div>
+  </div>
+</article>
         </div>
         
         <!-- Pagination Controls -->
