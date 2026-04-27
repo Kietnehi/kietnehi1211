@@ -1016,3 +1016,117 @@ html.dark .loader-label .sub{ color:#94a3b8; }
   .electron, .electron-alpha, .electron-omega{ animation: none; }
   .loader-container{ transition: none; }
 }
+
+/* ========== INFINITE MARQUEE ========== */
+.marquee-wrapper {
+  overflow: hidden;
+  position: relative;
+  mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 10%, black 90%, transparent 100%);
+}
+.marquee-track {
+  display: flex;
+  width: max-content;
+  animation: marqueeScroll 30s linear infinite;
+}
+.marquee-track:hover { animation-play-state: paused; }
+.marquee-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+.marquee-item img { width: 36px; height: 36px; transition: transform 200ms ease; }
+.marquee-item:hover img { transform: translateY(-3px) scale(1.12); }
+.marquee-item span { font-size: 10px; font-weight: 500; color: #6b7280; white-space: nowrap; }
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ========== NAV ACTIVE LINK ========== */
+.nav-link-active {
+  color: #6366f1 !important;
+  position: relative;
+}
+.nav-link-active::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 2px;
+  background: #6366f1;
+  border-radius: 2px;
+}
+
+/* ========== COUNT-UP ========== */
+.count-up-done {
+  transition: color 0.3s ease;
+}
+
+/* ========== DARK MODE — MARQUEE STRIP ========== */
+html.dark .marquee-strip-bg {
+  background-color: #1e293b !important;
+  border-color: #334155 !important;
+}
+html.dark .marquee-item span {
+  color: #94a3b8;
+}
+
+/* ========== DARK MODE — SCROLLBAR ========== */
+html.dark ::-webkit-scrollbar-track { background: #1e293b; }
+html.dark ::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
+html.dark ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+
+/* ========== DARK MODE — BACK TO TOP BUTTON ========== */
+html.dark .to-top-btn {
+  background: rgba(30, 41, 59, 0.92) !important;
+  color: #e2e8f0 !important;
+  border-color: #475569 !important;
+}
+
+/* ========== DARK MODE — FOOTER ICON BUTTONS ========== */
+html.dark .icon-btn {
+  background: rgba(30, 41, 59, 0.9) !important;
+  border-color: #475569 !important;
+  color: #cbd5e1 !important;
+}
+
+/* ========== DARK MODE — SOCIAL PILLS (contact) ========== */
+html.dark .social-pill {
+  background: rgba(30, 41, 59, 0.85) !important;
+  border-color: #475569 !important;
+  color: #cbd5e1 !important;
+}
+
+/* ========== PROJECT CARDS — LIGHT MODE: fix -300 tag colors (too light on white) ========== */
+section#projects .text-red-100   { color: #f87171 !important; }
+section#projects .text-teal-300  { color: #0d9488 !important; }
+section#projects .text-blue-300  { color: #2563eb !important; }
+section#projects .text-green-300 { color: #16a34a !important; }
+section#projects .text-gray-300  { color: #6b7280 !important; }
+section#projects .text-indigo-300{ color: #4f46e5 !important; }
+section#projects .text-yellow-300{ color: #ca8a04 !important; }
+section#projects .text-purple-300{ color: #7c3aed !important; }
+section#projects .text-pink-300  { color: #db2777 !important; }
+
+/* Fix near-invisible bg-white/5 + border-white/10 tags in light mode */
+section#projects .bg-white\/5 { background-color: rgba(99,102,241,0.08) !important; }
+section#projects .border-white\/10 { border-color: rgba(99,102,241,0.2) !important; }
+
+/* ========== PROJECT CARDS — DARK MODE: restore original -300 colors ========== */
+html.dark section#projects .text-red-100   { color: #fecaca !important; }
+html.dark section#projects .text-teal-300  { color: #5eead4 !important; }
+html.dark section#projects .text-blue-300  { color: #93c5fd !important; }
+html.dark section#projects .text-green-300 { color: #86efac !important; }
+html.dark section#projects .text-gray-300  { color: #d1d5db !important; }
+html.dark section#projects .text-indigo-300{ color: #a5b4fc !important; }
+html.dark section#projects .text-yellow-300{ color: #fde047 !important; }
+html.dark section#projects .text-purple-300{ color: #c4b5fd !important; }
+html.dark section#projects .text-pink-300  { color: #f9a8d4 !important; }

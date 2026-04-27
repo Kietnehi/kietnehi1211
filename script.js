@@ -534,3 +534,47 @@ nextPageBtn.addEventListener('click', () => {
 
 // Initialize pagination on page load
 showPage(1);
+
+// ===== COUNT-UP ANIMATION =====
+function animateCountUp(el) {
+  const target = parseInt(el.dataset.count, 10);
+  const suffix = el.dataset.suffix || '';
+  const duration = 1200;
+  const step = Math.ceil(duration / target);
+  let current = 0;
+  const timer = setInterval(() => {
+    current += 1;
+    el.textContent = current + suffix;
+    if (current >= target) {
+      el.textContent = target + suffix;
+      clearInterval(timer);
+    }
+  }, step);
+}
+
+const countObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      animateCountUp(entry.target);
+      countObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-count]').forEach(el => countObserver.observe(el));
+
+// ===== SCROLL SPY — ACTIVE NAV LINK =====
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
+
+const spyObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      navLinks.forEach(link => link.classList.remove('nav-link-active'));
+      const active = document.querySelector(`.nav-link[href="#${entry.target.id}"]`);
+      if (active) active.classList.add('nav-link-active');
+    }
+  });
+}, { rootMargin: '-30% 0px -60% 0px' });
+
+sections.forEach(sec => spyObserver.observe(sec));
