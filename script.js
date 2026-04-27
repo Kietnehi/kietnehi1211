@@ -537,106 +537,104 @@ showPage(1);
 
 // ===== AI CHATBOT WIDGET =====
 (function () {
-  const toggle   = document.getElementById('chat-toggle');
-  const window_  = document.getElementById('chat-window');
-  const messages = document.getElementById('chat-messages');
-  const input    = document.getElementById('chat-input');
-  const sendBtn  = document.getElementById('chat-send');
-  const badge    = document.getElementById('chat-badge');
-  const clearBtn = document.getElementById('chat-clear');
-  const iconOpen = document.getElementById('chat-icon-open');
-  const iconClose= document.getElementById('chat-icon-close');
-  const suggests = document.querySelectorAll('.chat-suggest');
+  const elToggle   = document.getElementById('chat-toggle');
+  const elWindow   = document.getElementById('chat-window');
+  const elMessages = document.getElementById('chat-messages');
+  const elInput    = document.getElementById('chat-input');
+  const elSend     = document.getElementById('chat-send');
+  const elBadge    = document.getElementById('chat-badge');
+  const elClear    = document.getElementById('chat-clear');
+  const elIconOpen = document.getElementById('chat-icon-open');
+  const elIconClose= document.getElementById('chat-icon-close');
 
-  if (!toggle) return;
+  if (!elToggle || !elWindow || !elMessages || !elInput) return;
 
   let isOpen = false;
 
-  // ── Knowledge base ──────────────────────────────────────────
+  // ── Knowledge base (dùng phrases dài, tránh match sai) ──────
   const KB = [
     {
-      keys: ['hello','hi','hey','chào','xin chào','yo','sup'],
+      test: t => /\b(hello|hey|chao|xin chao|sup|howdy)\b/.test(t) || t === 'hi',
       reply: `👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nBạn có thể hỏi mình về kỹ năng, dự án, học vấn hoặc cách liên hệ với Kiet nhé!`
     },
     {
-      keys: ['about','giới thiệu','who','bạn là ai','kiet là ai','tell me about'],
+      test: t => /about|giới thiệu|kiet là ai|bạn là ai|who is|tell me about|introduce/.test(t),
       reply: `🧑‍💻 **Phu Kiet (Kietnehi)** là sinh viên IT tại **Đại học Sài Gòn (SGU)**.\n\nKiet có đam mê sâu với **Machine Learning** và **Deep Learning for Computer Vision** — khám phá cách máy tính "nhìn" và hiểu thế giới như con người.`
     },
     {
-      keys: ['skill','kỹ năng','tech','stack','công nghệ','language','ngôn ngữ','tool'],
+      test: t => /skill|kỹ năng|tech stack|công nghệ|tools|ngôn ngữ lập trình|technology/.test(t),
       reply: `🛠️ **Tech Stack của Kiet:**\n\n🤖 **AI/ML:** Python, PyTorch, TensorFlow, NumPy, Scikit-learn, CUDA\n🌐 **Web:** React, Node.js, Flask, FastAPI, JavaScript\n🗄️ **Database:** MySQL, MongoDB, PostgreSQL, SQL Server\n☁️ **DevOps:** Docker, Kubernetes, AWS, Git, Grafana\n📊 **Data:** Apache Spark, Hadoop`
     },
     {
-      keys: ['project','dự án','work','portfolio','làm gì','built','build'],
+      test: t => /project|dự án|portfolio|work|built|build|những gì kiet làm/.test(t),
       reply: `💼 **Một số dự án nổi bật:**\n\n🎓 **AI FOR EDUCATION** — Nền tảng học cá nhân hóa dùng Gemini AI\n🤖 **RAG & Multimodal LLM** — Hệ thống RAG với Ollama, BLIP, Docker\n🚁 **UAV Flood Detection** — Phát hiện người trong lũ lụt bằng Computer Vision\n🔊 **Audio To YouTube AI** — Nhận dạng âm thanh & tìm nhạc trên YouTube\n\n👉 Xem tất cả tại mục **Projects** trên trang!`
     },
     {
-      keys: ['competition','hackathon','cuộc thi','award','giải','contest'],
+      test: t => /competition|hackathon|cuộc thi|contest|award|giải thưởng/.test(t),
       reply: `🏆 **Competitions & Hackathons:**\n\n🔵 **VNPT Hackathon** — AI-Powered Meeting Assistant (Computer Vision + OCR + LLM + AI Agent)\n🟠 **Cursor Hackathon** — UAV-Based Flood Rescue Detection (Object Detection + Computer Vision)\n\nCả 2 đều ứng dụng AI thực tế để giải quyết vấn đề thực!`
     },
     {
-      keys: ['education','học','university','trường','sgu','saigon','sinh viên','student','degree'],
+      test: t => /education|học vấn|university|trường|sgu|saigon university|sinh viên|student|degree/.test(t),
       reply: `🎓 **Học vấn:**\n\n📍 **Đại học Sài Gòn (SGU)** — Khoa Công nghệ Thông tin\n\nKiet đang học và nghiên cứu chuyên sâu về **Machine Learning**, **Computer Vision**, và **Deep Learning**. Luôn tìm kiếm cơ hội ứng dụng AI vào các bài toán thực tế.`
     },
     {
-      keys: ['contact','liên hệ','email','reach','hire','tuyển','việc làm','job','collaborate','hợp tác'],
+      test: t => /contact|liên hệ|email|hire|tuyển dụng|việc làm|collaborate|hợp tác|reach out/.test(t),
       reply: `📬 **Liên hệ với Kiet:**\n\n📧 **Email:** truongquockiet1211@gmail.com\n💼 **LinkedIn:** linkedin.com/in/kiet-truong-63b302306\n🐙 **GitHub:** github.com/Kietnehi\n📸 **Instagram:** @kitnehi_18\n\nKiet luôn sẵn sàng hợp tác và trao đổi về AI/ML! 🚀`
     },
     {
-      keys: ['github','repo','repository','open source','code','source'],
+      test: t => /github|repository|repo|open source|source code/.test(t),
       reply: `🐙 **GitHub của Kiet:** [github.com/Kietnehi](https://github.com/Kietnehi)\n\nCó **15+ repositories** công khai bao gồm AI/ML projects, web apps, và research experiments. Kiet active thường xuyên với **1,000+ contributions** mỗi năm!`
     },
     {
-      keys: ['ai','machine learning','ml','deep learning','computer vision','nlp','llm','neural'],
+      test: t => /machine learning|deep learning|computer vision|pytorch|tensorflow|neural network|nlp|llm|rag|yolo|opencv/.test(t),
       reply: `🧠 **AI/ML Expertise của Kiet:**\n\n• **Computer Vision** — Image classification, Object detection (YOLO), Face recognition\n• **Deep Learning** — CNN, Transfer Learning, PyTorch & TensorFlow\n• **LLM & RAG** — Ollama, HuggingFace, Gemini AI, Multimodal\n• **NLP** — Text classification, Fake news detection\n• **AI Agents** — n8n workflows, autonomous systems`
     },
     {
-      keys: ['help','?','hướng dẫn','option','menu','what can','bạn có thể'],
+      test: t => /cv|resume|download cv|tải cv/.test(t),
+      reply: `📄 **CV của Kiet** có thể tải tại nút **"Download CV"** ở đầu trang!\n\nHoặc liên hệ qua email: truongquockiet1211@gmail.com để nhận phiên bản mới nhất.`
+    },
+    {
+      test: t => /thank|cảm ơn|thanks|tks|merci/.test(t),
+      reply: `😊 Không có gì! Rất vui được giúp bạn.\n\nNếu có dự án thú vị muốn hợp tác, đừng ngại liên hệ Kiet nhé! 🚀`
+    },
+    {
+      test: t => /help|\?|hướng dẫn|menu|what can|bạn có thể làm gì|option/.test(t),
       reply: `💡 **Mình có thể giúp bạn tìm hiểu về:**\n\n👋 About Kiet\n🛠️ Skills & Tech Stack\n💼 Projects\n🏆 Competitions\n🎓 Education\n📬 Contact Info\n🐙 GitHub\n🤖 AI/ML Focus\n\nCứ hỏi thoải mái nhé!`
-    },
-    {
-      keys: ['cv','resume','download','tải'],
-      reply: `📄 **CV của Kiet** có thể tải tại nút **"Download CV"** ở đầu trang!\n\nHoặc liên hệ trực tiếp qua email: truongquockiet1211@gmail.com để nhận phiên bản mới nhất.`
-    },
-    {
-      keys: ['thank','cảm ơn','thanks','tks','ty'],
-      reply: `😊 Không có gì! Rất vui được giúp bạn.\n\nNếu bạn muốn biết thêm về Kiet hoặc có dự án thú vị muốn hợp tác, đừng ngại liên hệ nhé! 🚀`
     },
   ];
 
   function getReply(text) {
-    const lower = text.toLowerCase().trim();
+    const t = text.toLowerCase().trim();
     for (const item of KB) {
-      if (item.keys.some(k => lower.includes(k))) return item.reply;
+      try { if (item.test(t)) return item.reply; } catch(e) {}
     }
-    return `🤔 Mình chưa có thông tin về điều đó.\n\nBạn có thể hỏi về **skills**, **projects**, **education**, **contact**, hoặc **GitHub** của Kiet nhé! Gõ "help" để xem danh sách.`;
+    return `🤔 Mình chưa có thông tin về điều đó.\n\nThử hỏi về **skills**, **projects**, **education**, **contact** hoặc gõ **"help"** để xem danh sách nhé!`;
   }
 
   // ── Render helpers ───────────────────────────────────────────
   function formatText(text) {
     return text
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\[(.+?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" style="color:#6366f1;text-decoration:underline;">$1</a>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+        '<a href="$2" target="_blank" rel="noopener" style="color:#6366f1;text-decoration:underline">$1</a>')
       .replace(/\n/g, '<br>');
   }
 
   function addMessage(text, sender) {
     const wrap = document.createElement('div');
-    wrap.className = `chat-msg ${sender}`;
-
+    wrap.className = 'chat-msg ' + sender;
     if (sender === 'bot') {
       const av = document.createElement('div');
       av.className = 'chat-msg-avatar';
-      av.innerHTML = '🤖';
+      av.textContent = '🤖';
       wrap.appendChild(av);
     }
-
     const bubble = document.createElement('div');
     bubble.className = 'chat-bubble';
     bubble.innerHTML = formatText(text);
     wrap.appendChild(bubble);
-    messages.appendChild(wrap);
-    messages.scrollTop = messages.scrollHeight;
+    elMessages.appendChild(wrap);
+    elMessages.scrollTop = elMessages.scrollHeight;
   }
 
   function showTyping() {
@@ -645,14 +643,14 @@ showPage(1);
     wrap.id = 'chat-typing-indicator';
     const av = document.createElement('div');
     av.className = 'chat-msg-avatar';
-    av.innerHTML = '🤖';
+    av.textContent = '🤖';
     const dots = document.createElement('div');
     dots.className = 'chat-typing';
     dots.innerHTML = '<span></span><span></span><span></span>';
     wrap.appendChild(av);
     wrap.appendChild(dots);
-    messages.appendChild(wrap);
-    messages.scrollTop = messages.scrollHeight;
+    elMessages.appendChild(wrap);
+    elMessages.scrollTop = elMessages.scrollHeight;
   }
 
   function removeTyping() {
@@ -662,61 +660,66 @@ showPage(1);
 
   function botReply(userText) {
     showTyping();
-    const delay = 700 + Math.random() * 500;
     setTimeout(() => {
       removeTyping();
       addMessage(getReply(userText), 'bot');
-    }, delay);
+    }, 700 + Math.random() * 400);
   }
 
   function sendMessage(text) {
-    text = text.trim();
+    text = (text || '').trim();
     if (!text) return;
     addMessage(text, 'user');
-    input.value = '';
+    elInput.value = '';
     botReply(text);
   }
 
   // ── Open / Close ─────────────────────────────────────────────
   function openChat() {
+    if (isOpen) return;
     isOpen = true;
-    window_.classList.remove('chat-hidden');
-    iconOpen.style.display = 'none';
-    iconClose.style.display = 'block';
-    badge.style.display = 'none';
-    if (messages.children.length === 0) {
-      setTimeout(() => {
-        addMessage('👋 Xin chào! Mình là **KietAI**.\n\nBạn muốn biết gì về Phu Kiet? Hãy hỏi hoặc chọn gợi ý bên dưới!', 'bot');
-      }, 300);
+    elWindow.classList.remove('chat-hidden');
+    elIconOpen.style.display = 'none';
+    elIconClose.style.display = 'block';
+    elBadge.style.display = 'none';
+    // Hiện greeting ngay lập tức nếu chưa có message nào
+    if (elMessages.children.length === 0) {
+      addMessage('👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nBạn muốn biết gì? Hãy hỏi hoặc chọn gợi ý bên dưới!', 'bot');
     }
-    setTimeout(() => input.focus(), 350);
+    setTimeout(() => elInput.focus(), 200);
   }
 
   function closeChat() {
+    if (!isOpen) return;
     isOpen = false;
-    window_.classList.add('chat-hidden');
-    iconOpen.style.display = 'block';
-    iconClose.style.display = 'none';
+    elWindow.classList.add('chat-hidden');
+    elIconOpen.style.display = 'block';
+    elIconClose.style.display = 'none';
   }
 
   // ── Event listeners ──────────────────────────────────────────
-  toggle.addEventListener('click', () => isOpen ? closeChat() : openChat());
+  elToggle.addEventListener('click', () => isOpen ? closeChat() : openChat());
 
-  sendBtn.addEventListener('click', () => sendMessage(input.value));
+  elSend.addEventListener('click', () => sendMessage(elInput.value));
 
-  input.addEventListener('keydown', e => {
-    if (e.key === 'Enter') sendMessage(input.value);
+  elInput.addEventListener('keydown', e => {
+    if (e.key === 'Enter') { e.preventDefault(); sendMessage(elInput.value); }
   });
 
-  clearBtn.addEventListener('click', () => {
-    messages.innerHTML = '';
-    setTimeout(() => addMessage('Chat đã được xóa! Mình có thể giúp gì cho bạn? 😊', 'bot'), 200);
-  });
+  if (elClear) {
+    elClear.addEventListener('click', () => {
+      elMessages.innerHTML = '';
+      addMessage('Chat đã xóa! Mình có thể giúp gì cho bạn? 😊', 'bot');
+    });
+  }
 
-  suggests.forEach(btn => {
+  // Fix timing bug: lưu wasOpen TRƯỚC khi gọi openChat()
+  document.querySelectorAll('.chat-suggest').forEach(btn => {
     btn.addEventListener('click', () => {
-      if (!isOpen) openChat();
-      setTimeout(() => sendMessage(btn.dataset.q), isOpen ? 0 : 400);
+      const wasOpen = isOpen;
+      if (!wasOpen) openChat();
+      // Nếu chat đang đóng: đợi greeting hiện xong rồi mới gửi câu hỏi
+      setTimeout(() => sendMessage(btn.dataset.q), wasOpen ? 0 : 600);
     });
   });
 })();
