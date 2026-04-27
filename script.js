@@ -535,6 +535,123 @@ nextPageBtn.addEventListener('click', () => {
 // Initialize pagination on page load
 showPage(1);
 
+// ===== CUSTOM CURSOR =====
+(function () {
+  if (window.matchMedia('(pointer: fine)').matches) {
+    const dot  = document.getElementById('cursor-dot');
+    const ring = document.getElementById('cursor-ring');
+    if (!dot || !ring) return;
+
+    let ringX = 0, ringY = 0;
+    let mouseX = 0, mouseY = 0;
+
+    document.addEventListener('mousemove', e => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      dot.style.left = mouseX + 'px';
+      dot.style.top  = mouseY + 'px';
+    });
+
+    // Ring follows with smooth lerp
+    (function animateRing() {
+      ringX += (mouseX - ringX) * 0.12;
+      ringY += (mouseY - ringY) * 0.12;
+      ring.style.left = ringX + 'px';
+      ring.style.top  = ringY + 'px';
+      requestAnimationFrame(animateRing);
+    })();
+
+    // Hover effect on interactive elements
+    document.querySelectorAll('a, button, [role="button"], input, label').forEach(el => {
+      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+    });
+
+    // Click effect
+    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
+    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
+  }
+})();
+
+// ===== NEURAL NETWORK PARTICLES =====
+(function () {
+  const canvas = document.getElementById('neural-canvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const isDark = () => document.documentElement.classList.contains('dark');
+
+  let W, H, nodes = [];
+  const COUNT = window.innerWidth < 768 ? 40 : 70;
+  const MAX_DIST = 140;
+
+  function resize() {
+    const section = canvas.parentElement;
+    W = canvas.width  = section.offsetWidth;
+    H = canvas.height = section.offsetHeight;
+  }
+
+  function randBetween(a, b) { return a + Math.random() * (b - a); }
+
+  function init() {
+    resize();
+    nodes = Array.from({ length: COUNT }, () => ({
+      x: Math.random() * W,
+      y: Math.random() * H,
+      vx: randBetween(-0.3, 0.3),
+      vy: randBetween(-0.3, 0.3),
+      r: randBetween(2, 4),
+    }));
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    const dark = isDark();
+    const nodeColor = dark ? 'rgba(99,102,241,0.55)' : 'rgba(99,102,241,0.35)';
+    const lineBase  = dark ? '99,102,241'            : '99,102,241';
+
+    // Move nodes
+    nodes.forEach(n => {
+      n.x += n.vx;
+      n.y += n.vy;
+      if (n.x < 0 || n.x > W) n.vx *= -1;
+      if (n.y < 0 || n.y > H) n.vy *= -1;
+    });
+
+    // Draw lines
+    for (let i = 0; i < nodes.length; i++) {
+      for (let j = i + 1; j < nodes.length; j++) {
+        const dx = nodes[i].x - nodes[j].x;
+        const dy = nodes[i].y - nodes[j].y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+        if (dist < MAX_DIST) {
+          const alpha = (1 - dist / MAX_DIST) * (dark ? 0.25 : 0.15);
+          ctx.strokeStyle = `rgba(${lineBase},${alpha})`;
+          ctx.lineWidth = 1;
+          ctx.beginPath();
+          ctx.moveTo(nodes[i].x, nodes[i].y);
+          ctx.lineTo(nodes[j].x, nodes[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    // Draw nodes
+    nodes.forEach(n => {
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+      ctx.fillStyle = nodeColor;
+      ctx.fill();
+    });
+
+    requestAnimationFrame(draw);
+  }
+
+  window.addEventListener('resize', () => { resize(); });
+  init();
+  draw();
+})();
+
 // ===== COUNT-UP ANIMATION =====
 function animateCountUp(el) {
   const target = parseInt(el.dataset.count, 10);

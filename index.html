@@ -61,6 +61,10 @@
 </body>
 
 
+    <!-- Custom Cursor -->
+    <div id="cursor-dot"></div>
+    <div id="cursor-ring"></div>
+
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress"></div>
     
@@ -225,6 +229,9 @@
       id="about"
       class="pt-24 pb-16 sm:pt-32 sm:pb-20 lg:pt-48 lg:pb-32 overflow-hidden relative"
     >
+      <!-- Neural Network Particles Canvas -->
+      <canvas id="neural-canvas" class="absolute inset-0 w-full h-full pointer-events-none" style="z-index:0"></canvas>
+
       <!-- Background decoration -->
       <div
         class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 sm:w-96 sm:h-96 bg-primary/10 rounded-full blur-3xl rotate-animation"
