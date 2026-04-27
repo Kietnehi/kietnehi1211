@@ -535,6 +535,192 @@ nextPageBtn.addEventListener('click', () => {
 // Initialize pagination on page load
 showPage(1);
 
+// ===== AI CHATBOT WIDGET =====
+(function () {
+  const toggle   = document.getElementById('chat-toggle');
+  const window_  = document.getElementById('chat-window');
+  const messages = document.getElementById('chat-messages');
+  const input    = document.getElementById('chat-input');
+  const sendBtn  = document.getElementById('chat-send');
+  const badge    = document.getElementById('chat-badge');
+  const clearBtn = document.getElementById('chat-clear');
+  const iconOpen = document.getElementById('chat-icon-open');
+  const iconClose= document.getElementById('chat-icon-close');
+  const suggests = document.querySelectorAll('.chat-suggest');
+
+  if (!toggle) return;
+
+  let isOpen = false;
+
+  // ── Knowledge base ──────────────────────────────────────────
+  const KB = [
+    {
+      keys: ['hello','hi','hey','chào','xin chào','yo','sup'],
+      reply: `👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nBạn có thể hỏi mình về kỹ năng, dự án, học vấn hoặc cách liên hệ với Kiet nhé!`
+    },
+    {
+      keys: ['about','giới thiệu','who','bạn là ai','kiet là ai','tell me about'],
+      reply: `🧑‍💻 **Phu Kiet (Kietnehi)** là sinh viên IT tại **Đại học Sài Gòn (SGU)**.\n\nKiet có đam mê sâu với **Machine Learning** và **Deep Learning for Computer Vision** — khám phá cách máy tính "nhìn" và hiểu thế giới như con người.`
+    },
+    {
+      keys: ['skill','kỹ năng','tech','stack','công nghệ','language','ngôn ngữ','tool'],
+      reply: `🛠️ **Tech Stack của Kiet:**\n\n🤖 **AI/ML:** Python, PyTorch, TensorFlow, NumPy, Scikit-learn, CUDA\n🌐 **Web:** React, Node.js, Flask, FastAPI, JavaScript\n🗄️ **Database:** MySQL, MongoDB, PostgreSQL, SQL Server\n☁️ **DevOps:** Docker, Kubernetes, AWS, Git, Grafana\n📊 **Data:** Apache Spark, Hadoop`
+    },
+    {
+      keys: ['project','dự án','work','portfolio','làm gì','built','build'],
+      reply: `💼 **Một số dự án nổi bật:**\n\n🎓 **AI FOR EDUCATION** — Nền tảng học cá nhân hóa dùng Gemini AI\n🤖 **RAG & Multimodal LLM** — Hệ thống RAG với Ollama, BLIP, Docker\n🚁 **UAV Flood Detection** — Phát hiện người trong lũ lụt bằng Computer Vision\n🔊 **Audio To YouTube AI** — Nhận dạng âm thanh & tìm nhạc trên YouTube\n\n👉 Xem tất cả tại mục **Projects** trên trang!`
+    },
+    {
+      keys: ['competition','hackathon','cuộc thi','award','giải','contest'],
+      reply: `🏆 **Competitions & Hackathons:**\n\n🔵 **VNPT Hackathon** — AI-Powered Meeting Assistant (Computer Vision + OCR + LLM + AI Agent)\n🟠 **Cursor Hackathon** — UAV-Based Flood Rescue Detection (Object Detection + Computer Vision)\n\nCả 2 đều ứng dụng AI thực tế để giải quyết vấn đề thực!`
+    },
+    {
+      keys: ['education','học','university','trường','sgu','saigon','sinh viên','student','degree'],
+      reply: `🎓 **Học vấn:**\n\n📍 **Đại học Sài Gòn (SGU)** — Khoa Công nghệ Thông tin\n\nKiet đang học và nghiên cứu chuyên sâu về **Machine Learning**, **Computer Vision**, và **Deep Learning**. Luôn tìm kiếm cơ hội ứng dụng AI vào các bài toán thực tế.`
+    },
+    {
+      keys: ['contact','liên hệ','email','reach','hire','tuyển','việc làm','job','collaborate','hợp tác'],
+      reply: `📬 **Liên hệ với Kiet:**\n\n📧 **Email:** truongquockiet1211@gmail.com\n💼 **LinkedIn:** linkedin.com/in/kiet-truong-63b302306\n🐙 **GitHub:** github.com/Kietnehi\n📸 **Instagram:** @kitnehi_18\n\nKiet luôn sẵn sàng hợp tác và trao đổi về AI/ML! 🚀`
+    },
+    {
+      keys: ['github','repo','repository','open source','code','source'],
+      reply: `🐙 **GitHub của Kiet:** [github.com/Kietnehi](https://github.com/Kietnehi)\n\nCó **15+ repositories** công khai bao gồm AI/ML projects, web apps, và research experiments. Kiet active thường xuyên với **1,000+ contributions** mỗi năm!`
+    },
+    {
+      keys: ['ai','machine learning','ml','deep learning','computer vision','nlp','llm','neural'],
+      reply: `🧠 **AI/ML Expertise của Kiet:**\n\n• **Computer Vision** — Image classification, Object detection (YOLO), Face recognition\n• **Deep Learning** — CNN, Transfer Learning, PyTorch & TensorFlow\n• **LLM & RAG** — Ollama, HuggingFace, Gemini AI, Multimodal\n• **NLP** — Text classification, Fake news detection\n• **AI Agents** — n8n workflows, autonomous systems`
+    },
+    {
+      keys: ['help','?','hướng dẫn','option','menu','what can','bạn có thể'],
+      reply: `💡 **Mình có thể giúp bạn tìm hiểu về:**\n\n👋 About Kiet\n🛠️ Skills & Tech Stack\n💼 Projects\n🏆 Competitions\n🎓 Education\n📬 Contact Info\n🐙 GitHub\n🤖 AI/ML Focus\n\nCứ hỏi thoải mái nhé!`
+    },
+    {
+      keys: ['cv','resume','download','tải'],
+      reply: `📄 **CV của Kiet** có thể tải tại nút **"Download CV"** ở đầu trang!\n\nHoặc liên hệ trực tiếp qua email: truongquockiet1211@gmail.com để nhận phiên bản mới nhất.`
+    },
+    {
+      keys: ['thank','cảm ơn','thanks','tks','ty'],
+      reply: `😊 Không có gì! Rất vui được giúp bạn.\n\nNếu bạn muốn biết thêm về Kiet hoặc có dự án thú vị muốn hợp tác, đừng ngại liên hệ nhé! 🚀`
+    },
+  ];
+
+  function getReply(text) {
+    const lower = text.toLowerCase().trim();
+    for (const item of KB) {
+      if (item.keys.some(k => lower.includes(k))) return item.reply;
+    }
+    return `🤔 Mình chưa có thông tin về điều đó.\n\nBạn có thể hỏi về **skills**, **projects**, **education**, **contact**, hoặc **GitHub** của Kiet nhé! Gõ "help" để xem danh sách.`;
+  }
+
+  // ── Render helpers ───────────────────────────────────────────
+  function formatText(text) {
+    return text
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[(.+?)\]\((https?:\/\/[^\)]+)\)/g, '<a href="$2" target="_blank" style="color:#6366f1;text-decoration:underline;">$1</a>')
+      .replace(/\n/g, '<br>');
+  }
+
+  function addMessage(text, sender) {
+    const wrap = document.createElement('div');
+    wrap.className = `chat-msg ${sender}`;
+
+    if (sender === 'bot') {
+      const av = document.createElement('div');
+      av.className = 'chat-msg-avatar';
+      av.innerHTML = '🤖';
+      wrap.appendChild(av);
+    }
+
+    const bubble = document.createElement('div');
+    bubble.className = 'chat-bubble';
+    bubble.innerHTML = formatText(text);
+    wrap.appendChild(bubble);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function showTyping() {
+    const wrap = document.createElement('div');
+    wrap.className = 'chat-msg bot';
+    wrap.id = 'chat-typing-indicator';
+    const av = document.createElement('div');
+    av.className = 'chat-msg-avatar';
+    av.innerHTML = '🤖';
+    const dots = document.createElement('div');
+    dots.className = 'chat-typing';
+    dots.innerHTML = '<span></span><span></span><span></span>';
+    wrap.appendChild(av);
+    wrap.appendChild(dots);
+    messages.appendChild(wrap);
+    messages.scrollTop = messages.scrollHeight;
+  }
+
+  function removeTyping() {
+    const t = document.getElementById('chat-typing-indicator');
+    if (t) t.remove();
+  }
+
+  function botReply(userText) {
+    showTyping();
+    const delay = 700 + Math.random() * 500;
+    setTimeout(() => {
+      removeTyping();
+      addMessage(getReply(userText), 'bot');
+    }, delay);
+  }
+
+  function sendMessage(text) {
+    text = text.trim();
+    if (!text) return;
+    addMessage(text, 'user');
+    input.value = '';
+    botReply(text);
+  }
+
+  // ── Open / Close ─────────────────────────────────────────────
+  function openChat() {
+    isOpen = true;
+    window_.classList.remove('chat-hidden');
+    iconOpen.style.display = 'none';
+    iconClose.style.display = 'block';
+    badge.style.display = 'none';
+    if (messages.children.length === 0) {
+      setTimeout(() => {
+        addMessage('👋 Xin chào! Mình là **KietAI**.\n\nBạn muốn biết gì về Phu Kiet? Hãy hỏi hoặc chọn gợi ý bên dưới!', 'bot');
+      }, 300);
+    }
+    setTimeout(() => input.focus(), 350);
+  }
+
+  function closeChat() {
+    isOpen = false;
+    window_.classList.add('chat-hidden');
+    iconOpen.style.display = 'block';
+    iconClose.style.display = 'none';
+  }
+
+  // ── Event listeners ──────────────────────────────────────────
+  toggle.addEventListener('click', () => isOpen ? closeChat() : openChat());
+
+  sendBtn.addEventListener('click', () => sendMessage(input.value));
+
+  input.addEventListener('keydown', e => {
+    if (e.key === 'Enter') sendMessage(input.value);
+  });
+
+  clearBtn.addEventListener('click', () => {
+    messages.innerHTML = '';
+    setTimeout(() => addMessage('Chat đã được xóa! Mình có thể giúp gì cho bạn? 😊', 'bot'), 200);
+  });
+
+  suggests.forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!isOpen) openChat();
+      setTimeout(() => sendMessage(btn.dataset.q), isOpen ? 0 : 400);
+    });
+  });
+})();
+
 // ===== CUSTOM CURSOR =====
 (function () {
   if (window.matchMedia('(pointer: fine)').matches) {
