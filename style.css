@@ -1279,64 +1279,6 @@ html.dark #chat-input:focus { border-color: #6366f1; background: #1e293b; }
 html.dark .chat-messages::-webkit-scrollbar-thumb { background: #475569; }
 html.dark .chat-badge { border-color: #1e293b; }
 
-/* ========== CUSTOM CURSOR ========== */
-@media (pointer: fine) {
-  * { cursor: none !important; }
-
-  #cursor-dot {
-    position: fixed;
-    width: 8px;
-    height: 8px;
-    background: #6366f1;
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: width 0.15s ease, height 0.15s ease, background 0.15s ease;
-  }
-
-  #cursor-ring {
-    position: fixed;
-    width: 36px;
-    height: 36px;
-    border: 2px solid rgba(99, 102, 241, 0.5);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99998;
-    transform: translate(-50%, -50%);
-    transition: width 0.25s ease, height 0.25s ease, border-color 0.25s ease, opacity 0.25s ease;
-  }
-
-  /* Hover state: dot grows, ring shrinks */
-  body.cursor-hover #cursor-dot {
-    width: 12px;
-    height: 12px;
-    background: #ec4899;
-  }
-  body.cursor-hover #cursor-ring {
-    width: 48px;
-    height: 48px;
-    border-color: rgba(236, 72, 153, 0.4);
-  }
-
-  /* Click state */
-  body.cursor-click #cursor-dot {
-    width: 6px;
-    height: 6px;
-    background: #ec4899;
-  }
-  body.cursor-click #cursor-ring {
-    width: 28px;
-    height: 28px;
-    border-color: rgba(236, 72, 153, 0.7);
-  }
-}
-
-/* Hide cursor elements on touch devices */
-@media (pointer: coarse) {
-  #cursor-dot, #cursor-ring { display: none; }
-}
-
 /* ========== INFINITE MARQUEE ========== */
 .marquee-wrapper {
   overflow: hidden;

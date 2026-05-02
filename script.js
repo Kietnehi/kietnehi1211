@@ -724,44 +724,6 @@ showPage(1);
   });
 })();
 
-// ===== CUSTOM CURSOR =====
-(function () {
-  if (window.matchMedia('(pointer: fine)').matches) {
-    const dot  = document.getElementById('cursor-dot');
-    const ring = document.getElementById('cursor-ring');
-    if (!dot || !ring) return;
-
-    let ringX = 0, ringY = 0;
-    let mouseX = 0, mouseY = 0;
-
-    document.addEventListener('mousemove', e => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.left = mouseX + 'px';
-      dot.style.top  = mouseY + 'px';
-    });
-
-    // Ring follows with smooth lerp
-    (function animateRing() {
-      ringX += (mouseX - ringX) * 0.12;
-      ringY += (mouseY - ringY) * 0.12;
-      ring.style.left = ringX + 'px';
-      ring.style.top  = ringY + 'px';
-      requestAnimationFrame(animateRing);
-    })();
-
-    // Hover effect on interactive elements
-    document.querySelectorAll('a, button, [role="button"], input, label').forEach(el => {
-      el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
-      el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
-    });
-
-    // Click effect
-    document.addEventListener('mousedown', () => document.body.classList.add('cursor-click'));
-    document.addEventListener('mouseup',   () => document.body.classList.remove('cursor-click'));
-  }
-})();
-
 // ===== NEURAL NETWORK PARTICLES =====
 (function () {
   const canvas = document.getElementById('neural-canvas');
