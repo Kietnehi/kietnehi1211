@@ -38,31 +38,61 @@
     
   </head>
   <body
-    class="bg-slate-50 text-slate-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-700"
+    class="bg-slate-50 dark:bg-slate-900 text-slate-800 font-sans antialiased selection:bg-indigo-100 selection:text-indigo-700 loading transition-colors duration-300"
   >
-<body class="loading">
-  <!-- ===== PRELOADER like PhucNDA ===== -->
+  <!-- ===== PREMIUM PRELOADER ===== -->
   <div class="loader-container" id="preloader" aria-label="Loading">
-    <div class="loader-wrap">
-      <div class="atom" aria-hidden="true">
-        <div class="electron"></div>
-        <div class="electron-alpha"></div>
-        <div class="electron-omega"></div>
+    <!-- Particle canvas background -->
+    <canvas id="loader-particles" aria-hidden="true"></canvas>
+
+    <!-- Floating orbs -->
+    <div class="loader-orb loader-orb-1" aria-hidden="true"></div>
+    <div class="loader-orb loader-orb-2" aria-hidden="true"></div>
+    <div class="loader-orb loader-orb-3" aria-hidden="true"></div>
+
+    <div class="loader-content">
+      <!-- Animated logo ring -->
+      <div class="loader-ring-wrap">
+        <svg class="loader-ring" viewBox="0 0 120 120" fill="none">
+          <circle class="loader-ring-track" cx="60" cy="60" r="54" stroke-width="3"/>
+          <circle class="loader-ring-progress" cx="60" cy="60" r="54" stroke-width="3" id="loader-ring-circle"/>
+        </svg>
+        <div class="loader-ring-icon">
+          <span class="loader-code-icon">&lt;/&gt;</span>
+        </div>
       </div>
 
-      <div class="loader-label">
-        <div class="brand">Kiet<span>nehi</span>.</div>
-        <div class="sub">Loading experience…</div>
+      <!-- Brand text with reveal animation -->
+      <div class="loader-brand-wrap">
+        <h1 class="loader-brand">
+          <span class="loader-char" style="--i:0">K</span><span class="loader-char" style="--i:1">i</span><span class="loader-char" style="--i:2">e</span><span class="loader-char" style="--i:3">t</span><span class="loader-char loader-char-accent" style="--i:4">n</span><span class="loader-char loader-char-accent" style="--i:5">e</span><span class="loader-char loader-char-accent" style="--i:6">h</span><span class="loader-char loader-char-accent" style="--i:7">i</span><span class="loader-char" style="--i:8">.</span>
+        </h1>
       </div>
+
+      <!-- Subtitle -->
+      <p class="loader-subtitle">Crafting AI-powered experiences</p>
+
+      <!-- Progress bar -->
+      <div class="loader-progress-wrap">
+        <div class="loader-progress-bar" id="loader-progress-bar"></div>
+      </div>
+      <div class="loader-percent" id="loader-percent">0%</div>
     </div>
   </div>
-
-  <!-- ... phần còn lại của trang ... -->
-</body>
 
 
     <!-- Scroll Progress Bar -->
     <div id="scroll-progress"></div>
+
+    <!-- ===== AMBIENT GLOBAL BACKGROUND ===== -->
+    <div class="fixed inset-0 pointer-events-none z-[-10] overflow-hidden">
+      <!-- Glow 1 (Top Left) -->
+      <div class="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] max-w-[800px] max-h-[800px] rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(99,102,241,0.15)_0%,transparent_70%)] transition-colors duration-500"></div>
+      <!-- Glow 2 (Center Right) -->
+      <div class="absolute top-[30%] -right-[15%] w-[60vw] h-[60vw] max-w-[900px] max-h-[900px] rounded-full bg-[radial-gradient(circle,rgba(236,72,153,0.06)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(236,72,153,0.12)_0%,transparent_70%)] transition-colors duration-500"></div>
+      <!-- Glow 3 (Bottom Left) -->
+      <div class="absolute top-[70%] -left-[20%] w-[55vw] h-[55vw] max-w-[850px] max-h-[850px] rounded-full bg-[radial-gradient(circle,rgba(56,189,248,0.07)_0%,transparent_70%)] dark:bg-[radial-gradient(circle,rgba(56,189,248,0.12)_0%,transparent_70%)] transition-colors duration-500"></div>
+    </div>
     
     <!-- Back to Top Button -->
     <div id="back-to-top">
@@ -71,16 +101,16 @@
 
     <!-- Navigation -->
     <nav
-      class="fixed w-full bg-white/90 backdrop-blur-md shadow-sm z-50 transition-all duration-300"
+      class="fixed w-full bg-white/90 dark:bg-slate-900/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm dark:shadow-[0_4px_20px_rgb(0,0,0,0.5)] z-50 transition-all duration-300"
       id="navbar"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="flex justify-between items-center h-16">
           <!-- Logo -->
           <div class="flex-shrink-0 flex items-center">
             <a
               href="#"
-              class="text-2xl font-bold text-gray-900 tracking-tighter"
+              class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter transition-colors"
             >
               Kiet<span class="text-primary">nehi</span>.
             </a>
@@ -90,35 +120,35 @@
           <div class="hidden md:flex space-x-8 items-center">
             <a
               href="#about"
-              class="nav-link text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5 relative"
+              class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 font-medium transition hover:-translate-y-0.5 relative"
               data-en="About"
               data-vi="Giới thiệu"
               >About</a
             >
             <a
               href="#github-stats"
-              class="nav-link text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5 relative"
+              class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 font-medium transition hover:-translate-y-0.5 relative"
               data-en="Stats"
               data-vi="Thống kê"
               >Stats</a
             >
             <a
               href="#skills"
-              class="nav-link text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5 relative"
+              class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 font-medium transition hover:-translate-y-0.5 relative"
               data-en="Tech Stack"
               data-vi="Công nghệ"
               >Tech Stack</a
             >
             <a
               href="#projects"
-              class="nav-link text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5 relative"
+              class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 font-medium transition hover:-translate-y-0.5 relative"
               data-en="Projects"
               data-vi="Dự án"
               >Projects</a
             >
             <a
               href="#competitions"
-              class="nav-link text-gray-600 hover:text-primary font-medium transition hover:-translate-y-0.5 relative"
+              class="nav-link text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-indigo-400 font-medium transition hover:-translate-y-0.5 relative"
               data-en="Competitions"
               data-vi="Cuộc thi"
               >Competitions</a
@@ -422,10 +452,43 @@
       </div>
     </section>
 
+    <!-- ===== MACBOOK TERMINAL SECTION ===== -->
+    <section class="py-14 sm:py-20 bg-slate-100 dark:bg-slate-950 relative overflow-hidden transition-colors duration-300">
+      <!-- subtle grid pattern — more visible in dark, faint in light -->
+      <div class="absolute inset-0 opacity-[0.06] dark:opacity-[0.04] pointer-events-none" style="background-image: linear-gradient(#6366f1 1px, transparent 1px), linear-gradient(90deg, #6366f1 1px, transparent 1px); background-size: 40px 40px;"></div>
+
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- heading -->
+        <div class="text-center mb-10 fade-in">
+          <span class="text-indigo-600 dark:text-indigo-400 font-semibold tracking-wider uppercase text-xs sm:text-sm">Inside my world</span>
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-2">
+            A peek into my <span class="text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-pink-600 dark:from-indigo-400 dark:to-pink-400">terminal</span>
+          </h2>
+        </div>
+
+        <!-- Terminal window -->
+        <div class="mac-terminal-wrapper fade-in">
+          <div class="mac-terminal" id="mac-terminal">
+            <!-- Title bar -->
+            <div class="mac-terminal-bar">
+              <span class="mac-btn mac-btn-red"></span>
+              <span class="mac-btn mac-btn-yellow"></span>
+              <span class="mac-btn mac-btn-green"></span>
+              <span class="mac-terminal-title">kietnehi@macbook — zsh</span>
+            </div>
+            <!-- Body -->
+            <div class="mac-terminal-body" id="terminal-body">
+              <!-- lines injected by JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- GitHub Stats Section (NEW) -->
     <section
       id="github-stats"
-      class="py-12 sm:py-14 bg-white border-y border-gray-100"
+      class="py-12 sm:py-14 bg-white dark:bg-gray-900 border-y border-gray-100 dark:border-gray-800 bg-pattern-grid transition-colors duration-300"
     >
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <!-- Header -->
@@ -454,7 +517,7 @@
         >
           <!-- General Stats -->
           <figure
-            class="group rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden card-hover slide-left"
+            class="group rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800/95 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 overflow-hidden card-hover slide-left"
           >
             <figcaption
               class="px-5 py-4 border-b border-gray-100 flex items-center justify-between"
@@ -487,7 +550,7 @@
 
           <!-- GitHub Activity & Achievements -->
           <figure
-            class="group rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden card-hover slide-right"
+            class="group rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800/95 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 overflow-hidden card-hover slide-right"
           >
             <figcaption
               class="px-5 py-4 border-b border-gray-100 flex items-center justify-between"
@@ -577,7 +640,7 @@
         <div class="mt-6 sm:mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
           <!-- Top Languages -->
           <figure
-            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden slide-left"
+            class="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800/95 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 overflow-hidden slide-left"
           >
             <figcaption
               class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
@@ -611,7 +674,7 @@
 
           <!-- GitHub Trophies -->
           <figure
-            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden slide-right"
+            class="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800/95 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 overflow-hidden slide-right"
           >
             <figcaption
               class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
@@ -647,7 +710,7 @@
         <!-- GitHub Activity Graph -->
         <div class="mt-6 sm:mt-8">
           <figure
-            class="rounded-2xl border border-gray-100 bg-white shadow-sm hover:shadow-lg transition overflow-hidden fade-in"
+            class="rounded-2xl border border-gray-200 dark:border-white/10 bg-white dark:bg-slate-800/95 shadow-[0_4px_20px_rgb(0,0,0,0.03)] hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 overflow-hidden fade-in"
           >
             <figcaption
               class="px-4 py-3 sm:px-5 sm:py-4 border-b border-gray-100 flex items-center justify-between"
@@ -683,7 +746,7 @@
     </section>
 
     <!-- Skills Section -->
-    <section id="skills" class="py-16 sm:py-20 md:py-24 bg-slate-50 relative">
+    <section id="skills" class="py-16 sm:py-20 md:py-24 bg-slate-50 dark:bg-gray-800 bg-pattern-dots relative transition-colors duration-300">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center mb-10 sm:mb-12 md:mb-16 fade-in">
           <span
@@ -705,7 +768,7 @@
         >
           <!-- Skill 1: Languages & Frontend -->
           <div
-            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-1"
+            class="group p-6 bg-white dark:bg-slate-800/95 rounded-2xl border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 hover:-translate-y-1 fade-in stagger-1"
           >
             <div class="flex items-center gap-4 mb-6">
               <div
@@ -795,7 +858,7 @@
 
           <!-- Skill 2: AI & Data Science -->
           <div
-            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-2"
+            class="group p-6 bg-white dark:bg-slate-800/95 rounded-2xl border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 hover:-translate-y-1 fade-in stagger-2"
           >
             <div class="flex items-center gap-4 mb-6">
               <div
@@ -870,7 +933,7 @@
 
           <!-- Skill 3: Backend & Database -->
           <div
-            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-3"
+            class="group p-6 bg-white dark:bg-slate-800/95 rounded-2xl border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 hover:-translate-y-1 fade-in stagger-3"
           >
             <div class="flex items-center gap-4 mb-6">
               <div
@@ -942,7 +1005,7 @@
 
           <!-- Skill 4: DevOps & Cloud -->
           <div
-            class="group p-6 bg-white rounded-2xl border border-gray-100 hover:border-indigo-200 hover:shadow-xl transition-all duration-300 hover:-translate-y-1 fade-in stagger-4"
+            class="group p-6 bg-white dark:bg-slate-800/95 rounded-2xl border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 hover:-translate-y-1 fade-in stagger-4"
           >
             <div class="flex items-center gap-4 mb-6">
               <div
@@ -1063,11 +1126,14 @@
     </div>
 
     <!-- Projects Section -->
+    
     <section
       id="projects"
-      class="py-16 sm:py-20 md:py-24 bg-gray-900 text-white"
+      class="py-16 sm:py-20 md:py-24 bg-gray-50 dark:bg-[#0B1120] text-gray-900 dark:text-white relative overflow-hidden bg-pattern-grid transition-colors duration-300"
     >
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div
           class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 sm:mb-12 md:mb-16 gap-4"
         >
@@ -1076,10 +1142,10 @@
               class="text-indigo-400 font-semibold tracking-wider uppercase text-xs sm:text-sm"
               >Portfolio</span
             >
-            <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mt-2">
+            <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-2 text-gray-900 dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-white dark:via-indigo-200 dark:to-white">
               All Projects
             </h2>
-            <p class="text-gray-400 mt-2 text-xs sm:text-sm">
+            <p class="text-gray-600 dark:text-gray-400 mt-2 text-xs sm:text-sm">
               A collection of my work in AI/ML, Web Development, and University
               Projects.
             </p>
@@ -1087,7 +1153,7 @@
           <a
             href="https://github.com/Kietnehi?tab=repositories"
             target="_blank"
-            class="text-gray-400 hover:text-white flex items-center gap-2 transition pb-2 border-b border-gray-700 hover:border-white text-sm fade-in"
+            class="text-gray-600 dark:text-gray-400 hover:text-indigo-600 dark:hover:text-white flex items-center gap-2 transition pb-2 border-b border-gray-300 dark:border-gray-700 hover:border-indigo-600 dark:hover:border-white text-sm fade-in"
           >
             View GitHub Profile <i class="fas fa-arrow-right"></i>
           </a>
@@ -1098,13 +1164,11 @@
         >
           <!-- Project: AI FOR EDUCATION -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-1 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-1 project-card"
             data-page="1"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/aiforeducation.png"
                 alt="AI FOR EDUCATION"
@@ -1129,7 +1193,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 AI FOR EDUCATION 🎓
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1139,7 +1203,7 @@
                 <a
                   href="https://github.com/Kietnehi/AI-FOR-EDUCATION"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1148,13 +1212,11 @@
           </article>
           <!-- Project: n8n Quick Tunnels -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-2 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-2 project-card"
             data-page="1"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/n8n.png"
                 alt="n8n Quick Tunnels"
@@ -1179,7 +1241,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 n8n Quick Tunnels 🚀
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1189,7 +1251,7 @@
                 <a
                   href="https://github.com/Kietnehi/n8n_quick_tunnels"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1199,13 +1261,11 @@
 
           <!-- Project: Smart YouTube Analyzer -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-3 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-3 project-card"
             data-page="1"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/smartyoutube.png"
                 alt="Smart YouTube Analyzer"
@@ -1235,7 +1295,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Smart YouTube Analyzer 🧠
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1245,7 +1305,7 @@
                 <a
                   href="https://github.com/Kietnehi/Smart-Youtube"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1255,13 +1315,11 @@
 
           <!-- Project: NotebookLM Automation -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-4 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-4 project-card"
             data-page="1"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/notebooklmautomation.png"
                 alt="NotebookLM Automation"
@@ -1291,7 +1349,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 NotebookLM Automation Tool 🚀
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1301,7 +1359,7 @@
                 <a
                   href="https://github.com/Kietnehi/NotebookLM-Automation"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1310,13 +1368,11 @@
           </article>
           <!-- Project 1: YOLO -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-2 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-2 project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/yolo.jpg"
                 alt="Object Detection"
@@ -1341,7 +1397,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Object Detection Using YOLO
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1352,7 +1408,7 @@
                 <a
                   href="https://github.com/Kietnehi/ObjectDetection_Using_YOLO"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1362,11 +1418,11 @@
 
           <!-- Project: SGU E‑commerce Testing (Page 2) -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/testing.png"
                 alt="Testing Documentation & CI/CD"
@@ -1382,7 +1438,7 @@
                 <span class="px-2 py-1 text-xs font-medium bg-indigo-500/20 text-indigo-300 rounded">Docs</span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">E‑commerce Website — Testing & DevOps</h3>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">E‑commerce Website — Testing & DevOps</h3>
 
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">Comprehensive software testing deliverables for the SGU clothing e‑commerce project: Dockerized app, CI/CD pipelines, deployments to Vercel & Railway. Includes test artifacts (DOCX, Excel test cases), and full architecture & behavior diagrams (C4, Activity, Sequence, Deployment, DFD, ERD). Test suites cover black‑box and white‑box approaches.</p>
 
@@ -1397,13 +1453,11 @@
 
           <!-- Project: EN->FR Machine Translation -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/translation.jpg"
                 alt="Machine Translation EN-FR"
@@ -1433,7 +1487,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 EN → FR Machine Translation
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1443,7 +1497,7 @@
                 <a
                   href="https://github.com/Kietnehi/NLP_Machine_Translation_EN-FR"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1453,13 +1507,11 @@
 
           <!-- Project 2: Image Classification -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-5 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-5 project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/image_classifications.jpg"
                 alt="Image Classification"
@@ -1484,7 +1536,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Image Classification
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1495,7 +1547,7 @@
                 <a
                   href="https://github.com/Kietnehi/ImageClassification"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1505,13 +1557,11 @@
 
           <!-- Project 3: Fake News -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-3 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-3 project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/fake_news.jpg"
                 alt="Fake News"
@@ -1536,7 +1586,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Fake News Detection
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1547,7 +1597,7 @@
                 <a
                   href="https://github.com/Kietnehi/Fake-news-detection"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1557,13 +1607,11 @@
 
           <!-- Project 4: Housing Price -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/housing_prediction.jpg"
                 alt="Housing Price"
@@ -1588,7 +1636,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Housing Price Prediction
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1599,7 +1647,7 @@
                 <a
                   href="https://github.com/Kietnehi/Housing_price_prediction"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1609,13 +1657,11 @@
           <!-- Thêm vào sau project "Housing Price" và trước </div> kết thúc phần projects grid -->
           <!-- Project: Translation_Generation -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="https://raw.githubusercontent.com/Kietnehi/Translation_Generation/main/translation.gif"
                 alt="Translation Generation"
@@ -1647,7 +1693,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Translation & Text Generation
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1674,7 +1720,7 @@
                 <a
                   href="https://github.com/Kietnehi/Translation_Generation"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1683,13 +1729,11 @@
           </article>
           <!-- Project 5: Web Scraping -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/web_scraping.png"
                 alt="Web Scraping"
@@ -1714,7 +1758,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Web Scraping & Prediction
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1725,7 +1769,7 @@
                 <a
                   href="https://github.com/Kietnehi/WebScrapingAndMakePredict"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1735,13 +1779,11 @@
           
           <!-- Project 6: Fabric Agency -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/fabric_agency.png"
                 alt="Fabric Agency"
@@ -1771,7 +1813,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Fabric Agency Website
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1782,7 +1824,7 @@
                 <a
                   href="https://github.com/Kietnehi/DoAnFabricAgency"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1791,13 +1833,11 @@
           </article>
           <!-- Project: Copilot Visual Online -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="3"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/copilot_visual.jpg"
                 alt="Copilot Visual Online"
@@ -1827,7 +1867,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Copilot Visual Online
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1838,7 +1878,7 @@
                 <a
                   href="https://github.com/Kietnehi/Copilot_Visual_Online"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1848,13 +1888,11 @@
 
           <!-- Project: Face Recognition Web -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card scale-in stagger-6"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card scale-in stagger-6"
             data-page="4"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/face_recognition.jpg"
                 alt="Face Recognition Web"
@@ -1884,7 +1922,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Face Recognition Web
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1897,7 +1935,7 @@
                 <a
                   href="https://github.com/Kietnehi/FaceRecognition_WEB"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -1906,13 +1944,11 @@
           </article>
           <!-- Project 7: FOODFAST (Collab) -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="4"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/foodfast.jpg"
                 alt="FOODFAST"
@@ -1955,7 +1991,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 FOODFAST Application
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -1966,7 +2002,7 @@
                 <a
                   href="https://github.com/ductoanoxo/FOODFAST"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 ><i class="fab fa-github"></i> View Source</a>
               </div>
             </div>
@@ -1974,13 +2010,11 @@
 
           <!-- Project 8: SGU Projects (Grouped) -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card"
             data-page="4"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/SGU.png"
                 alt="SGU Projects"
@@ -1999,7 +2033,7 @@
                 >
               </div>
               <h3
-                class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition"
+                class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300"
               >
                 University Coursework
               </h3>
@@ -2036,13 +2070,11 @@
           </article>
           <!-- Project: RAG & Multimodal LLM -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card scale-in stagger-5"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card scale-in stagger-5"
             data-page="1"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/rag_pipeline.jpg"
                 alt="RAG Multimodal LLM"
@@ -2073,7 +2105,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 RAG & Multimodal LLM System
               </h3>
 
@@ -2091,7 +2123,7 @@
                 <a
                   href="https://github.com/Kietnehi/RAG"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -2101,13 +2133,11 @@
 
           <!-- Project 10: AI Agent -->
           <article
-  class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full project-card scale-in stagger-6"
+  class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative project-card scale-in stagger-6"
   data-page="1"
 >
   <div class="relative overflow-hidden h-48 shrink-0">
-    <div
-      class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-    ></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
     <img
       src="images/AIAGENT.jpg"
       alt="AI Agent"
@@ -2149,7 +2179,7 @@
       </span>
     </div>
 
-    <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+    <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
       AI Agent System
     </h3>
 
@@ -2163,7 +2193,7 @@
       <a
         href="https://github.com/Kietnehi/AI-AGENT"
         target="_blank"
-        class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+        class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
       >
         <i class="fab fa-github"></i> View Source
       </a>
@@ -2172,13 +2202,11 @@
 </article>
           <!-- Project 11: Crawl4AI Website Scraper -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-6 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-6 project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/crawl4ai.jpg"
                 alt="Crawl4AI Website Scraper"
@@ -2203,7 +2231,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Crawl4AI Website Scraper 🕸️
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -2213,7 +2241,7 @@
                 <a
                   href="https://github.com/Kietnehi/Crawl4AI-Website"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -2223,13 +2251,11 @@
 
           <!-- Project 12: Audio To YouTube AI -->
           <article
-            class="bg-gray-800 rounded-2xl overflow-hidden border border-gray-700 hover:border-indigo-500 transition-all duration-300 hover:shadow-2xl hover:shadow-indigo-500/10 group flex flex-col h-full scale-in stagger-6 project-card"
+            class="bg-white dark:bg-slate-800/80 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5 hover:border-indigo-500 dark:hover:border-indigo-500/50 transition-all duration-300 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:hover:shadow-[0_0_30px_-5px_rgba(99,102,241,0.3)] hover:-translate-y-2 group flex flex-col h-full relative scale-in stagger-6 project-card"
             data-page="2"
           >
             <div class="relative overflow-hidden h-48 shrink-0">
-              <div
-                class="absolute inset-0 bg-gray-900/40 z-10 group-hover:bg-gray-900/10 transition-all duration-500"
-              ></div>
+              <div class="absolute inset-0 bg-gradient-to-t from-transparent dark:from-[#0B1120] via-transparent to-transparent z-10 group-hover:opacity-70 transition-all duration-300"></div>
               <img
                 src="images/audiotoyoutube.png"
                 alt="Audio To YouTube AI"
@@ -2259,7 +2285,7 @@
                 </span>
               </div>
 
-              <h3 class="text-xl font-bold mb-2 group-hover:text-indigo-400 transition">
+              <h3 class="text-xl font-bold mb-2 group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-indigo-600 group-hover:to-purple-600 dark:group-hover:from-indigo-400 dark:group-hover:to-purple-400 transition-all duration-300">
                 Audio To YouTube AI 🎵
               </h3>
               <p class="text-gray-400 text-sm mb-6 line-clamp-3">
@@ -2269,7 +2295,7 @@
                 <a
                   href="https://github.com/Kietnehi/AudioToSongYoutube"
                   target="_blank"
-                  class="text-white bg-indigo-600 hover:bg-indigo-700 px-4 py-2 rounded-lg text-sm transition inline-flex items-center gap-2 w-full justify-center"
+                  class="text-white bg-gradient-to-r from-indigo-500 to-purple-600 hover:from-indigo-400 hover:to-purple-500 px-4 py-3 rounded-xl text-sm font-semibold transition-all duration-300 inline-flex items-center gap-2 w-full justify-center shadow-lg shadow-indigo-500/30 hover:shadow-indigo-500/50 transform hover:-translate-y-0.5"
                 >
                   <i class="fab fa-github"></i> View Source
                 </a>
@@ -2282,7 +2308,7 @@
         <div class="flex justify-center items-center gap-4 mt-8 sm:mt-12">
           <button
             id="prevPage"
-            class="px-4 py-2 bg-gray-800 hover:bg-indigo-600 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            class="px-5 py-2.5 bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:text-white text-gray-700 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/20"
             disabled
           >
             <i class="fas fa-chevron-left"></i>
@@ -2293,7 +2319,7 @@
           
           <button
             id="nextPage"
-            class="px-4 py-2 bg-gray-800 hover:bg-indigo-600 text-white rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+            class="px-5 py-2.5 bg-gray-200 dark:bg-white/5 border border-gray-300 dark:border-white/10 hover:bg-indigo-600 dark:hover:bg-indigo-600 hover:text-white dark:text-white text-gray-700 rounded-xl transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 hover:shadow-lg hover:shadow-indigo-500/20"
           >
             <span class="hidden sm:inline">Next</span>
             <i class="fas fa-chevron-right"></i>
@@ -2324,7 +2350,7 @@
         <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8">
           <!-- VNPT Hackathon -->
           <article
-            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700 hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 group flex flex-col h-full fade-in"
+            class="bg-white dark:bg-slate-800/95 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 group flex flex-col h-full fade-in hover:-translate-y-1"
           >
             <div class="relative overflow-hidden h-56 shrink-0 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-gray-800 dark:to-gray-700">
               <div class="absolute inset-0 bg-white/10 dark:bg-black/30 group-hover:bg-white/5 dark:group-hover:bg-black/20 transition-all duration-500 z-10"></div>
@@ -2375,7 +2401,7 @@
 
           <!-- Cursor Hackathon / UAV Detection -->
           <article
-            class="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden border-2 border-gray-200 dark:border-gray-700 hover:border-primary transition-all duration-300 hover:shadow-2xl hover:shadow-primary/10 group flex flex-col h-full fade-in"
+            class="bg-white dark:bg-slate-800/95 rounded-2xl overflow-hidden border border-gray-200 dark:border-white/10 shadow-[0_4px_20px_rgb(0,0,0,0.03)] dark:shadow-[0_4px_20px_rgb(0,0,0,0.2)] hover:border-indigo-400 dark:hover:border-indigo-500/50 hover:shadow-[0_8px_30px_rgba(99,102,241,0.12)] dark:hover:shadow-[0_8px_30px_rgba(99,102,241,0.2)] transition-all duration-300 group flex flex-col h-full fade-in hover:-translate-y-1"
           >
             <div class="relative overflow-hidden h-56 shrink-0 bg-gradient-to-br from-orange-50 to-red-50 dark:from-gray-800 dark:to-gray-700">
               <div class="absolute inset-0 bg-white/10 dark:bg-black/30 group-hover:bg-white/5 dark:group-hover:bg-black/20 transition-all duration-500 z-10"></div>

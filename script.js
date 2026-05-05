@@ -454,17 +454,128 @@
   toTop?.addEventListener("click", () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   });
-window.addEventListener("load", () => {
+// ===== PREMIUM PRELOADER =====
+(function () {
   const loader = document.getElementById("preloader");
   if (!loader) return;
 
-  // giữ loader tối thiểu 800ms cho mượt (tránh nháy)
+  const canvas = document.getElementById("loader-particles");
+  const progressBar = document.getElementById("loader-progress-bar");
+  const percentEl = document.getElementById("loader-percent");
+  const ringCircle = document.getElementById("loader-ring-circle");
+
+  // --- Particle system ---
+  if (canvas) {
+    const ctx = canvas.getContext("2d");
+    let W, H, particles = [];
+    const PARTICLE_COUNT = window.innerWidth < 768 ? 50 : 90;
+
+    function resizeCanvas() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+
+    function createParticle() {
+      return {
+        x: Math.random() * W,
+        y: Math.random() * H,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
+        r: Math.random() * 2 + 0.5,
+        alpha: Math.random() * 0.4 + 0.1,
+      };
+    }
+
+    function initParticles() {
+      resizeCanvas();
+      particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, W, H);
+
+      // Draw connections
+      for (let i = 0; i < particles.length; i++) {
+        for (let j = i + 1; j < particles.length; j++) {
+          const dx = particles[i].x - particles[j].x;
+          const dy = particles[i].y - particles[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+          if (dist < 120) {
+            const alpha = (1 - dist / 120) * 0.12;
+            ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
+            ctx.lineWidth = 0.5;
+            ctx.beginPath();
+            ctx.moveTo(particles[i].x, particles[i].y);
+            ctx.lineTo(particles[j].x, particles[j].y);
+            ctx.stroke();
+          }
+        }
+      }
+
+      // Draw & move particles
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139,92,246,${p.alpha})`;
+        ctx.fill();
+      });
+
+      if (!loader.classList.contains("hide")) {
+        requestAnimationFrame(drawParticles);
+      }
+    }
+
+    initParticles();
+    drawParticles();
+    window.addEventListener("resize", resizeCanvas);
+  }
+
+  // --- Progress animation ---
+  const CIRCUMFERENCE = 2 * Math.PI * 54; // r=54 from SVG
+  const DURATION = 2200; // ms
+  let startTime = null;
+
+  function easeOutCubic(t) {
+    return 1 - Math.pow(1 - t, 3);
+  }
+
+  function animateProgress(timestamp) {
+    if (!startTime) startTime = timestamp;
+    const elapsed = timestamp - startTime;
+    const rawProgress = Math.min(elapsed / DURATION, 1);
+    const progress = easeOutCubic(rawProgress);
+    const percent = Math.round(progress * 100);
+
+    if (progressBar) progressBar.style.width = percent + "%";
+    if (percentEl) percentEl.textContent = percent + "%";
+    if (ringCircle) {
+      ringCircle.style.strokeDashoffset =
+        CIRCUMFERENCE - progress * CIRCUMFERENCE;
+    }
+
+    if (rawProgress < 1) {
+      requestAnimationFrame(animateProgress);
+    } else {
+      // Done — fade out
+      setTimeout(() => {
+        loader.classList.add("hide");
+        document.body.classList.remove("loading");
+        setTimeout(() => loader.remove(), 900);
+      }, 400);
+    }
+  }
+
+  // Start the progress after a short delay so the entrance animation plays first
   setTimeout(() => {
-    loader.classList.add("hide");
-    document.body.classList.remove("loading");
-    setTimeout(() => loader.remove(), 1500);
-  }, 800);
-});
+    requestAnimationFrame(animateProgress);
+  }, 600);
+})();
+
 
 // ===== PROJECT PAGINATION =====
 const projectCards = document.querySelectorAll('.project-card');
@@ -846,3 +957,148 @@ const spyObserver = new IntersectionObserver((entries) => {
 }, { rootMargin: '-30% 0px -60% 0px' });
 
 sections.forEach(sec => spyObserver.observe(sec));
+
+// ===== MACBOOK TERMINAL ANIMATION (infinite loop) =====
+(function () {
+  const terminalBody = document.getElementById('terminal-body');
+  if (!terminalBody) return;
+
+  const PROMPT = 'kietnehi@macbook ~ % ';
+  const PAUSE_AFTER_DONE = 1800; // ms to show completed screen before clearing
+
+  const lines = [
+    { type: 'cmd',   cmd: 'whoami' },
+    { type: 'out',   parts: [{ cls: 'term-green', text: 'Truong Phu Kiet' }, { cls: 'term-comment', text: '  —  AI / ML Engineer & Computer Vision Enthusiast' }] },
+    { type: 'blank' },
+
+    { type: 'cmd',   cmd: 'cat about.txt' },
+    { type: 'out',   parts: [{ cls: 'term-blue',   text: '🎓 ' }, { cls: '', text: 'IT Student @ Saigon University (SGU)' }] },
+    { type: 'out',   parts: [{ cls: 'term-purple', text: '🧠 ' }, { cls: '', text: 'Passionate about Deep Learning & Computer Vision' }] },
+    { type: 'out',   parts: [{ cls: 'term-yellow', text: '🤖 ' }, { cls: '', text: 'Building intelligent systems that see like humans' }] },
+    { type: 'blank' },
+
+    { type: 'cmd',   cmd: 'ls skills/' },
+    { type: 'out',   parts: [
+        { cls: 'term-green',  text: 'Python   ' },
+        { cls: 'term-blue',   text: 'PyTorch   ' },
+        { cls: 'term-yellow', text: 'TensorFlow   ' },
+        { cls: 'term-pink',   text: 'OpenCV   ' },
+        { cls: 'term-purple', text: 'YOLO' },
+    ]},
+    { type: 'out',   parts: [
+        { cls: 'term-green',  text: 'LangChain   ' },
+        { cls: 'term-blue',   text: 'FastAPI   ' },
+        { cls: 'term-yellow', text: 'Scikit-learn   ' },
+        { cls: 'term-pink',   text: 'Docker' },
+    ]},
+    { type: 'blank' },
+
+    { type: 'cmd',   cmd: 'git log --oneline -4' },
+    { type: 'out',   parts: [{ cls: 'term-yellow', text: 'a3f1b2c ' }, { cls: '', text: '🧠 Trained YOLO model for real-time object detection' }] },
+    { type: 'out',   parts: [{ cls: 'term-yellow', text: '7d4e9a1 ' }, { cls: '', text: '🎯 Built RAG pipeline with LangChain + ChromaDB' }] },
+    { type: 'out',   parts: [{ cls: 'term-yellow', text: '2c8f0e5 ' }, { cls: '', text: '🖼️  Image classification with ResNet — 94% accuracy' }] },
+    { type: 'out',   parts: [{ cls: 'term-yellow', text: '1a9b3d7 ' }, { cls: '', text: '🤖 AI Agent with multi-tool & memory support' }] },
+    { type: 'blank' },
+
+    { type: 'cmd',   cmd: './run_passion.sh' },
+    { type: 'out',   parts: [{ cls: 'term-comment', text: '# Initializing...' }] },
+    { type: 'out',   parts: [{ cls: 'term-green',  text: '██████████ ' }, { cls: 'term-blue', text: '100%  ' }, { cls: '', text: 'Ready.' }] },
+    { type: 'out',   parts: [{ cls: 'term-pink',   text: '"Turning data into intelligence, one model at a time." ✨' }] },
+  ];
+
+  function buildLine(entry) {
+    const div = document.createElement('div');
+    div.className = 'term-line';
+    if (entry.type === 'blank') {
+      div.innerHTML = '&nbsp;';
+      return div;
+    }
+    if (entry.type === 'cmd') {
+      const p = document.createElement('span');
+      p.className = 'term-prompt';
+      p.textContent = PROMPT;
+      div.appendChild(p);
+      const c = document.createElement('span');
+      c.className = 'term-cmd';
+      c.textContent = entry.cmd;
+      div.appendChild(c);
+      return div;
+    }
+    if (entry.type === 'out') {
+      entry.parts.forEach(part => {
+        const s = document.createElement('span');
+        s.className = part.cls ? `term-out ${part.cls}` : 'term-out';
+        s.textContent = part.text;
+        div.appendChild(s);
+      });
+      return div;
+    }
+    return div;
+  }
+
+  // Show a blinking cursor line at the bottom
+  function appendCursor() {
+    const div = document.createElement('div');
+    div.className = 'term-line visible';
+    div.id = 'term-cursor-line';
+    const p = document.createElement('span');
+    p.className = 'term-prompt';
+    p.textContent = PROMPT;
+    div.appendChild(p);
+    const cur = document.createElement('span');
+    cur.className = 'term-cursor';
+    div.appendChild(cur);
+    terminalBody.appendChild(div);
+  }
+
+  function removeCursor() {
+    const cur = document.getElementById('term-cursor-line');
+    if (cur) cur.remove();
+  }
+
+  // Fade-out all lines, then clear, then restart
+  function clearAndRestart() {
+    const allLines = terminalBody.querySelectorAll('.term-line');
+    allLines.forEach(l => {
+      l.style.transition = 'opacity 0.4s ease';
+      l.style.opacity = '0';
+    });
+    setTimeout(() => {
+      terminalBody.innerHTML = '';
+      runLoop();
+    }, 500);
+  }
+
+  function runLoop() {
+    let delay = 0;
+    lines.forEach((entry, i) => {
+      const gap = entry.type === 'cmd' ? 500 : entry.type === 'blank' ? 100 : 200;
+      delay += gap;
+      setTimeout(() => {
+        removeCursor();
+        const el = buildLine(entry);
+        terminalBody.appendChild(el);
+        requestAnimationFrame(() => requestAnimationFrame(() => el.classList.add('visible')));
+        // After last line, show cursor then loop
+        if (i === lines.length - 1) {
+          setTimeout(() => {
+            appendCursor();
+            setTimeout(clearAndRestart, PAUSE_AFTER_DONE);
+          }, 300);
+        }
+      }, delay);
+    });
+  }
+
+  // Start when terminal scrolls into view
+  const termSection = document.getElementById('mac-terminal');
+  if (termSection) {
+    const termObs = new IntersectionObserver((entries) => {
+      if (entries[0].isIntersecting) {
+        runLoop();
+        termObs.disconnect();
+      }
+    }, { threshold: 0.3 });
+    termObs.observe(termSection);
+  }
+})();
