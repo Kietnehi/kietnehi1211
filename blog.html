@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blog | Phu Kiet (Kietnehi)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1",
+              secondary: "#0f172a",
+              accent: "#ec4899",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blog-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(99,102,241,0.08), transparent 30%),
+          radial-gradient(circle at 85% 85%, rgba(236,72,153,0.06), transparent 30%);
+      }
+      .blog-card {
+        transition: transform 300ms cubic-bezier(0.16, 1, 0.3, 1), border-color 300ms ease, box-shadow 300ms ease;
+      }
+      .blog-card:hover {
+        transform: translateY(-6px);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter">
+            Kiet<span class="text-primary">nehi</span>.
+          </a>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a
+              href="index.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+              data-en="Portfolio"
+              data-vi="Portfolio"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span class="hidden sm:inline">Portfolio</span>
+            </a>
+            <a
+              href="certificates.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+              data-en="Certificates"
+              data-vi="Chứng chỉ"
+            >
+              <i class="fas fa-certificate"></i>
+              <span class="hidden sm:inline">Certificates</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-12 sm:py-16 md:py-20 relative overflow-hidden min-h-[calc(100vh-4rem)]">
+      <div class="blog-bg" aria-hidden="true"></div>
+      
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <!-- Intro -->
+        <div class="text-center mb-10 sm:mb-12 md:mb-16">
+          <span class="section-kicker" data-en="Perspectives" data-vi="Góc chia sẻ">Perspectives</span>
+          <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 text-slate-900 dark:text-white" data-en="Personal Blog" data-vi="Blog Cá Nhân">
+            Personal Blog
+          </h1>
+          <p class="text-slate-600 dark:text-slate-300 mt-4 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed" 
+             data-en="A space where I document my technical journey, explain machine learning concepts, share rescue drone architecture, and write web application guides."
+             data-vi="Nơi mình ghi lại hành trình công nghệ, giải thích các khái niệm học máy, chia sẻ kiến trúc drone cứu hộ và hướng dẫn lập trình ứng dụng web.">
+            A space where I document my technical journey, explain machine learning concepts, share rescue drone architecture, and write web application guides.
+          </p>
+        </div>
+
+        <!-- Search & Filter Controls -->
+        <div class="max-w-4xl mx-auto mb-10 sm:mb-12 flex flex-col md:flex-row items-center gap-4">
+          <!-- Search input -->
+          <div class="relative w-full md:w-80">
+            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+              <i class="fas fa-search"></i>
+            </span>
+            <input 
+              id="blog-search" 
+              type="text" 
+              placeholder="Search articles..." 
+              class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md outline-none focus:border-primary dark:focus:border-primary transition text-sm"
+            />
+          </div>
+          
+          <!-- Category filters -->
+          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-primary text-white transition" data-cat="all">All</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="ai-ml">AI & ML</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="cv">Computer Vision</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="web">Web Dev</button>
+            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="academic">Academic</button>
+          </div>
+        </div>
+
+        <!-- Blog Grid -->
+        <div id="blog-grid" class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
+          <!-- Article 1 Wrapper -->
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="ai-ml">
+            <!-- Ambient background glow (violet/purple) -->
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+            
+            <!-- The Card itself -->
+            <a href="blog-smartgov.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+              <div class="relative h-48 bg-slate-50/80 dark:bg-slate-950/60 flex items-center justify-center p-4 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
+                <!-- Radial Glow Background -->
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
+                <!-- Glowing Aura Circle Behind Logo -->
+                <div class="absolute w-28 h-28 bg-indigo-500/5 dark:bg-primary/20 rounded-full blur-2xl group-hover:bg-indigo-500/10 dark:group-hover:bg-primary/30 transition duration-500"></div>
+                <!-- Corner Tech Tag -->
+                <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md text-[9px] font-semibold font-mono bg-indigo-50 dark:bg-indigo-500/10 border border-indigo-100 dark:border-indigo-500/20 text-indigo-600 dark:text-indigo-400 backdrop-blur-md uppercase tracking-wider shadow-sm">FEATURED MVP</span>
+                
+                <!-- Logo Image -->
+                <img src="images_blogs/SmartGov/SmartGov_Logo.png" alt="SmartGov Copilot Logo" class="relative z-10 w-full h-full object-contain transform group-hover:scale-[1.05] transition-transform duration-500" />
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1 bg-white/30 dark:bg-slate-900/30">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between text-[10px] sm:text-[11px]">
+                    <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300 font-semibold border border-slate-200/40 dark:border-white/5"><i class="far fa-calendar-alt text-indigo-500"></i> July 8, 2026</span>
+                    <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300 font-semibold border border-slate-200/40 dark:border-white/5"><i class="far fa-clock text-pink-500"></i> 5 min read</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors duration-300">Xây dựng Trợ lý Dịch vụ Công SmartGov Copilot với Multimodal AI</h3>
+                  <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-3">
+                    Chia sẻ quá trình phát triển trợ lý AI dịch vụ công hỗ trợ tự động hóa biểu mẫu, tư vấn bằng giọng nói và OCR tài liệu cho cán bộ. Khám phá các thách thức trong việc phát triển MVP kết hợp hệ sinh thái API của VNPT AI tại HackAIthon 2026.
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-slate-200/40 dark:border-white/5 mt-4 flex items-center justify-between">
+                  <span class="px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-900/20 text-indigo-600 dark:text-indigo-400 font-bold text-[9px]">AI Agents</span>
+                  <span class="text-primary font-bold text-xs flex items-center gap-1 transition">
+                    Read Article <i class="fas fa-arrow-right text-[10px] transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- Article 2 Wrapper (Scholarship Comeback) -->
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="academic">
+            <!-- Ambient background glow (violet/purple) -->
+            <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
+            
+            <!-- The Card itself -->
+            <a href="blog-scholarship.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+              <div class="relative h-48 bg-slate-50/80 dark:bg-slate-950/60 flex items-center justify-center p-4 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
+                <!-- Radial Glow Background -->
+                <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
+                <!-- Glowing Aura Circle Behind Logo -->
+                <div class="absolute w-28 h-28 bg-pink-500/5 dark:bg-accent/20 rounded-full blur-2xl group-hover:bg-pink-500/10 dark:group-hover:bg-accent/30 transition duration-500"></div>
+                <!-- Corner Tech Tag -->
+                <span class="absolute top-3 left-3 px-2 py-0.5 rounded-md text-[9px] font-semibold font-mono bg-pink-50 dark:bg-pink-500/10 border border-pink-100 dark:border-pink-500/20 text-pink-600 dark:text-pink-400 backdrop-blur-md uppercase tracking-wider shadow-sm">Featured Post</span>
+                
+                <!-- Logo Image -->
+                <img src="images_blogs/scholar_in_university/scholarship.png" alt="Scholarship Logo" class="relative z-10 w-full h-full object-contain transform group-hover:scale-[1.05] transition-transform duration-500" />
+              </div>
+              <div class="p-6 flex flex-col justify-between flex-1 bg-white/30 dark:bg-slate-900/30">
+                <div class="space-y-3">
+                  <div class="flex items-center justify-between text-[10px] sm:text-[11px]">
+                    <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300 font-semibold border border-slate-200/40 dark:border-white/5"><i class="far fa-calendar-alt text-indigo-500"></i> July 8, 2026</span>
+                    <span class="flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-slate-100 dark:bg-slate-800/40 text-slate-600 dark:text-slate-300 font-semibold border border-slate-200/40 dark:border-white/5"><i class="far fa-clock text-pink-500"></i> 6 min read</span>
+                  </div>
+                  <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug group-hover:text-primary transition-colors duration-300">Hành trình "lội ngược dòng": Từ lơ là năm nhất đến 6 lần học bổng liên tiếp</h3>
+                  <p class="text-xs leading-relaxed text-slate-500 dark:text-slate-400 line-clamp-3">
+                    Chia sẻ câu chuyện vượt khó học tập từ mức GPA 1.26 xếp loại Yếu năm nhất đến chuỗi 6 lần học bổng khuyến khích liên tiếp tại đại học. Khám phá chiến lược học tập và bảng điểm chi tiết.
+                  </p>
+                </div>
+                <div class="pt-4 border-t border-slate-200/40 dark:border-white/5 mt-4 flex items-center justify-between">
+                  <span class="px-2 py-0.5 rounded bg-pink-50 dark:bg-pink-900/20 text-pink-600 dark:text-pink-400 font-bold text-[9px]">Academic</span>
+                  <span class="text-primary font-bold text-xs flex items-center gap-1 transition">
+                    Read Article <i class="fas fa-arrow-right text-[10px] transform group-hover:translate-x-1 transition-transform duration-300"></i>
+                  </span>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      // Theme Toggle Logic
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") html.classList.add("dark");
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+
+      // Filter & Search Logic
+      const searchInput = document.getElementById("blog-search");
+      const filterButtons = document.querySelectorAll(".filter-btn");
+      const blogCards = document.querySelectorAll(".blog-card");
+      let activeCategory = "all";
+
+      function filterBlogs() {
+        const query = searchInput.value.toLowerCase().trim();
+        
+        blogCards.forEach(card => {
+          const title = card.querySelector("h3").textContent.toLowerCase();
+          const desc = card.querySelector("p").textContent.toLowerCase();
+          const category = card.dataset.category;
+          
+          const matchesSearch = title.includes(query) || desc.includes(query);
+          const matchesCategory = activeCategory === "all" || category === activeCategory;
+          
+          if (matchesSearch && matchesCategory) {
+            card.style.display = "flex";
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+          } else {
+            card.style.display = "none";
+            card.style.opacity = "0";
+            card.style.transform = "scale(0.95)";
+          }
+        });
+      }
+
+      searchInput.addEventListener("input", filterBlogs);
+
+      filterButtons.forEach(btn => {
+        btn.addEventListener("click", () => {
+          filterButtons.forEach(b => b.classList.remove("bg-primary", "text-white"));
+          filterButtons.forEach(b => b.classList.add("bg-white/70", "dark:bg-slate-900/70", "text-slate-600", "dark:text-slate-300", "border", "border-slate-200", "dark:border-white/10"));
+          
+          btn.classList.add("bg-primary", "text-white");
+          btn.classList.remove("bg-white/70", "dark:bg-slate-900/70", "text-slate-600", "dark:text-slate-300", "border", "border-slate-200", "dark:border-white/10");
+          
+          activeCategory = btn.dataset.cat;
+          filterBlogs();
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -651,12 +651,14 @@ showPage(1);
   const elSend     = document.getElementById('chat-send');
   const elBadge    = document.getElementById('chat-badge');
   const elClear    = document.getElementById('chat-clear');
+  const elClose    = document.getElementById('chat-close');
   const elIconOpen = document.getElementById('chat-icon-open');
   const elIconClose= document.getElementById('chat-icon-close');
 
   if (!elToggle || !elWindow || !elMessages || !elInput) return;
 
   let isOpen = false;
+  let lastTopic = null;
 
   // ── Knowledge base (dùng phrases dài, tránh match sai) ──────
   const normalizeText = (text = "") =>
@@ -671,7 +673,6 @@ showPage(1);
 
   const escapeRegex = (value = "") => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
-  // Match single-word terms by word boundary to avoid false positives like "hi" inside "think".
   const matchesTerm = (text, term) => {
     const t = (term || "").trim();
     if (!t) return false;
@@ -686,10 +687,12 @@ showPage(1);
 
   const KB = [
     {
+      topic: "greeting",
       test: ({ norm }) => includesAny(norm, ["hello", "hey", "xin chao", "chao", "hi", "howdy", "sup"]),
-      reply: `👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nBạn có thể hỏi mình về **giới thiệu**, **skills**, **projects**, **competitions**, **SmartGov**, **GitHub**, **CV**, **học vấn** hoặc **liên hệ**.\n\nNếu muốn nhanh hơn, hãy bấm các gợi ý bên dưới nhé!`
+      reply: `👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nMình có thể giúp bạn khám phá **giới thiệu**, **skills**, **projects**, **competitions**, **SmartGov**, **GitHub**, **CV**, **học vấn** hoặc **liên hệ**.\n\nNếu bạn muốn, cứ hỏi tự nhiên như “nói rõ hơn về SmartGov” hoặc “project nào nổi bật nhất?”.`
     },
     {
+      topic: "about",
       test: ({ norm }) => includesAny(norm, [
         "gioi thieu",
         "ban la ai",
@@ -702,83 +705,176 @@ showPage(1);
         "about phu kiet",
         "about kiet"
       ]),
-      reply: `🧑‍💻 **Phu Kiet (Kietnehi)** là sinh viên IT tại **Đại học Sài Gòn (SGU)**.\n\nMình tập trung vào **Machine Learning**, **Computer Vision**, **Deep Learning** và các ứng dụng AI thực tế. Điểm mình thích nhất là biến ý tưởng thành sản phẩm có thể demo, có thể dùng được và giải quyết được vấn đề thật.`
+      reply: `🧑‍💻 **Phu Kiet (Kietnehi)** là sinh viên IT tại **Đại học Sài Gòn (SGU)**.\n\nMình tập trung vào **Machine Learning**, **Computer Vision**, **Deep Learning** và các ứng dụng AI thực tế. Điểm mình thích nhất là biến ý tưởng thành sản phẩm có thể demo, có thể dùng được và giải quyết được vấn đề thật.\n\nNếu bạn muốn, mình có thể kể tiếp theo kiểu “hành trình học tập”, “định hướng nghề nghiệp”, hoặc “điểm mạnh nổi bật”.`
     },
     {
+      topic: "skills",
       test: ({ norm }) => includesAny(norm, ["skill", "ky nang", "tech stack", "cong nghe", "tools", "technology", "stack", "what do you know"]),
       reply: `🛠️ **Tech Stack của Kiet:**\n\n🤖 **AI/ML:** Python, PyTorch, TensorFlow, NumPy, Scikit-learn, CUDA\n🌐 **Web:** React, Next.js, Node.js, FastAPI, Flask, JavaScript\n🗄️ **Database:** MongoDB, MySQL, PostgreSQL, SQL Server\n☁️ **DevOps:** Docker, Kubernetes, AWS, Git, Grafana\n📊 **Data:** Apache Spark, Hadoop\n\nNếu bạn muốn, mình có thể tách riêng theo từng mảng như **AI/ML**, **Web**, **DevOps**, hoặc **Database**.`
     },
     {
+      topic: "focus",
       test: ({ norm }) => includesAny(norm, ["current focus", "dang lam gi", "dang nghien cuu", "focus", "research", "working on", "now working", "what are you building"]),
-      reply: `🧠 **Hiện tại Kiet đang tập trung vào:**\n\n• **Computer Vision** và các bài toán nhận dạng / phát hiện / OCR\n• **AI assistants** phục vụ tác vụ thực tế\n• **Public-service AI** như SmartGov Copilot\n• **Web app tích hợp AI** để demo nhanh và triển khai dễ\n\nNói ngắn gọn: Kiet thích làm những thứ AI có thể **chạm vào đời thật**, không chỉ là mô hình trên giấy.`
+      reply: `🧠 **Hiện tại Kiet đang tập trung vào:**\n\n• **Computer Vision** và các bài toán nhận dạng / phát hiện / OCR\n• **AI assistants** phục vụ tác vụ thực tế\n• **Public-service AI** như SmartGov Copilot\n• **Web app tích hợp AI** để demo nhanh và triển khai dễ\n\nNói ngắn gọn: Kiet thích làm những thứ AI có thể **chạm vào đời thật**, không chỉ là mô hình trên giấy.\n\nBạn có thể hỏi tiếp “project nào thể hiện rõ nhất hướng này?”`
     },
     {
+      topic: "projects",
       test: ({ norm }) => includesAny(norm, ["project", "du an", "portfolio", "work", "built", "build", "san pham", "what projects", "featured projects"]),
-      reply: `💼 **Một số dự án nổi bật:**\n\n🎓 **AI FOR EDUCATION** — Nền tảng học cá nhân hóa dùng Gemini AI\n🤖 **RAG & Multimodal LLM** — Hệ thống RAG với Ollama, BLIP, Docker\n🏆 **SmartGov Copilot / GovVoice AI** — Trợ lý AI dịch vụ công đa phương thức\n🚁 **UAV Flood Detection** — Phát hiện người trong lũ lụt bằng Computer Vision\n🔊 **Audio To YouTube AI** — Nhận dạng âm thanh & tìm nhạc trên YouTube\n🕸️ **Crawl4AI Website Scraper** — Công cụ crawl web có tôn trọng robots.txt\n\n👉 Nếu bạn hỏi tên một project cụ thể, mình có thể mô tả chi tiết hơn.`
+      reply: `💼 **Một số dự án nổi bật:**\n\n🎓 **AI FOR EDUCATION** — Nền tảng học cá nhân hóa dùng Gemini AI\n🤖 **RAG & Multimodal LLM** — Hệ thống RAG với Ollama, BLIP, Docker\n🏆 **SmartGov Copilot / GovVoice AI** — Trợ lý AI dịch vụ công đa phương thức\n🚁 **UAV Flood Detection** — Phát hiện người trong lũ lụt bằng Computer Vision\n🔊 **Audio To YouTube AI** — Nhận dạng âm thanh & tìm nhạc trên YouTube\n🕸️ **Crawl4AI Website Scraper** — Công cụ crawl web có tôn trọng robots.txt\n\n👉 Nếu bạn muốn, mình có thể đi sâu vào **mục tiêu**, **công nghệ**, hoặc **kết quả** của từng project.`
     },
     {
+      topic: "smartgov",
       test: ({ norm }) => includesAny(norm, ["smartgov", "govvoice", "public service ai", "dich vu cong", "hack aithon", "hackaithon", "vietnamese student"]),
-      reply: `🏆 **Vietnamese Student HackAIThon 2026 — SmartGov Copilot / GovVoice AI**\n\nĐây là dự án trợ lý AI dịch vụ công đa phương thức, không chỉ trả lời câu hỏi mà còn hỗ trợ toàn bộ quy trình nộp hồ sơ:\n\n• **Citizen Assistant**: tư vấn thủ tục, checklist giấy tờ, hỗ trợ bằng giọng nói\n• **AI Pre-check**: OCR, Computer Vision, eKYC để bóc tách và kiểm tra hồ sơ trước khi nộp\n• **Officer Copilot**: tóm tắt hồ sơ, đánh dấu điểm bất thường, gợi ý phản hồi cho cán bộ\n• **SmartGov Dashboard**: theo dõi throughput, thời gian xử lý và chất lượng dịch vụ\n\n📌 Kết quả: **Top 32/220 đội thi ở bảng B**, đạt **70/100 điểm**.`
+      reply: `🏆 **Vietnamese Student HackAIThon 2026 — SmartGov Copilot / GovVoice AI**\n\nĐây là dự án trợ lý AI dịch vụ công đa phương thức, không chỉ trả lời câu hỏi mà còn hỗ trợ toàn bộ quy trình nộp hồ sơ:\n\n• **Citizen Assistant**: tư vấn thủ tục, checklist giấy tờ, hỗ trợ bằng giọng nói\n• **AI Pre-check**: OCR, Computer Vision, eKYC để bóc tách và kiểm tra hồ sơ trước khi nộp\n• **Officer Copilot**: tóm tắt hồ sơ, đánh dấu điểm bất thường, gợi ý phản hồi cho cán bộ\n• **SmartGov Dashboard**: theo dõi throughput, thời gian xử lý và chất lượng dịch vụ\n\n📌 Kết quả: **Top 32/220 đội thi ở bảng B**, đạt **70/100 điểm**.\n\nNếu bạn muốn, mình có thể tách riêng phần **workflow**, **tech stack**, hoặc **vai trò của Kiet trong project**.`
     },
     {
+      topic: "vnpt",
       test: ({ norm }) => includesAny(norm, ["vnpt", "meeting assistant", "age of unicorn"]),
-      reply: `🔵 **VNPT Hackathon — AI-Powered Meeting Assistant**\n\nDự án này tập trung vào việc hỗ trợ họp và xử lý tài liệu bằng AI:\n\n• Computer Vision để nhận diện người tham gia\n• OCR để đọc và xử lý tài liệu\n• LLM để phân tích nội dung họp\n• AI Agent để hỗ trợ tự động hóa tác vụ\n• Audio recording để ghi và trích xuất nội dung cuộc họp\n\n📌 Trạng thái: đã nộp proposal, chưa vào vòng chung kết.`
+      reply: `🔵 **VNPT Hackathon — AI-Powered Meeting Assistant**\n\nDự án này tập trung vào việc hỗ trợ họp và xử lý tài liệu bằng AI:\n\n• Computer Vision để nhận diện người tham gia\n• OCR để đọc và xử lý tài liệu\n• LLM để phân tích nội dung họp\n• AI Agent để hỗ trợ tự động hóa tác vụ\n• Audio recording để ghi và trích xuất nội dung cuộc họp\n\n📌 Trạng thái: đã nộp proposal, chưa vào vòng chung kết.\n\nNếu bạn cần, mình có thể mô tả theo kiểu **bài toán - giải pháp - impact** để dễ đưa vào CV hoặc phỏng vấn.`
     },
     {
+      topic: "cursor",
       test: ({ norm }) => includesAny(norm, ["cursor", "uav", "flood rescue", "flood detection", "drone"]),
-      reply: `🟠 **Cursor Hackathon — UAV-Based Flood Rescue Detection**\n\nĐây là hệ thống UAV tự động dùng Computer Vision + Object Detection để phát hiện người gặp nguy hiểm trong vùng lũ từ ảnh trên không.\n\nMục tiêu của project là hỗ trợ phản ứng nhanh hơn trong các tình huống cứu hộ khẩn cấp, khi từng phút đều rất quan trọng.`
+      reply: `🟠 **Cursor Hackathon — UAV-Based Flood Rescue Detection**\n\nĐây là hệ thống UAV tự động dùng Computer Vision + Object Detection để phát hiện người gặp nguy hiểm trong vùng lũ từ ảnh trên không.\n\nMục tiêu của project là hỗ trợ phản ứng nhanh hơn trong các tình huống cứu hộ khẩn cấp, khi từng phút đều rất quan trọng.\n\nNếu muốn, mình có thể giải thích thêm về **pipeline xử lý ảnh** hoặc **cách project hỗ trợ cứu hộ**.`
     },
     {
-      test: ({ norm }) => includesAny(norm, ["competition", "hackathon", "cuoc thi", "contest", "award", "giai thuong", "challenge"]),
-      reply: `🏆 **Competitions & Hackathons:**\n\n🟢 **Vietnamese Student HackAIThon 2026** — SmartGov Copilot / GovVoice AI\n🔵 **VNPT Hackathon** — AI-Powered Meeting Assistant\n🟠 **Cursor Hackathon** — UAV-Based Flood Rescue Detection\n\nNếu bạn muốn, mình có thể kể **chi tiết từng cuộc thi**, hoặc chỉ tóm tắt theo dạng **kết quả + công nghệ + impact**.`
+      topic: "competition",
+      test: ({ norm }) => includesAny(norm, ["competition", "hackathon", "cuoc thi", "contest", "award", "giai thuong", "challenge", "timeline", "alternating"]),
+      reply: `🏆 **Competitions & Hackathons:**\n\n🟢 **Vietnamese Student HackAIThon 2026** — SmartGov Copilot / GovVoice AI\n🔵 **VNPT Hackathon** — AI-Powered Meeting Assistant\n🟠 **Cursor Hackathon** — UAV-Based Flood Rescue Detection\n\n💡 *Bật mí:* Mình vừa được anh Kiet nâng cấp phần hiển thị **timeline xen kẽ trái/phải** cực kỳ đẹp mắt trên bản PC đó! Bạn hãy cuộn lên để xem nhé!`
     },
     {
+      topic: "education",
       test: ({ norm }) => includesAny(norm, ["education", "hoc van", "university", "truong", "sgu", "saigon university", "student", "degree"]),
-      reply: `🎓 **Học vấn:**\n\n📍 **Đại học Sài Gòn (SGU)** — Khoa Công nghệ Thông tin\n\nKiet đang theo đuổi hướng **Machine Learning / Computer Vision / Deep Learning** và luôn ưu tiên bài toán có thể ứng dụng thực tế.`
+      reply: `🎓 **Học vấn:**\n\n📍 **Đại học Sài Gòn (SGU)** — Khoa Công nghệ Thông tin\n\nKiet đang theo đuổi hướng **Machine Learning / Computer Vision / Deep Learning** và luôn ưu tiên bài toán có thể ứng dụng thực tế.\n\nNếu cần, mình có thể tóm tắt phần này theo kiểu **trang trọng**, **ngắn gọn**, hoặc **phù hợp với CV**.`
     },
     {
+      topic: "contact",
       test: ({ norm }) => includesAny(norm, ["contact", "lien he", "email", "hire", "tuyen dung", "viec lam", "collaborate", "hop tac", "reach out"]),
       reply: `📬 **Liên hệ với Kiet:**\n\n📧 **Email:** truongquockiet1211@gmail.com\n💼 **LinkedIn:** linkedin.com/in/kiet-truong-63b302306\n🐙 **GitHub:** github.com/Kietnehi\n📸 **Instagram:** @kitnehi_18\n\nNếu bạn muốn hợp tác về AI/ML, web app, hoặc hackathon project, cứ nhắn nhé.`
     },
     {
+      topic: "github",
       test: ({ norm }) => includesAny(norm, ["github", "repository", "repo", "open source", "source code"]),
       reply: `🐙 **GitHub của Kiet:** [github.com/Kietnehi](https://github.com/Kietnehi)\n\nTrên GitHub có các project về AI/ML, web app, scraping, OCR, và các thử nghiệm cá nhân. Nếu bạn muốn, mình cũng có thể tóm tắt theo từng repo nổi bật.`
     },
     {
+      topic: "cv",
       test: ({ norm }) => includesAny(norm, ["cv", "resume", "download cv", "tai cv", "curriculum vitae"]),
       reply: `📄 **CV của Kiet** có thể tải từ nút **Download CV** ở đầu trang.\n\nNếu bạn cần, mình cũng có thể giúp bạn viết lại phần **Experience / Projects / Competitions** sao cho gọn và mạnh hơn cho CV.`
     },
     {
+      topic: "favorite_project",
       test: ({ norm }) => includesAny(norm, ["favorite project", "best project", "noi bat nhat", "important project", "most important"]),
       reply: `⭐ **Project nổi bật nhất hiện tại:** **SmartGov Copilot / GovVoice AI**\n\nVì project này kết hợp được nhiều mảng cùng lúc: AI, OCR, Voice AI, eKYC, dashboard và workflow thực tế cho dịch vụ công. Nó cũng thể hiện rõ hướng mình muốn đi: AI có tính ứng dụng cao và phục vụ con người trực tiếp.`
     },
     {
+      topic: "thanks",
       test: ({ norm }) => includesAny(norm, ["thank", "cam on", "thanks", "tks", "merci"]),
       reply: `😊 Không có gì! Rất vui được giúp bạn.\n\nNếu muốn xem thêm project hoặc cuộc thi nào, cứ hỏi thẳng tên nhé.`
     },
     {
+      topic: "help",
       test: ({ norm }) => includesAny(norm, ["help", "menu", "what can", "ban co the lam gi", "option", "goi y", "can giup gi"]),
       reply: `💡 **Mình có thể giúp bạn tìm hiểu về:**\n\n👋 About / Giới thiệu\n🛠️ Skills & Tech Stack\n💼 Projects\n🏆 Competitions & Hackathons\n🎓 Education\n📬 Contact Info\n🐙 GitHub\n📄 CV\n⭐ SmartGov Copilot\n\nBạn cũng có thể hỏi theo tên project, ví dụ: “Tell me about SmartGov” hoặc “What is VNPT Hackathon?”`
     },
+    {
+      topic: "easter_egg",
+      test: ({ norm }) => includesAny(norm, ["secret", "easter egg", "trung phuc sinh", "code", "an", "bi mat"]),
+      reply: `🎉 **Chúc mừng!** Bạn đã tìm thấy Trứng Phục Sinh (Easter Egg) bí mật! \n\nChúc bạn có một ngày làm việc tràn đầy niềm vui, sức khỏe và năng lượng tích cực! KietAI đã phóng pháo hoa chúc mừng bạn đó! ✨`
+    }
+  ];
+
+  const TOPIC_FOLLOWUPS = {
+    about: `Nếu muốn, mình có thể tóm tắt Phu Kiet theo 3 kiểu: **1 câu**, **3 gạch đầu dòng**, hoặc **đoạn giới thiệu cho CV/LinkedIn**.`,
+    skills: `Mình có thể bóc riêng thành: **AI/ML**, **Web**, **DevOps**, hoặc **Database**.`,
+    focus: `Mình có thể chỉ ra **project nào phản ánh đúng hướng này nhất** hoặc **cách Kiet học / nghiên cứu**.`,
+    projects: `Bạn có thể hỏi tên một project cụ thể, ví dụ **SmartGov**, **VNPT**, hoặc **UAV Flood Detection**.`,
+    smartgov: `Mình có thể kể sâu hơn về **workflow**, **tech stack**, hoặc **đóng góp của Kiet trong project này**.`,
+    vnpt: `Mình có thể kể sâu hơn về **ý tưởng**, **vai trò AI**, hoặc **lý do project này phù hợp để nói trong phỏng vấn**.`,
+    cursor: `Mình có thể đi sâu vào **pipeline thị giác máy tính** hoặc **cách project hỗ trợ cứu hộ**.`,
+    competition: `Mình có thể tóm tắt theo dạng **tên cuộc thi + bài toán + kết quả** để dễ đọc hơn.`,
+    education: `Mình có thể viết lại phần này theo phong cách **trang trọng**, **ngắn gọn**, hoặc **phù hợp với CV**.`,
+    github: `Nếu bạn muốn, mình có thể chọn ra các repo nên được nhấn mạnh nhất trên portfolio.`,
+    cv: `Nếu bạn cần, mình có thể giúp chỉnh câu chữ để phần CV nhìn mạnh hơn và ngắn hơn.`,
+    contact: `Mình cũng có thể gộp thông tin này thành một dòng ngắn gọn để dùng cho CV hoặc footer.`,
+    favorite_project: `Nếu bạn muốn, mình có thể giải thích vì sao SmartGov nổi bật nhất theo góc nhìn **impact**, **scope**, hoặc **skill coverage**.`,
+    help: `Mình có thể gợi ý câu hỏi tiếp theo theo đúng mục bạn đang quan tâm.`,
+    easter_egg: `Nếu thích, mình còn có thể bật vài câu trả lời “ẩn” thú vị khác nữa.`
+  };
+
+  const FOLLOWUP_TRIGGERS = [
+    "more",
+    "chi tiet",
+    "detail",
+    "details",
+    "tell me more",
+    "more about",
+    "expand",
+    "go deeper",
+    "say more",
+    "noi ro hon",
+    "them",
+    "further",
   ];
 
   function getReply(text) {
     const raw = (text || "").trim();
     const norm = normalizeText(raw);
+    const isFollowup = FOLLOWUP_TRIGGERS.some(term => norm.includes(term));
+    if (isFollowup && lastTopic && TOPIC_FOLLOWUPS[lastTopic]) {
+      return TOPIC_FOLLOWUPS[lastTopic];
+    }
+
     for (const item of KB) {
       try {
-        if (item.test({ raw, norm })) return item.reply;
+        if (item.test({ raw, norm })) {
+          lastTopic = item.topic || null;
+          return item.reply;
+        }
       } catch(e) {}
     }
-    return `🤔 Mình chưa có thông tin về câu này.\n\nBạn có thể thử hỏi:\n• **SmartGov**\n• **VNPT Hackathon**\n• **Cursor Hackathon**\n• **skills / tech stack**\n• **projects**\n• **education**\n• **contact / email**\n\nHoặc gõ **help** để xem danh sách đầy đủ nhé!`;
+    if (lastTopic && TOPIC_FOLLOWUPS[lastTopic]) {
+      return `Mình chưa bắt đúng ý câu này, nhưng nếu bạn đang hỏi tiếp về chủ đề trước thì:\n\n${TOPIC_FOLLOWUPS[lastTopic]}`;
+    }
+
+    return `🤔 Mình chưa bắt đúng câu hỏi này.\n\nBạn có thể thử hỏi theo chủ đề cụ thể như:\n• **SmartGov**\n• **VNPT Hackathon**\n• **Cursor Hackathon**\n• **skills / tech stack**\n• **projects**\n• **education**\n• **contact / email**\n\nHoặc gõ **help** để xem danh sách đầy đủ nhé!`;
+  }
+
+  // ── Confetti effect ──────────────────────────────────────────
+  function fireConfetti() {
+    const colors = ['#6366f1', '#ec4899', '#10b981', '#fb923c', '#3b82f6'];
+    for (let i = 0; i < 40; i++) {
+      const p = document.createElement('div');
+      p.className = 'chat-confetti-particle';
+      p.style.background = colors[Math.floor(Math.random() * colors.length)];
+      p.style.left = Math.random() * 100 + '%';
+      p.style.top = '100%';
+      const size = Math.random() * 8 + 5;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.borderRadius = Math.random() > 0.5 ? '50%' : '3px';
+      
+      const xVel = (Math.random() - 0.5) * 120;
+      const yVel = -(Math.random() * 180 + 100);
+      const rot = Math.random() * 360;
+      
+      p.style.setProperty('--x', xVel + 'px');
+      p.style.setProperty('--y', yVel + 'px');
+      p.style.setProperty('--r', rot + 'deg');
+      
+      elWindow.appendChild(p);
+      setTimeout(() => p.remove(), 1200);
+    }
   }
 
   // ── Render helpers ───────────────────────────────────────────
   function formatText(text) {
     return text
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/`([^`]+)`/g, '<code class="chat-code">$1</code>')
+      .replace(/• (.+?)(?=\n|<br>|$)/g, '• <span class="chat-list-item">$1</span>')
       .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
-        '<a href="$2" target="_blank" rel="noopener" style="color:#6366f1;text-decoration:underline">$1</a>')
+        '<a href="$2" target="_blank" rel="noopener" class="chat-link">$1</a>')
       .replace(/\n/g, '<br>');
   }
 
@@ -820,11 +916,79 @@ showPage(1);
     if (t) t.remove();
   }
 
+  // ── Dynamic Suggestions Chips ────────────────────────────────
+  function updateSuggestions(userText) {
+    const norm = normalizeText(userText);
+    const suggestionsContainer = document.getElementById('chat-suggestions');
+    if (!suggestionsContainer) return;
+    
+    let chips = [];
+    if (includesAny(norm, ['project', 'du an', 'built', 'build', 'portfolio'])) {
+      chips = [
+        { label: '🏆 SmartGov', q: 'Tell me about SmartGov Copilot' },
+        { label: '🔵 VNPT Hack', q: 'Tell me about VNPT Hackathon' },
+        { label: '🟠 Cursor UAV', q: 'Tell me about Cursor Hackathon' },
+        { label: '🔙 Main Menu', q: 'help' }
+      ];
+    } else if (includesAny(norm, ['skill', 'ky nang', 'tech stack', 'cong nghe', 'stack'])) {
+      chips = [
+        { label: '🤖 AI/ML Stack', q: 'What is your AI/ML stack?' },
+        { label: '💻 Web Stack', q: 'What is your Web Dev stack?' },
+        { label: '☁️ DevOps Stack', q: 'What is your DevOps stack?' },
+        { label: '🔙 Main Menu', q: 'help' }
+      ];
+    } else if (includesAny(norm, ['smartgov', 'govvoice'])) {
+      chips = [
+        { label: '🥈 Competitions', q: 'Tell me about your competitions' },
+        { label: '💼 Other Projects', q: 'Tell me about your projects' },
+        { label: '🔙 Main Menu', q: 'help' }
+      ];
+    } else if (includesAny(norm, ['contact', 'lien he', 'email'])) {
+      chips = [
+        { label: '🐙 GitHub', q: 'Tell me about your GitHub' },
+        { label: '📄 Download CV', q: 'Tell me about your CV' },
+        { label: '🔙 Main Menu', q: 'help' }
+      ];
+    } else {
+      chips = [
+        { label: '🧠 Skills', q: 'What are your skills and tech stack?' },
+        { label: '🏆 SmartGov', q: 'Tell me about SmartGov Copilot' },
+        { label: '🥇 Competitions', q: 'Tell me about your competitions and hackathons' },
+        { label: '💼 Projects', q: 'Tell me about your projects' },
+        { label: '📬 Contact', q: 'How to contact you?' },
+        { label: '👋 About', q: 'Tell me about yourself' }
+      ];
+    }
+    
+    suggestionsContainer.innerHTML = '';
+    chips.forEach(chip => {
+      const btn = document.createElement('button');
+      btn.className = 'chat-suggest';
+      btn.dataset.q = chip.q;
+      btn.textContent = chip.label;
+      btn.addEventListener('click', () => {
+        const wasOpen = isOpen;
+        if (!wasOpen) openChat();
+        setTimeout(() => sendMessage(chip.q), wasOpen ? 0 : 600);
+      });
+      suggestionsContainer.appendChild(btn);
+    });
+  }
+
   function botReply(userText) {
     showTyping();
     setTimeout(() => {
       removeTyping();
-      addMessage(getReply(userText), 'bot');
+      const replyText = getReply(userText);
+      addMessage(replyText, 'bot');
+      updateSuggestions(userText);
+      
+      // Auto confetti on achievements or secrets
+      const positiveIcons = ['🏆', '🥇', '⭐', '🎉', '✨', 'Top 32'];
+      const shouldConfetti = positiveIcons.some(icon => replyText.includes(icon));
+      if (shouldConfetti) {
+        setTimeout(fireConfetti, 300);
+      }
     }, 700 + Math.random() * 400);
   }
 
@@ -844,10 +1008,10 @@ showPage(1);
     elIconOpen.style.display = 'none';
     elIconClose.style.display = 'block';
     elBadge.style.display = 'none';
-    // Hiện greeting ngay lập tức nếu chưa có message nào
     if (elMessages.children.length === 0) {
       addMessage('👋 Xin chào! Mình là **KietAI** — trợ lý AI của Phu Kiet.\n\nBạn muốn biết gì? Hãy hỏi hoặc chọn gợi ý bên dưới!', 'bot');
     }
+    updateSuggestions('');
     setTimeout(() => elInput.focus(), 200);
   }
 
@@ -861,6 +1025,9 @@ showPage(1);
 
   // ── Event listeners ──────────────────────────────────────────
   elToggle.addEventListener('click', () => isOpen ? closeChat() : openChat());
+  if (elClose) {
+    elClose.addEventListener('click', closeChat);
+  }
 
   elSend.addEventListener('click', () => sendMessage(elInput.value));
 
@@ -871,20 +1038,16 @@ showPage(1);
   if (elClear) {
     elClear.addEventListener('click', () => {
       elMessages.innerHTML = '';
+      lastTopic = null;
       addMessage('Chat đã xóa! Mình có thể giúp gì cho bạn? 😊', 'bot');
+      updateSuggestions('');
     });
   }
 
-  // Fix timing bug: lưu wasOpen TRƯỚC khi gọi openChat()
-  document.querySelectorAll('.chat-suggest').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const wasOpen = isOpen;
-      if (!wasOpen) openChat();
-      // Nếu chat đang đóng: đợi greeting hiện xong rồi mới gửi câu hỏi
-      setTimeout(() => sendMessage(btn.dataset.q), wasOpen ? 0 : 600);
-    });
-  });
+  // Initial call to set suggestion handlers
+  updateSuggestions('');
 })();
+
 
 // ===== NEURAL NETWORK PARTICLES =====
 (function () {

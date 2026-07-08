@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Xây dựng Trợ lý Dịch vụ Công SmartGov Copilot với Multimodal AI | Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Highlight.js for beautiful code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1",
+              secondary: "#0f172a",
+              accent: "#ec4899",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blog-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(99,102,241,0.05), transparent 30%),
+          radial-gradient(circle at 85% 85%, rgba(236,72,153,0.04), transparent 30%);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent z-[100] transition-all duration-100" id="reading-progress" style="width: 0%"></div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter">
+            Kiet<span class="text-primary">nehi</span>.
+          </a>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a
+              href="blog.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span>Back to Blog</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-12 sm:py-16 md:py-20 relative overflow-hidden min-h-[calc(100vh-4rem)]">
+      <div class="blog-bg" aria-hidden="true"></div>
+      
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <!-- Breadcrumb, Metadata & Language Switcher -->
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+            <a href="blog.html" class="hover:text-primary transition">Blog</a>
+            <i class="fas fa-chevron-right text-[8px]"></i>
+            <span class="text-primary font-semibold">SmartGov Copilot</span>
+            <span class="mx-1">•</span>
+            <span>July 8, 2026</span>
+            <span class="mx-1">•</span>
+            <span>10 min read</span>
+          </div>
+          
+          <!-- Language Switcher Buttons -->
+          <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-1 rounded-xl shadow-sm">
+            <button onclick="switchLang('vi')" id="btn-lang-vi" class="px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm">
+              VI (Tiếng Việt)
+            </button>
+            <button onclick="switchLang('en')" id="btn-lang-en" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
+              EN (English)
+            </button>
+          </div>
+        </div>
+
+        <!-- Article Header -->
+        <h1 id="article-title" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-8">
+          Xây dựng Trợ lý Dịch vụ Công SmartGov Copilot với Multimodal AI
+        </h1>
+
+        <!-- Main Cover Image -->
+        <div class="relative my-10 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-white/10 bg-slate-950/40 dark:bg-slate-950/70 p-8 flex items-center justify-center min-h-[280px] sm:min-h-[360px]">
+          <!-- Radial glow behind the cover logo -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.2),transparent_75%)]"></div>
+          <!-- Blur aura behind logo -->
+          <div class="absolute w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+          
+          <!-- Logo Image -->
+          <img src="images_blogs/SmartGov/SmartGov_Logo.png" alt="SmartGov Copilot Cover" class="relative z-10 max-h-[240px] sm:max-h-[300px] w-auto h-auto object-contain transform hover:scale-[1.02] transition-transform duration-500" />
+        </div>
+
+        <!-- Author Profile Banner -->
+        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md mb-10">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/10">
+            PK
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Phu Kiet (Kietnehi)</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">AI Engineer & Student at SGU</p>
+          </div>
+          <div class="ml-auto flex items-center gap-2">
+            <a href="https://github.com/Kietnehi" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center transition text-slate-500 dark:text-slate-300">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/kiet-truong-63b302306" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center transition text-slate-500 dark:text-slate-300">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
+          
+          <!-- VIETNAMESE VERSION -->
+          <div id="content-vi" class="space-y-6">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              Tại cuộc thi <strong>Vietnamese Student HackAIthon 2026 (Bảng B - Challenger)</strong>, nhóm chúng tôi gồm 4 thành viên đã cùng nhau phát triển đề án <strong>SmartGov Copilot (GovVoice AI)</strong>. Dự án tập trung giải quyết Đề tài số 6 về <strong>Hành chính công</strong>, nhằm nâng cao năng suất xử lý hồ sơ và cải thiện trải nghiệm dịch vụ công cho người dân. Kết quả chung cuộc, đề án đã xuất sắc lọt vào <strong>Top 32/220 đội thi</strong> bảng B toàn quốc với điểm số ấn tượng <strong>70/100 điểm</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. Bối cảnh & Thách thức Bảng B - Challenger (HackAIthon 2026)</h2>
+            <p>
+              Bảng B (Challenger) của HackAIthon 2026 đặt ra đề bài phát triển một giải pháp trí tuệ nhân tạo ở cấp độ <strong>MVP (Sản phẩm khả thi tối thiểu)</strong> có thể kiểm thử và chạy thực tế. Đề tài xoay quanh 6 chủ đề trọng điểm bao gồm: Giáo dục, Truyền thông & Báo chí, Ngân hàng, Y tế, Công tác Hội sinh viên (tối ưu quy trình xét "Sinh viên 5 tốt"), và Hành chính công.
+            </p>
+            <p>
+              Để hỗ trợ các đội thi, Ban tổ chức đã cung cấp một bộ tài nguyên API đa lĩnh vực cực kỳ phong phú từ hệ sinh thái <strong>VNPT AI</strong>:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>VNPT SmartVoice</strong> (Speech-to-Text & Text-to-Speech)</li>
+              <li><strong>VNPT SmartReader</strong> (OCR trích xuất tài liệu)</li>
+              <li><strong>VNPT eKYC</strong> & <strong>vnFace</strong> (Định danh điện tử, nhận diện khuôn mặt)</li>
+              <li><strong>VNPT Smartbot</strong>, <strong>vnSocial</strong>, <strong>SmartVision</strong>, <strong>SmartUX</strong></li>
+            </ul>
+            <p>
+              Lộ trình thi đấu diễn ra gay cấn qua 3 vòng: Vòng 1 nộp ý tưởng (chọn Top 20), Vòng 2 phát triển MVP cùng Mentor (chọn Top 6), và Vòng 3 chung kết gồm phần thi HackAIthon tập trung trong 24 giờ giải quyết nhiệm vụ bí mật và phần thuyết trình Pitching trước hội đồng Ban giám khảo.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. Đề án SmartGov Copilot - Vấn đề & Giải pháp</h2>
+            
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mt-6 mb-2">Vấn đề cốt lõi:</h3>
+            <ul class="list-disc pl-6 space-y-1">
+              <li><strong>Người dân</strong>: Gặp rào cản lớn khi thực hiện các dịch vụ công do thủ tục giấy tờ phức tạp, giao diện web/app khó thao tác, dẫn đến điền sai thông tin và phải nộp đi nộp lại nhiều lần.</li>
+              <li><strong>Cán bộ tiếp nhận một cửa</strong>: Bị quá tải công việc khi phải đối chiếu thông tin, rà soát hồ sơ và nhập liệu thủ công vào các hệ thống quản trị hành chính.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mt-6 mb-2">Giải pháp của SmartGov Copilot (4 Module Cốt Lõi):</h3>
+            <p>
+              Điểm khác biệt của SmartGov Copilot là <strong>không chỉ dừng lại ở một chatbot FAQ hỏi đáp thông thường</strong>, mà là một hệ thống trợ lý đi kèm suốt quy trình xử lý hồ sơ của cả người dân và cán bộ công chức:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-primary mb-2"><i class="fas fa-comments-dollar mr-2"></i>Citizen Assistant</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Trợ lý ảo hỗ trợ người dân thông qua Chat, Giọng nói hoặc Kiosk thông minh. Tư vấn chi tiết thủ tục và cung cấp checklist hồ sơ cần chuẩn bị.</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-emerald-500 mb-2"><i class="fas fa-clipboard-check mr-2"></i>AI Pre-check</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Cho phép người dân tải lên các giấy tờ. AI sử dụng OCR và eKYC để tự động bóc tách dữ liệu, tự động điền form biểu mẫu và kiểm tra lỗi sai sót ngay từ đầu giúp người dân "nộp hồ sơ một lần thành công".</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-orange-500 mb-2"><i class="fas fa-user-shield mr-2"></i>Officer Copilot</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Trợ lý hỗ trợ cán bộ tóm tắt hồ sơ dài, đánh dấu (highlight) các điểm bất thường và gợi ý văn bản phản hồi, giúp giảm tối đa thao tác thủ công (nhưng cán bộ vẫn giữ quyền quyết định cuối cùng).</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-purple-500 mb-2"><i class="fas fa-chart-pie mr-2"></i>SmartGov Dashboard</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Bảng điều khiển quản trị dữ liệu tập trung, phân tích tiến độ, đo lường các điểm nghẽn thủ tục và đánh giá mức độ hài lòng của người dân.</p>
+              </div>
+            </div>
+
+            <!-- Pipeline Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/Pipeline.png" alt="SmartGov System Pipeline" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 1: Sơ đồ Pipeline xử lý dữ liệu của hệ thống SmartGov Copilot</p>
+            </div>
+
+            <!-- Feedback Flow Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/Feedback.png" alt="SmartGov Flow Feedback" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 2: Sơ đồ Luồng phản hồi và tương tác của người dùng (Flow Feedback)</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Triển khai sản phẩm thực tế (MVP)</h2>
+            <p>
+              Trong khuôn khổ sản phẩm khả thi tối thiểu (MVP), nhóm đã lựa chọn thử nghiệm trên 2 quy trình hành chính công phổ biến nhất hiện nay: <strong>Cấp lại Căn cước công dân (CCCD)</strong> và <strong>Đăng ký tạm trú</strong>. Đề án đã tận dụng tối đa hệ sinh thái VNPT AI sẵn có bao gồm <em>Smartbot</em>, <em>SmartVoice</em>, <em>SmartReader (OCR)</em> và <em>eKYC</em> để tối ưu hóa thời gian triển khai cũng như chi phí vận hành.
+            </p>
+            <p>
+              Dưới đây là lộ trình phát triển và sơ đồ phân bổ các module trong giai đoạn xây dựng MVP của đề án:
+            </p>
+
+            <!-- Roadmap Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="SmartGov Copilot Roadmap" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 3: Sơ đồ Lộ trình phát triển & Kiến trúc các Module trong đề án SmartGov Copilot</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Kết quả & Bài học kinh nghiệm</h2>
+            <p>
+              Với đội hình gồm <strong>4 thành viên</strong> hoạt động năng nổ, đề án đã hoàn thành MVP kịp tiến độ và nhận được đánh giá cao từ hội đồng chuyên môn. Dù dừng chân ở <strong>vòng Top 32/220 đội toàn quốc</strong> (đạt <strong>70/100 điểm</strong>), chúng tôi đã rút ra được nhiều bài học giá trị:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Tối ưu hóa dữ liệu truyền tải</strong>: Cách xử lý và nén tệp âm thanh/ảnh chụp CCCD trước khi chuyển qua API eKYC giúp giảm thiểu độ trễ phản hồi từ 7s xuống còn 1.8s.</li>
+              <li><strong>Làm việc nhóm & Kết nối hệ thống</strong>: Kỹ năng phối hợp chia nhỏ module giữa các thành viên (frontend Kiosk, backend AI Integration, dashboard quản trị) để tạo nên hệ thống hoạt động liền mạch.</li>
+              <li><strong>Sử dụng API thực tế</strong>: Nắm vững quy trình xử lý, phân quyền và tối ưu hóa phản hồi của hệ sinh thái các API của VNPT AI.</li>
+            </ul>
+          </div>
+
+          <!-- ENGLISH VERSION -->
+          <div id="content-en" class="space-y-6 hidden">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              During the <strong>Vietnamese Student HackAIthon 2026 (Challenger League - Track B)</strong>, our 4-member team developed the <strong>SmartGov Copilot (GovVoice AI)</strong> system. The project targets Public Administration optimization, aiming to accelerate administrative document processing and improve the public service experience for citizens. Ultimately, our project successfully ranked in the <strong>Top 32/220 teams nationwide</strong> with an outstanding score of <strong>70/100 points</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. Background & Challenges - Challenger League (HackAIthon 2026)</h2>
+            <p>
+              Track B (Challenger League) of HackAIthon 2026 challenged student teams to build a deployable and testable AI-powered <strong>MVP (Minimum Viable Product)</strong>. The topic selected focused on one of the six priority domains: Education, Media & Journalism, Banking, Healthcare, Student Union operations (optimizing the "Student of 5 Merits" evaluation workflow), and Public Administration.
+            </p>
+            <p>
+              To support the competing teams, the organizers provided a rich suite of APIs from the comprehensive <strong>VNPT AI</strong> ecosystem:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>VNPT SmartVoice</strong> (Speech-to-Text & Text-to-Speech)</li>
+              <li><strong>VNPT SmartReader</strong> (OCR Document Extraction)</li>
+              <li><strong>VNPT eKYC</strong> & <strong>vnFace</strong> (Electronic Identity Verification and Facial Recognition)</li>
+              <li><strong>VNPT Smartbot</strong>, <strong>vnSocial</strong>, <strong>SmartVision</strong>, <strong>SmartUX</strong></li>
+            </ul>
+            <p>
+              The tournament consisted of 3 highly competitive rounds: Round 1 (Idea submission, selecting Top 20), Round 2 (MVP Development with Mentor support, selecting Top 6), and Round 3 (Grand Finale featuring a 24-hour on-site hackathon with a secret task, followed by Pitching presentations before the grand jury panel).
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. SmartGov Copilot Project - Problem & Solution</h2>
+            
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mt-6 mb-2">The Core Problem:</h3>
+            <ul class="list-disc pl-6 space-y-1">
+              <li><strong>Citizens</strong>: Face heavy barriers when accessing public administrative services due to complicated paperwork layouts, unintuitive online portals, leading to frequent typing mistakes and repeated submissions.</li>
+              <li><strong>Front-desk Officers</strong>: Experience severe burnout trying to verify information, proofread paper documents, and manually input data into administration systems.</li>
+            </ul>
+
+            <h3 class="text-xl font-semibold text-slate-800 dark:text-slate-100 mt-6 mb-2">SmartGov Copilot Solution (4 Core Modules):</h3>
+            <p>
+              The distinct advantage of SmartGov Copilot is that <strong>it is not just a basic FAQ chatbot</strong>, but a comprehensive assistant system accompanying both citizens and government officers throughout the document lifecycle:
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 my-6">
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-primary mb-2"><i class="fas fa-comments-dollar mr-2"></i>Citizen Assistant</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">A virtual assistant guiding citizens via Chat, Voice, or Smart Kiosks. It answers procedures and provides a customized document checklist.</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-emerald-500 mb-2"><i class="fas fa-clipboard-check mr-2"></i>AI Pre-check</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Allows citizens to upload paper files. The AI uses OCR and eKYC to extract data, auto-fill forms, and flag verification errors to guarantee "one-time successful submission".</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-orange-500 mb-2"><i class="fas fa-user-shield mr-2"></i>Officer Copilot</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">Assists desk clerks by summarizing long files, highlighting anomalies, and generating template replies. Reduces manual inputs (while keeping the clerk as the final validator).</p>
+              </div>
+              <div class="p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/40 dark:bg-slate-900/40">
+                <h4 class="font-bold text-purple-500 mb-2"><i class="fas fa-chart-pie mr-2"></i>SmartGov Dashboard</h4>
+                <p class="text-xs text-slate-500 dark:text-slate-400">A centralized management dashboard parsing statistics, checking bottleneck patterns, and analyzing citizen satisfaction ratings.</p>
+              </div>
+            </div>
+
+            <!-- Pipeline Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/Pipeline.png" alt="SmartGov System Pipeline" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 1: SmartGov Copilot System Data Processing Pipeline Diagram</p>
+            </div>
+
+            <!-- Feedback Flow Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/Feedback.png" alt="SmartGov Flow Feedback" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 2: User interaction and feedback loop flow diagram (Flow Feedback)</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Minimum Viable Product (MVP) Implementation</h2>
+            <p>
+              Within the scope of the Hackathon MVP, our team chose to implement and test two of the most widely used public administrative workflows: <strong>National ID Card Replacement</strong> and <strong>Temporary Residence Registration</strong>. The system fully exploited VNPT AI's ready-to-use APIs—specifically <em>Smartbot</em>, <em>SmartVoice</em>, <em>SmartReader (OCR)</em>, and <em>eKYC</em>—to dramatically cut deployment timelines and compute cost overheads.
+            </p>
+            <p>
+              The development timeline and module distribution of our MVP phase are described below:
+            </p>
+
+            <!-- Roadmap Image -->
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="SmartGov Copilot Roadmap" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 3: Modules Architecture and Project Roadmap for the SmartGov Copilot implementation</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Results & Lessons Learned</h2>
+            <p>
+              With our active <strong>4-member team</strong>, the project successfully reached the MVP deployment target on schedule, receiving positive reviews from the jury. Even though we stopped at the <strong>Top 32/220 national teams</strong> (earning <strong>70/100 points</strong>), we gained valuable engineering knowledge:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Data Transmission Optimization</strong>: Pre-processing and compressing audio and ID card images before sending to eKYC APIs slashed API latency from 7.0s to 1.8s.</li>
+              <li><strong>Module-based Teamwork</strong>: Dividing system engineering between frontend Kiosk, AI Backend Integration, and Admin Dashboards allowed seamless, parallelized feature building.</li>
+              <li><strong>Production API Integration</strong>: Gained practical expertise in authenticating, managing rates, and handling responses from the VNPT AI API endpoints.</li>
+            </ul>
+          </div>
+
+        </article>
+
+        <!-- Back to Blog Button Footer -->
+        <div class="mt-12 pt-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-indigo-700 dark:hover:text-indigo-400 transition">
+            <i class="fas fa-arrow-left"></i>
+            <span id="back-to-articles-text">Quay lại danh sách bài viết</span>
+          </a>
+          <span class="text-xs text-slate-400">© 2026 Phu Kiet</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      // Theme Toggle Logic
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") html.classList.add("dark");
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+
+      // Reading progress bar logic
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById("reading-progress").style.width = percentage + "%";
+      });
+
+      // Language Switcher Logic
+      const articleTitles = {
+        vi: "Xây dựng Trợ lý Dịch vụ Công SmartGov Copilot với Multimodal AI",
+        en: "Building SmartGov Copilot Public Service Assistant with Multimodal AI"
+      };
+      
+      const backTexts = {
+        vi: "Quay lại danh sách bài viết",
+        en: "Back to Articles"
+      };
+
+      function switchLang(lang) {
+        const contentVi = document.getElementById("content-vi");
+        const contentEn = document.getElementById("content-en");
+        const btnVi = document.getElementById("btn-lang-vi");
+        const btnEn = document.getElementById("btn-lang-en");
+        const titleElement = document.getElementById("article-title");
+        const backTextElement = document.getElementById("back-to-articles-text");
+
+        localStorage.setItem("lang", lang);
+
+        if (lang === "en") {
+          contentVi.classList.add("hidden");
+          contentEn.classList.remove("hidden");
+          
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.en;
+          backTextElement.textContent = backTexts.en;
+        } else {
+          contentVi.classList.remove("hidden");
+          contentEn.classList.add("hidden");
+          
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.vi;
+          backTextElement.textContent = backTexts.vi;
+        }
+      }
+
+      // Set initial language preference (defaults to English)
+      switchLang(localStorage.getItem("lang") || "en");
+    </script>
+  </body>
+</html>

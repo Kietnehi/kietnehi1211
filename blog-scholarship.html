@@ -1,0 +1,2693 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hành trình "lội ngược dòng" ngoạn mục: Từ lơ là năm nhất đến 6 lần học bổng liên tiếp | Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1",
+              secondary: "#0f172a",
+              accent: "#ec4899",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blog-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(99,102,241,0.05), transparent 30%),
+          radial-gradient(circle at 85% 85%, rgba(236,72,153,0.04), transparent 30%);
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent z-[100] transition-all duration-100" id="reading-progress" style="width: 0%"></div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter">
+            Kiet<span class="text-primary">nehi</span>.
+          </a>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a
+              href="blog.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span>Back to Blog</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-12 sm:py-16 md:py-20 relative overflow-hidden min-h-[calc(100vh-4rem)]">
+      <div class="blog-bg" aria-hidden="true"></div>
+      
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <!-- Breadcrumb, Metadata & Language Switcher -->
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+            <a href="blog.html" class="hover:text-primary transition">Blog</a>
+            <i class="fas fa-chevron-right text-[8px]"></i>
+            <span class="text-primary font-semibold">Scholarship</span>
+            <span class="mx-1">•</span>
+            <span>July 8, 2026</span>
+            <span class="mx-1">•</span>
+            <span>6 min read</span>
+          </div>
+          
+          <!-- Language Switcher Buttons -->
+          <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-1 rounded-xl shadow-sm">
+            <button onclick="switchLang('vi')" id="btn-lang-vi" class="px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm">
+              VI (Tiếng Việt)
+            </button>
+            <button onclick="switchLang('en')" id="btn-lang-en" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
+              EN (English)
+            </button>
+          </div>
+        </div>
+
+        <!-- Article Header -->
+        <h1 id="article-title" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-8">
+          Hành trình "lội ngược dòng" ngoạn mục: Từ lơ là năm nhất đến 6 lần học bổng liên tiếp
+        </h1>
+
+        <!-- Main Cover Image -->
+        <div class="relative my-10 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-white/10 bg-slate-950/40 dark:bg-slate-950/70 p-8 flex items-center justify-center min-h-[280px] sm:min-h-[360px]">
+          <!-- Radial glow behind the cover -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.2),transparent_75%)]"></div>
+          <!-- Blur aura -->
+          <div class="absolute w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+          
+          <!-- Cover Image -->
+          <img src="images_blogs/scholar_in_university/scholarship.png" alt="Scholarship Cover" class="relative z-10 max-h-[240px] sm:max-h-[300px] w-auto h-auto object-contain transform hover:scale-[1.02] transition-transform duration-500" />
+        </div>
+
+        <!-- Author Profile Banner -->
+        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md mb-10">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/10">
+            PK
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Phu Kiet (Kietnehi)</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">AI Engineer & Student at SGU</p>
+          </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
+          
+          <!-- VIETNAMESE VERSION -->
+          <div id="content-vi" class="space-y-6">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              Bước vào giảng đường đại học với nhiều hoài bão, nhưng cú sốc tự do ở năm học đầu tiên đã khiến tôi trượt dài trong việc lơ là học tập. Từ mức điểm GPA chạm đáy <strong>1.26 (Xếp loại Yếu)</strong>, tôi đã thức tỉnh và thiết lập nên một hành trình lội ngược dòng ngoạn mục với <strong>6 học kỳ liên tục nhận Học bổng Khuyến khích Học tập</strong> của Trường Đại học Sài Gòn (SGU), tốt nghiệp xuất sắc đạt GPA tích lũy hệ 4 là <strong>3.12 (Xếp loại Tốt)</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. Khởi đầu trượt dài & Sự tỉnh ngộ của năm nhất</h2>
+            <p>
+              Thời gian đầu bước vào môi trường đại học, không còn sự kèm cặp từ gia đình hay thầy cô như thời phổ thông, tôi nhanh chóng bị cuốn vào những cám dỗ tự do. Những buổi cúp tiết đi chơi net, những môn học bỏ bê không thèm làm bài tập lớn đã nhanh chóng phản ánh kết quả lên bảng điểm. 
+            </p>
+            <p>
+              Kết thúc học kỳ 1 năm nhất (HK1 2022-2023), tôi bàng hoàng nhận về kết quả: GPA hệ 4 chỉ đạt <strong>1.26</strong>, xếp loại học lực <strong>Yếu</strong> và điểm rèn luyện ở mức trung bình <strong>53</strong>. Cảm giác hụt hẫng, hoang mang và đặc biệt là ánh mắt thất vọng của bố mẹ đã khiến tôi thực sự tỉnh ngộ. Tôi tự nhủ bản thân: <em>"Không thể tiếp tục trượt dài thế này được!"</em>
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. Chiến lược lật ngược thế cờ & Phương pháp tự học</h2>
+            <p>
+              Để thay đổi kết quả, tôi bắt buộc phải thay đổi triệt để phương pháp học tập của mình. Bắt đầu từ học kỳ tiếp theo, tôi lập ra chiến lược nghiêm ngặt:
+            </p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li><strong>Đi học đầy đủ 100%</strong>: Ngồi bàn đầu để tập trung nghe giảng, tích cực tương tác và phát biểu đóng góp bài.</li>
+              <li><strong>Xem trước bài học</strong>: Dành 30 phút mỗi tối để đọc qua slide bài giảng của ngày hôm sau, xác định trước những phần khó hiểu để lên lớp hỏi giảng viên.</li>
+              <li><strong>Tận dụng thư viện trường</strong>: Thay vì về nhà ngay sau giờ học, tôi dành 2-3 tiếng tự học tại thư viện SGU để làm bài tập và nghiên cứu sâu các tài liệu CNTT chuyên ngành.</li>
+              <li><strong>Học nhóm chủ động</strong>: Lập nhóm cùng những người bạn học chăm chỉ để chia sẻ kiến thức, cùng nhau giải quyết đồ án môn học phức tạp.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Hành trình quả ngọt: 6 học kỳ học bổng liên tiếp</h2>
+            <p>
+              Sự nỗ lực bền bỉ cuối cùng đã mang lại những quả ngọt xứng đáng. Từ năm học thứ 2 trở đi, tôi đã duy trì phong độ xuất sắc để liên tiếp nhận học bổng khuyến khích học tập suốt 6 học kỳ liên tục. Dưới đây là hình ảnh chứng nhận học bổng danh giá qua các kỳ của tôi:
+            </p>
+
+            <!-- Scholarship Carousel VI -->
+            <div class="relative group my-8 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-xl bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-4">
+              <div class="relative h-[250px] sm:h-[400px] overflow-hidden rounded-xl flex items-center justify-center bg-slate-950/10">
+                <!-- Slides -->
+                <div class="carousel-slide-vi absolute inset-0 opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Học bổng 1" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Học bổng 2" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Học bổng 3" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Học bổng 4" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Học bổng 5" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Học bổng 6" class="max-w-full max-h-full object-contain" />
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button onclick="prevSlideVi()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white flex items-center justify-center hover:scale-105 transition shadow-lg z-20">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="nextSlideVi()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white flex items-center justify-center hover:scale-105 transition shadow-lg z-20">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <!-- Slide Caption -->
+              <div class="text-center mt-4">
+                <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Chứng nhận Học bổng Khuyến khích Học tập</h4>
+                <p class="text-xs text-slate-400 mt-1">Minh chứng cho nỗ lực duy trì học tập xuất sắc qua các kỳ học tại SGU</p>
+              </div>
+              
+              <!-- Indicator Dots -->
+              <div class="flex justify-center gap-2 mt-4" id="carousel-dots-vi">
+                <button onclick="goToSlideVi(0)" class="w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300"></button>
+                <button onclick="goToSlideVi(1)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideVi(2)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideVi(3)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideVi(4)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideVi(5)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Bảng điểm tổng quan & Trình chiếu file điểm Excel</h2>
+            <p>
+              Để minh bạch và tổng kết lại toàn bộ chặng đường học tập đầy thăng trầm này, tôi xin được "trình chiếu" trực tiếp toàn bộ dữ liệu từ file bảng điểm chính thức <code>Diem_trinh_bay_dep.xlsx</code> của mình dưới dạng bảng tương tác:
+            </p>
+
+            <!-- Interactive Grade Sheet Viewer VI -->
+            <div class="my-8 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-slate-900 backdrop-blur-md">
+              <div class="flex border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950 p-2 gap-2">
+                <button onclick="switchGradeTabVi('tab-summary-vi')" id="btn-tab-summary-vi" class="flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm">
+                  <i class="fas fa-chart-line mr-1.5"></i> Bảng tổng hợp học kỳ
+                </button>
+                <button onclick="switchGradeTabVi('tab-details-vi')" id="btn-tab-details-vi" class="flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                  <i class="fas fa-list-ul mr-1.5"></i> Bảng điểm chi tiết
+                </button>
+              </div>
+              
+              <!-- Tab Content: Summary VI -->
+              <div id="grade-tab-summary-vi" class="p-4 sm:p-6 overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[600px]">
+                  <thead>
+                    <tr class="border-b border-slate-200 dark:border-white/5 text-slate-400">
+                      <th class="py-3 px-2">Học kỳ</th>
+                      <th class="py-3 px-2">Năm học</th>
+                      <th class="py-3 px-2 text-center">GPA (Hệ 4)</th>
+                      <th class="py-3 px-2 text-center">GPA (Hệ 10)</th>
+                      <th class="py-3 px-2 text-center">Tín chỉ</th>
+                      <th class="py-3 px-2 text-center">Xếp loại</th>
+                      <th class="py-3 px-2 text-center">Rèn luyện</th>
+                      <th class="py-3 px-2 text-center">Học bổng</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                      <td class="py-3.5 px-2 font-semibold">HK1</td>
+                      <td class="py-3.5 px-2">2022 - 2023</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-rose-500">1.26</td>
+                      <td class="py-3.5 px-2 text-center text-rose-500">5.21</td>
+                      <td class="py-3.5 px-2 text-center">15</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 font-bold text-[10px]">Yếu</span></td>
+                      <td class="py-3.5 px-2 text-center">53 (TB)</td>
+                      <td class="py-3.5 px-2 text-center">-</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                      <td class="py-3.5 px-2 font-semibold">HK2</td>
+                      <td class="py-3.5 px-2">2022 - 2023</td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-amber-500">2.23</td>
+                      <td class="py-3.5 px-2 text-center text-amber-500">6.94</td>
+                      <td class="py-3.5 px-2 text-center">22</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 font-bold text-[10px]">Trung bình</span></td>
+                      <td class="py-3.5 px-2 text-center">62 (TB)</td>
+                      <td class="py-3.5 px-2 text-center">-</td>
+                    </tr>
+                    <!-- 6 Scholarship Semesters -->
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK1 🌟</td>
+                      <td class="py-3.5 px-2">2023 - 2024</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.29</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.02</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">21</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Giỏi</span></td>
+                      <td class="py-3.5 px-2 text-center">78 (Khá)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK2 🌟</td>
+                      <td class="py-3.5 px-2">2023 - 2024</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.41</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.31</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">17</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Giỏi</span></td>
+                      <td class="py-3.5 px-2 text-center">78 (Khá)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK1 🌟</td>
+                      <td class="py-3.5 px-2">2024 - 2025</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.33</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.00</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">21</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Giỏi</span></td>
+                      <td class="py-3.5 px-2 text-center font-bold text-indigo-500">100 (Xuất sắc)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK2 🌟</td>
+                      <td class="py-3.5 px-2">2024 - 2025</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.55</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.59</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">20</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Giỏi</span></td>
+                      <td class="py-3.5 px-2 text-center font-bold text-indigo-500">95 (Xuất sắc)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK1 🌟</td>
+                      <td class="py-3.5 px-2">2025 - 2026</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-violet-500">3.78</td>
+                      <td class="py-3.5 px-2 text-center text-violet-500">9.19</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">18</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400 font-bold text-[10px]">Xuất sắc</span></td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-slate-700 dark:text-slate-300">85 (Tốt)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">HK2 🌟</td>
+                      <td class="py-3.5 px-2">2025 - 2026</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-violet-500">4.00</td>
+                      <td class="py-3.5 px-2 text-center text-rose-500">8.72</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">10</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400 font-bold text-[10px]">Xuất sắc</span></td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-slate-700 dark:text-slate-300">80 (Tốt)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Học bổng KK</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <!-- Total summary cards VI -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-white/5">
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Tín chỉ tích lũy</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-slate-800 dark:text-white mt-1 block">144 TC</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">GPA hệ 10</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-indigo-500 mt-1 block">7.90</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">GPA hệ 4</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-emerald-500 mt-1 block">3.12</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Xếp loại tốt nghiệp</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-violet-500 mt-1 block">Tốt</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tab Content: Details VI -->
+              <div id="grade-tab-details-vi" class="p-4 sm:p-6 hidden">
+                
+          <!-- Collapsible Semester Accordion: Học kỳ 3 - Năm học 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-0-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 3 - Năm học 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  Chưa có điểm
+                </span>
+              </div>
+              <i id="icon-sem-0-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-0-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841070</td>
+                    <td class="py-2 px-2 font-medium">Thực tập tốt nghiệp (DCT)</td>
+                    <td class="py-2 px-2 text-center">6</td>
+                    <td class="py-2 px-2 text-center">-</td>
+                    <td class="py-2 px-2 text-center">-</td>
+                    <td class="py-2 px-2 text-center ">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 2 - Năm học 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-1-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 2 - Năm học 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 4 | TC: 10 | RL: 80 (Tốt)
+                </span>
+              </div>
+              <i id="icon-sem-1-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-1-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841072</td>
+                    <td class="py-2 px-2 font-medium">Các công nghệ lập trình hiện đại</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841476</td>
+                    <td class="py-2 px-2 font-medium">Đồ án chuyên ngành (ngành CNTT, ngành KTPM)</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841482</td>
+                    <td class="py-2 px-2 font-medium">Seminar chuyên đề (ngành CNTT, ngành KTPM)</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Xuất sắc</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">80 (Tốt)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">10 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 4 | Hệ 10: 8.72</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 1 - Năm học 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-2-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 1 - Năm học 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.78 | TC: 18 | RL: 85 (Tốt)
+                </span>
+              </div>
+              <i id="icon-sem-2-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-2-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841047</td>
+                    <td class="py-2 px-2 font-medium">Công nghệ phần mềm</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841408</td>
+                    <td class="py-2 px-2 font-medium">Kiểm thử phần mềm</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841422</td>
+                    <td class="py-2 px-2 font-medium">Ngôn ngữ lập trình Python</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841448</td>
+                    <td class="py-2 px-2 font-medium">Xử lý ngôn ngữ tự nhiên</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.7</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861305</td>
+                    <td class="py-2 px-2 font-medium">Lịch sử Đảng Cộng sản Việt Nam</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Xuất sắc</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">85 (Tốt)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">18 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.78 | Hệ 10: 9.19</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 3 - Năm học 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-3-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 3 - Năm học 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  Chưa có điểm
+                </span>
+              </div>
+              <i id="icon-sem-3-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-3-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">BOCH12</td>
+                    <td class="py-2 px-2 font-medium">Bóng chuyền 2</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">7</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 2 - Năm học 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-4-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 2 - Năm học 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.55 | TC: 20 | RL: 95 (Xuất sắc)
+                </span>
+              </div>
+              <i id="icon-sem-4-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-4-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841058</td>
+                    <td class="py-2 px-2 font-medium">Hệ điều hành mã nguồn mở</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841407</td>
+                    <td class="py-2 px-2 font-medium">Các hệ quản trị cơ sở dữ liệu</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841413</td>
+                    <td class="py-2 px-2 font-medium">Cơ sở dữ liệu phân tán</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841414</td>
+                    <td class="py-2 px-2 font-medium">Thiết kế và phân tích giải thuật</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.9</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841432</td>
+                    <td class="py-2 px-2 font-medium">Phân tích dữ liệu</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862409</td>
+                    <td class="py-2 px-2 font-medium">Giáo dục quốc phòng và an ninh IV</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">865006</td>
+                    <td class="py-2 px-2 font-medium">Pháp luật đại cương</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Giỏi</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">95 (Xuất sắc)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">20 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.55 | Hệ 10: 8.59</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 1 - Năm học 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-5-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 1 - Năm học 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.33 | TC: 21 | RL: 100 (Xuất sắc)
+                </span>
+              </div>
+              <i id="icon-sem-5-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-5-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841111</td>
+                    <td class="py-2 px-2 font-medium">Phân tích thiết kế hướng đối tượng</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841314</td>
+                    <td class="py-2 px-2 font-medium">Tiếng Anh B2 - 2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841403</td>
+                    <td class="py-2 px-2 font-medium">Cấu trúc rời rạc</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.8</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841423</td>
+                    <td class="py-2 px-2 font-medium">Ngôn ngữ lập trình C#</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841429</td>
+                    <td class="py-2 px-2 font-medium">Cơ sở dữ liệu nâng cao</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.6</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861304</td>
+                    <td class="py-2 px-2 font-medium">Tư tưởng Hồ Chí Minh</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862408</td>
+                    <td class="py-2 px-2 font-medium">Giáo dục quốc phòng và an ninh III</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.4</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Giỏi</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">100 (Xuất sắc)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">21 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.33 | Hệ 10: 8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 2 - Năm học 2023 - 2024 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-6-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 2 - Năm học 2023 - 2024</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.41 | TC: 17 | RL: 78 (Khá)
+                </span>
+              </div>
+              <i id="icon-sem-6-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-6-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841048</td>
+                    <td class="py-2 px-2 font-medium">Phân tích thiết kế hệ thống thông tin</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.4</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841110</td>
+                    <td class="py-2 px-2 font-medium">Cơ sở trí tuệ nhân tạo</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841313</td>
+                    <td class="py-2 px-2 font-medium">Tiếng Anh B2 - 1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6.8</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841464</td>
+                    <td class="py-2 px-2 font-medium">Lập trình Web và ứng dụng nâng cao</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861303</td>
+                    <td class="py-2 px-2 font-medium">Chủ nghĩa xã hội khoa học</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.8</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862407</td>
+                    <td class="py-2 px-2 font-medium">Giáo dục quốc phòng và an ninh II</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">6.9</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">BOCH11</td>
+                    <td class="py-2 px-2 font-medium">Bóng chuyền 1</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Giỏi</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">78 (Khá)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">17 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.41 | Hệ 10: 8.31</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 1 - Năm học 2023 - 2024 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-7-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 1 - Năm học 2023 - 2024</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.29 | TC: 21 | RL: 78 (Khá)
+                </span>
+              </div>
+              <i id="icon-sem-7-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-7-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841022</td>
+                    <td class="py-2 px-2 font-medium">Hệ điều hành</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.2</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841044</td>
+                    <td class="py-2 px-2 font-medium">Phương pháp lập trình hướng đối tượng</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.7</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841109</td>
+                    <td class="py-2 px-2 font-medium">Cơ sở dữ liệu</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841310</td>
+                    <td class="py-2 px-2 font-medium">Lý thuyết đồ thị</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841312</td>
+                    <td class="py-2 px-2 font-medium">Tiếng Anh B1 - 2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841419</td>
+                    <td class="py-2 px-2 font-medium">Lập trình web và ứng dụng</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862406</td>
+                    <td class="py-2 px-2 font-medium">Giáo dục quốc phòng và an ninh I</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Giỏi</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">78 (Khá)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">21 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.29 | Hệ 10: 8.02</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 3 - Năm học 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-8-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 3 - Năm học 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  Chưa có điểm
+                </span>
+              </div>
+              <i id="icon-sem-8-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-8-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862101</td>
+                    <td class="py-2 px-2 font-medium">Giáo dục thể chất (I)</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">10</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 2 - Năm học 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-9-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 2 - Năm học 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 2.23 | TC: 22 | RL: 62 (Trung bình)
+                </span>
+              </div>
+              <i id="icon-sem-9-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-9-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841108</td>
+                    <td class="py-2 px-2 font-medium">Cấu trúc dữ liệu và giải thuật</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">6.5</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841303</td>
+                    <td class="py-2 px-2 font-medium">Kỹ thuật lập trình</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">6.7</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841311</td>
+                    <td class="py-2 px-2 font-medium">Tiếng Anh B1 - 1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841404</td>
+                    <td class="py-2 px-2 font-medium">Mạng máy tính</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6.8</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841405</td>
+                    <td class="py-2 px-2 font-medium">Xác suất thống kê (ngành CNTT, KTPM)</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841406</td>
+                    <td class="py-2 px-2 font-medium">Giải tích 2 (ngành CNTT, KTPM)</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.9</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861302</td>
+                    <td class="py-2 px-2 font-medium">Kinh tế chính trị Mác - Lênin</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.4</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Trung bình</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">62 (Trung bình)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">22 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 2.23 | Hệ 10: 6.94</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Học kỳ 1 - Năm học 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-10-vi')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Học kỳ 1 - Năm học 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 1.26 | TC: 15 | RL: 53 (Trung bình)
+                </span>
+              </div>
+              <i id="icon-sem-10-vi" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-10-vi" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">STT</th>
+                    <th class="py-2 px-2">Mã MH</th>
+                    <th class="py-2 px-2">Tên môn học</th>
+                    <th class="py-2 px-2 text-center w-16">Tín chỉ</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Điểm (Chữ)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841020</td>
+                    <td class="py-2 px-2 font-medium">Cơ sở lập trình</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.9</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841021</td>
+                    <td class="py-2 px-2 font-medium">Kiến trúc máy tính</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841401</td>
+                    <td class="py-2 px-2 font-medium">Giải tích 1 (ngành CNTT, KTPM)</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.6</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841402</td>
+                    <td class="py-2 px-2 font-medium">Đại số tuyến tính</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">5.1</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841403</td>
+                    <td class="py-2 px-2 font-medium">Cấu trúc rời rạc</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">3.8</td>
+                    <td class="py-2 px-2 text-center">0</td>
+                    <td class="py-2 px-2 text-center text-rose-500 font-bold">F</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861301</td>
+                    <td class="py-2 px-2 font-medium">Triết học Mác - Lênin</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Phân loại học kỳ</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Yếu</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm rèn luyện</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">53 (Trung bình)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Tích lũy học kỳ</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">15 Tín chỉ</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Điểm TB học kỳ</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 1.26 | Hệ 10: 5.21</span>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+                <!-- Download CTA VI -->
+                <div class="mt-6 text-center">
+                  <a href="images_blogs/scholar_in_university/Diem_trinh_bay_dep.xlsx" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-md shadow-emerald-500/10">
+                    <i class="fas fa-file-excel text-base"></i> Tải về toàn bộ bảng điểm (.xlsx)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">5. Bài học rút ra & Lời kết</h2>
+            <p>
+              Nhìn lại cả hành trình, tôi nhận ra rằng điều quan trọng nhất không phải là bạn bắt đầu từ vị trí thấp thế nào, mà là bạn có dám nhìn nhận lỗi lầm và quyết liệt thay đổi hay không. Việc lội ngược dòng từ 1.26 lên chuỗi học bổng liên tiếp và tốt nghiệp loại Tốt đã dạy tôi 3 bài học sâu sắc:
+            </p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li><strong>Sự kiên trì quan trọng hơn vạch xuất phát</strong>: Đừng bao giờ nản lòng nếu có một học kỳ thất bại. Đại học là một chặng đường dài và bạn hoàn toàn có thể lật ngược thế cờ nếu nỗ lực đúng cách.</li>
+              <li><strong>Ý thức tự học là chìa khóa</strong>: Trên giảng đường, giảng viên chỉ định hướng. Việc bạn tự mày mò làm lab, đọc sách, nghiên cứu tài liệu mới thực sự tạo ra sự bứt phá năng lực.</li>
+              <li><strong>Cân bằng giữa học tập và phát triển bản thân</strong>: Thành tích học bổng khuyến khích không chỉ chấm dựa trên điểm số thi cử (GPA), mà còn xét kèm cả Điểm rèn luyện. Tích cực tham gia các phong trào sinh viên, hỗ trợ học tập và hoạt động đoàn hội vừa giúp bạn phát triển kỹ năng mềm vượt trội vừa là điều kiện đủ để chạm tay tới các suất học bổng danh giá.</li>
+            </ul>
+          </div>
+
+          <!-- ENGLISH VERSION -->
+          <div id="content-en" class="space-y-6 hidden">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              Entering college with high hopes, the sudden absolute freedom of freshman year caused me to neglect my studies heavily. From a rock-bottom GPA of <strong>1.26 (Weak standing)</strong>, I woke up, turned my habits around, and engineered a remarkable academic comeback with <strong>6 consecutive semesters of receiving Academic Encouragement Scholarships</strong> from Saigon University (SGU), graduating with a cumulative GPA of <strong>3.12 (Very Good standing)</strong>.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. The Downward Spiral & Freshman Awakening</h2>
+            <p>
+              In the early days of university, without parental supervision or the structured regime of high school, I quickly fell prey to distractions. Skipping lectures for internet gaming sessions and ignoring major course projects took an immediate toll on my academic standing.
+            </p>
+            <p>
+              By the end of my first semester (HK1 2022-2023), I was shocked by the results: my system-4 GPA had plummeted to a critical <strong>1.26</strong>, resulting in a <strong>Weak</strong> academic warning, while my training score sat at a mediocre <strong>53</strong>. Feeling devastated, anxious, and deeply guilty after seeing my parents' disappointed expressions, I had a sudden wake-up call. I told myself: <em>"I cannot let myself fail like this!"</em>
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. Turning the Tide: Self-Study Strategies</h2>
+            <p>
+              To salvage my grades, I had to completely reinvent my approach to learning. Starting from the following semester, I established a rigorous self-discipline protocol:
+            </p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li><strong>100% Attendance</strong>: Sat in the front rows to remain focused, interactive, and actively participating in lecture discussions.</li>
+              <li><strong>Pre-reading Material</strong>: Spent 30 minutes every evening reviewing the next day's slides, identifying tricky concepts to clear up with professors during class.</li>
+              <li><strong>Library Isolation</strong>: Instead of returning home immediately after class, I spent 2-3 hours studying at the SGU library, doing assignments, and reading computer science textbooks.</li>
+              <li><strong>Active Study Groups</strong>: Teamed up with highly motivated peers to review challenging topics and collaborate on complex programming group projects.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Hard Work Pays Off: 6 Semesters of Consecutive Scholarships</h2>
+            <p>
+              Sustained hard work eventually bore sweet fruits. From my sophomore year onward, I maintained a stellar academic record, securing the university's competitive Academic Encouragement Scholarship for 6 semesters in a row. Below are scans of my scholarship certificates awarded across these semesters:
+            </p>
+
+            <!-- Scholarship Carousel EN -->
+            <div class="relative group my-8 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-xl bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-4">
+              <div class="relative h-[250px] sm:h-[400px] overflow-hidden rounded-xl flex items-center justify-center bg-slate-950/10">
+                <!-- Slides -->
+                <div class="carousel-slide-en absolute inset-0 opacity-100 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Scholarship 1" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Scholarship 2" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Scholarship 3" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Scholarship 4" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Scholarship 5" class="max-w-full max-h-full object-contain" />
+                </div>
+                <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
+                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Scholarship 6" class="max-w-full max-h-full object-contain" />
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button onclick="prevSlideEn()" class="absolute left-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white flex items-center justify-center hover:scale-105 transition shadow-lg z-20">
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button onclick="nextSlideEn()" class="absolute right-4 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/80 text-white flex items-center justify-center hover:scale-105 transition shadow-lg z-20">
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
+              
+              <!-- Slide Caption -->
+              <div class="text-center mt-4">
+                <h4 class="font-bold text-slate-800 dark:text-slate-200 text-sm">Academic Encouragement Scholarship Certificates</h4>
+                <p class="text-xs text-slate-400 mt-1">Proof of sustained academic efforts and excellence across college semesters at SGU</p>
+              </div>
+              
+              <!-- Indicator Dots -->
+              <div class="flex justify-center gap-2 mt-4" id="carousel-dots-en">
+                <button onclick="goToSlideEn(0)" class="w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300"></button>
+                <button onclick="goToSlideEn(1)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideEn(2)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideEn(3)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideEn(4)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+                <button onclick="goToSlideEn(5)" class="w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300"></button>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Academic Summary & Interactive Grade Sheet</h2>
+            <p>
+              For transparency and to summarize this long educational journey, I have displayed the full, raw grades parsed from my official spreadsheet file <code>Diem_trinh_bay_dep.xlsx</code> in an interactive viewer below:
+            </p>
+
+            <!-- Interactive Grade Sheet Viewer EN -->
+            <div class="my-8 border border-slate-200 dark:border-white/5 rounded-2xl overflow-hidden shadow-xl bg-white dark:bg-slate-900 backdrop-blur-md">
+              <div class="flex border-b border-slate-200 dark:border-white/5 bg-slate-50 dark:bg-slate-950 p-2 gap-2">
+                <button onclick="switchGradeTabEn('tab-summary-en')" id="btn-tab-summary-en" class="flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm">
+                  <i class="fas fa-chart-line mr-1.5"></i> Semester Summaries
+                </button>
+                <button onclick="switchGradeTabEn('tab-details-en')" id="btn-tab-details-en" class="flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all">
+                  <i class="fas fa-list-ul mr-1.5"></i> Detailed Course Grades
+                </button>
+              </div>
+              
+              <!-- Tab Content: Summary EN -->
+              <div id="grade-tab-summary-en" class="p-4 sm:p-6 overflow-x-auto">
+                <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[600px]">
+                  <thead>
+                    <tr class="border-b border-slate-200 dark:border-white/5 text-slate-400">
+                      <th class="py-3 px-2">Semester</th>
+                      <th class="py-3 px-2">Academic Year</th>
+                      <th class="py-3 px-2 text-center">GPA (4.0 Scale)</th>
+                      <th class="py-3 px-2 text-center">GPA (10.0 Scale)</th>
+                      <th class="py-3 px-2 text-center">Credits</th>
+                      <th class="py-3 px-2 text-center">Standing</th>
+                      <th class="py-3 px-2 text-center">Training Score</th>
+                      <th class="py-3 px-2 text-center">Scholarship</th>
+                    </tr>
+                  </thead>
+                  <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                      <td class="py-3.5 px-2 font-semibold">Sem 1</td>
+                      <td class="py-3.5 px-2">2022 - 2023</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-rose-500">1.26</td>
+                      <td class="py-3.5 px-2 text-center text-rose-500">5.21</td>
+                      <td class="py-3.5 px-2 text-center">15</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-rose-50 dark:bg-rose-950/30 text-rose-600 dark:text-rose-400 font-bold text-[10px]">Weak</span></td>
+                      <td class="py-3.5 px-2 text-center">53 (Average)</td>
+                      <td class="py-3.5 px-2 text-center">-</td>
+                    </tr>
+                    <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                      <td class="py-3.5 px-2 font-semibold">Sem 2</td>
+                      <td class="py-3.5 px-2">2022 - 2023</td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-amber-500">2.23</td>
+                      <td class="py-3.5 px-2 text-center text-amber-500">6.94</td>
+                      <td class="py-3.5 px-2 text-center">22</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-amber-50 dark:bg-amber-950/30 text-amber-600 dark:text-amber-400 font-bold text-[10px]">Average</span></td>
+                      <td class="py-3.5 px-2 text-center">62 (Average)</td>
+                      <td class="py-3.5 px-2 text-center">-</td>
+                    </tr>
+                    <!-- 6 Scholarship Semesters -->
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 1 🌟</td>
+                      <td class="py-3.5 px-2">2023 - 2024</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.29</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.02</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">21</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Excellent</span></td>
+                      <td class="py-3.5 px-2 text-center">78 (Good)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 2 🌟</td>
+                      <td class="py-3.5 px-2">2023 - 2024</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.41</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.31</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">17</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Excellent</span></td>
+                      <td class="py-3.5 px-2 text-center">78 (Good)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 1 🌟</td>
+                      <td class="py-3.5 px-2">2024 - 2025</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.33</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.00</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">21</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Excellent</span></td>
+                      <td class="py-3.5 px-2 text-center font-bold text-indigo-500">100 (Outstanding)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 2 🌟</td>
+                      <td class="py-3.5 px-2">2024 - 2025</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-emerald-500">3.55</td>
+                      <td class="py-3.5 px-2 text-center text-emerald-500">8.59</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">20</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-emerald-50 dark:bg-emerald-950/30 text-emerald-600 dark:text-emerald-400 font-bold text-[10px]">Excellent</span></td>
+                      <td class="py-3.5 px-2 text-center font-bold text-indigo-500">95 (Outstanding)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 1 🌟</td>
+                      <td class="py-3.5 px-2">2025 - 2026</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-violet-500">3.78</td>
+                      <td class="py-3.5 px-2 text-center text-violet-500">9.19</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">18</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400 font-bold text-[10px]">Outstanding</span></td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-slate-700 dark:text-slate-300">85 (Very Good)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                    <tr class="hover:bg-indigo-50/20 dark:hover:bg-indigo-950/10 bg-indigo-50/5 dark:bg-indigo-950/5">
+                      <td class="py-3.5 px-2 font-semibold text-indigo-600 dark:text-indigo-400">Sem 2 🌟</td>
+                      <td class="py-3.5 px-2">2025 - 2026</td>
+                      <td class="py-3.5 px-2 text-center font-bold text-violet-500">4.00</td>
+                      <td class="py-3.5 px-2 text-center text-rose-500">8.72</td>
+                      <td class="py-3.5 px-2 text-center font-semibold">10</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-violet-50 dark:bg-violet-950/30 text-violet-600 dark:text-violet-400 font-bold text-[10px]">Outstanding</span></td>
+                      <td class="py-3.5 px-2 text-center font-semibold text-slate-700 dark:text-slate-300">80 (Very Good)</td>
+                      <td class="py-3.5 px-2 text-center"><span class="px-2 py-0.5 rounded bg-indigo-100 dark:bg-indigo-900/30 text-indigo-600 dark:text-indigo-400 font-extrabold text-[10px]">Scholarship</span></td>
+                    </tr>
+                  </tbody>
+                </table>
+                
+                <!-- Total summary cards EN -->
+                <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 pt-6 border-t border-slate-100 dark:border-white/5">
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Cumulative Credits</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-slate-800 dark:text-white mt-1 block">144 Credits</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">GPA (10.0 Scale)</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-indigo-500 mt-1 block">7.90</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">GPA (4.0 Scale)</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-emerald-500 mt-1 block">3.12</span>
+                  </div>
+                  <div class="p-3.5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-100 dark:border-white/5">
+                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider block">Graduation Standing</span>
+                    <span class="text-xl sm:text-2xl font-extrabold text-violet-500 mt-1 block">Very Good</span>
+                  </div>
+                </div>
+              </div>
+              
+              <!-- Tab Content: Details EN -->
+              <div id="grade-tab-details-en" class="p-4 sm:p-6 hidden">
+                
+          <!-- Collapsible Semester Accordion: Semester 3 - Academic Year 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-0-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 3 - Academic Year 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  No grades yet
+                </span>
+              </div>
+              <i id="icon-sem-0-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-0-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841070</td>
+                    <td class="py-2 px-2 font-medium">Graduation Internship (DCT)</td>
+                    <td class="py-2 px-2 text-center">6</td>
+                    <td class="py-2 px-2 text-center">-</td>
+                    <td class="py-2 px-2 text-center">-</td>
+                    <td class="py-2 px-2 text-center ">-</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 2 - Academic Year 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-1-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 2 - Academic Year 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 4 | Credits: 10 | RL: 80 (Very Good)
+                </span>
+              </div>
+              <i id="icon-sem-1-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-1-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841072</td>
+                    <td class="py-2 px-2 font-medium">Modern Programming Technologies</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841476</td>
+                    <td class="py-2 px-2 font-medium">Specialized Capstone Project</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841482</td>
+                    <td class="py-2 px-2 font-medium">Specialized Seminar</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Outstanding</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">80 (Very Good)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">10 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 4 | Hệ 10: 8.72</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 1 - Academic Year 2025 - 2026 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-2-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 1 - Academic Year 2025 - 2026</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.78 | Credits: 18 | RL: 85 (Very Good)
+                </span>
+              </div>
+              <i id="icon-sem-2-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-2-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841047</td>
+                    <td class="py-2 px-2 font-medium">Software Engineering</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841408</td>
+                    <td class="py-2 px-2 font-medium">Software Testing</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841422</td>
+                    <td class="py-2 px-2 font-medium">Python Programming Language</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841448</td>
+                    <td class="py-2 px-2 font-medium">Natural Language Processing</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.7</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861305</td>
+                    <td class="py-2 px-2 font-medium">History of the Vietnamese Communist Party</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Outstanding</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">85 (Very Good)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">18 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.78 | Hệ 10: 9.19</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 3 - Academic Year 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-3-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 3 - Academic Year 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  No grades yet
+                </span>
+              </div>
+              <i id="icon-sem-3-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-3-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">BOCH12</td>
+                    <td class="py-2 px-2 font-medium">Volleyball 2</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">7</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 2 - Academic Year 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-4-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 2 - Academic Year 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.55 | Credits: 20 | RL: 95 (Outstanding)
+                </span>
+              </div>
+              <i id="icon-sem-4-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-4-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841058</td>
+                    <td class="py-2 px-2 font-medium">Open Source Operating Systems</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841407</td>
+                    <td class="py-2 px-2 font-medium">Database Management Systems</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841413</td>
+                    <td class="py-2 px-2 font-medium">Distributed Databases</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841414</td>
+                    <td class="py-2 px-2 font-medium">Algorithms Design and Analysis</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.9</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841432</td>
+                    <td class="py-2 px-2 font-medium">Data Analysis</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.5</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862409</td>
+                    <td class="py-2 px-2 font-medium">National Defense Education IV</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.6</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">865006</td>
+                    <td class="py-2 px-2 font-medium">Introduction to Law</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Excellent</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">95 (Outstanding)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">20 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.55 | Hệ 10: 8.59</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 1 - Academic Year 2024 - 2025 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-5-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 1 - Academic Year 2024 - 2025</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.33 | Credits: 21 | RL: 100 (Outstanding)
+                </span>
+              </div>
+              <i id="icon-sem-5-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-5-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841111</td>
+                    <td class="py-2 px-2 font-medium">Object-Oriented Analysis and Design</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841314</td>
+                    <td class="py-2 px-2 font-medium">English B2 - 2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841403</td>
+                    <td class="py-2 px-2 font-medium">Discrete Structures</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">8.8</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841423</td>
+                    <td class="py-2 px-2 font-medium">C# Programming Language</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841429</td>
+                    <td class="py-2 px-2 font-medium">Advanced Databases</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.6</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861304</td>
+                    <td class="py-2 px-2 font-medium">Ho Chi Minh Ideology</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862408</td>
+                    <td class="py-2 px-2 font-medium">National Defense Education III</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.4</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Excellent</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">100 (Outstanding)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">21 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.33 | Hệ 10: 8</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 2 - Academic Year 2023 - 2024 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-6-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 2 - Academic Year 2023 - 2024</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.41 | Credits: 17 | RL: 78 (Good)
+                </span>
+              </div>
+              <i id="icon-sem-6-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-6-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841048</td>
+                    <td class="py-2 px-2 font-medium">Information Systems Analysis and Design</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.4</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841110</td>
+                    <td class="py-2 px-2 font-medium">Foundations of Artificial Intelligence</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">9.1</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841313</td>
+                    <td class="py-2 px-2 font-medium">English B2 - 1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6.8</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841464</td>
+                    <td class="py-2 px-2 font-medium">Advanced Web and Application Programming</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861303</td>
+                    <td class="py-2 px-2 font-medium">Scientific Socialism</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.8</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862407</td>
+                    <td class="py-2 px-2 font-medium">National Defense Education II</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">6.9</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">BOCH11</td>
+                    <td class="py-2 px-2 font-medium">Volleyball 1</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Excellent</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">78 (Good)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">17 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.41 | Hệ 10: 8.31</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 1 - Academic Year 2023 - 2024 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-7-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 1 - Academic Year 2023 - 2024</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 3.29 | Credits: 21 | RL: 78 (Good)
+                </span>
+              </div>
+              <i id="icon-sem-7-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-7-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841022</td>
+                    <td class="py-2 px-2 font-medium">Operating Systems</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9.2</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841044</td>
+                    <td class="py-2 px-2 font-medium">Object-Oriented Programming</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.7</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841109</td>
+                    <td class="py-2 px-2 font-medium">Introduction to Databases</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.5</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841310</td>
+                    <td class="py-2 px-2 font-medium">Graph Theory</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">9</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841312</td>
+                    <td class="py-2 px-2 font-medium">English B1 - 2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841419</td>
+                    <td class="py-2 px-2 font-medium">Web and Application Programming</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">7.2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862406</td>
+                    <td class="py-2 px-2 font-medium">National Defense Education I</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Excellent</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">78 (Good)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">21 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 3.29 | Hệ 10: 8.02</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 3 - Academic Year 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-8-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 3 - Academic Year 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  No grades yet
+                </span>
+              </div>
+              <i id="icon-sem-8-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-8-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">862101</td>
+                    <td class="py-2 px-2 font-medium">Physical Education I</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center">10</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center text-emerald-500 font-bold">A</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 2 - Academic Year 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-9-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 2 - Academic Year 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 2.23 | Credits: 22 | RL: 62 (Average)
+                </span>
+              </div>
+              <i id="icon-sem-9-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-9-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841108</td>
+                    <td class="py-2 px-2 font-medium">Data Structures and Algorithms</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">6.5</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841303</td>
+                    <td class="py-2 px-2 font-medium">Programming Techniques</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">6.7</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841311</td>
+                    <td class="py-2 px-2 font-medium">English B1 - 1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">8.2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841404</td>
+                    <td class="py-2 px-2 font-medium">Computer Networks</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6.8</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841405</td>
+                    <td class="py-2 px-2 font-medium">Probability and Statistics</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.8</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841406</td>
+                    <td class="py-2 px-2 font-medium">Calculus 2</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.9</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">7</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861302</td>
+                    <td class="py-2 px-2 font-medium">Marxist-Leninist Political Economy</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center">8.4</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Average</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">62 (Average)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">22 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 2.23 | Hệ 10: 6.94</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Collapsible Semester Accordion: Semester 1 - Academic Year 2022 - 2023 -->
+          <div class="border border-slate-200 dark:border-white/5 rounded-xl overflow-hidden bg-slate-50/50 dark:bg-slate-950/20 mb-4 transition-all">
+            <button onclick="toggleAccordion('sem-10-en')" class="w-full flex items-center justify-between p-4 text-left font-bold text-slate-800 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800/40 transition">
+              <div class="flex flex-col sm:flex-row sm:items-center gap-2">
+                <span class="text-sm sm:text-base">Semester 1 - Academic Year 2022 - 2023</span>
+                <span class="text-[10px] px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-950/40 text-indigo-600 dark:text-indigo-400 font-semibold max-w-max">
+                  GPA: 1.26 | Credits: 15 | RL: 53 (Average)
+                </span>
+              </div>
+              <i id="icon-sem-10-en" class="fas fa-chevron-down text-slate-400 transition-transform duration-300"></i>
+            </button>
+            <div id="sem-10-en" class="hidden border-t border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/60 p-4 overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm min-w-[550px]">
+                <thead>
+                  <tr class="border-b border-slate-100 dark:border-white/5 text-slate-400">
+                    <th class="py-2 px-1 text-center w-10">No.</th>
+                    <th class="py-2 px-2">Code</th>
+                    <th class="py-2 px-2">Subject Name</th>
+                    <th class="py-2 px-2 text-center w-16">Credits</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (10)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (4)</th>
+                    <th class="py-2 px-2 text-center w-20">Grade (Letter)</th>
+                  </tr>
+                </thead>
+                <tbody class="divide-y divide-slate-100 dark:divide-white/5 text-slate-700 dark:text-slate-300">
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">1</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841020</td>
+                    <td class="py-2 px-2 font-medium">Programming Fundamentals</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.9</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">2</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841021</td>
+                    <td class="py-2 px-2 font-medium">Computer Architecture</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">6</td>
+                    <td class="py-2 px-2 text-center">2</td>
+                    <td class="py-2 px-2 text-center ">C</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">3</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841401</td>
+                    <td class="py-2 px-2 font-medium">Calculus 1</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">4.6</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">4</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841402</td>
+                    <td class="py-2 px-2 font-medium">Linear Algebra</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">5.1</td>
+                    <td class="py-2 px-2 text-center">1</td>
+                    <td class="py-2 px-2 text-center text-amber-500 font-semibold">D</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">5</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">841403</td>
+                    <td class="py-2 px-2 font-medium">Discrete Structures</td>
+                    <td class="py-2 px-2 text-center">4</td>
+                    <td class="py-2 px-2 text-center">3.8</td>
+                    <td class="py-2 px-2 text-center">0</td>
+                    <td class="py-2 px-2 text-center text-rose-500 font-bold">F</td>
+                  </tr>
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-950/20">
+                    <td class="py-2 px-1 text-center">6</td>
+                    <td class="py-2 px-2 font-mono text-slate-500 dark:text-slate-400">861301</td>
+                    <td class="py-2 px-2 font-medium">Marxist-Leninist Philosophy</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center">7.3</td>
+                    <td class="py-2 px-2 text-center">3</td>
+                    <td class="py-2 px-2 text-center ">B</td>
+                  </tr>
+                </tbody>
+              </table>
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-4 pt-4 border-t border-slate-100 dark:border-white/5 bg-slate-50/50 dark:bg-slate-950/20 p-3 rounded-lg text-[11px]">
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Standing</span>
+                  <span class="font-extrabold text-indigo-500 mt-0.5 block">Weak</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Training Score</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">53 (Average)</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester Credits</span>
+                  <span class="font-bold text-slate-700 dark:text-slate-300 mt-0.5 block">15 Credits</span>
+                </div>
+                <div>
+                  <span class="text-slate-400 font-bold block uppercase tracking-wider text-[9px]">Semester GPA</span>
+                  <span class="font-extrabold text-emerald-500 mt-0.5 block">Hệ 4: 1.26 | Hệ 10: 5.21</span>
+                </div>
+              </div>
+            </div>
+          </div>
+                
+                <!-- Download CTA EN -->
+                <div class="mt-6 text-center">
+                  <a href="images_blogs/scholar_in_university/Diem_trinh_bay_dep.xlsx" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-bold text-sm transition shadow-md shadow-emerald-500/10">
+                    <i class="fas fa-file-excel text-base"></i> Download Complete Grade Sheet (.xlsx)
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">5. Key Takeaways & Conclusion</h2>
+            <p>
+              Looking back, I realize that it does not matter how low you start; what matters is your courage to confront your mistakes and decisively change. Turning my academic standing from a 1.26 warning to a streak of scholarships and graduating SGU with Very Good standing taught me three deep life lessons:
+            </p>
+            <ul class="list-disc pl-6 space-y-2">
+              <li><strong>Persistence Outweighs Start Line</strong>: Never despair if you have a bad semester. University is a marathon, and you can always pivot if you apply correct methods with determination.</li>
+              <li><strong>Independent Study is the Key</strong>: In college, lectures are guidelines. It is your hours doing labs, reading research, and exploring programming paradigms that build actual strength.</li>
+              <li><strong>Balance Academics and Self-Development</strong>: Encouragement scholarships at SGU are not judged only on exam scores (GPA), but also require a high Training Score. Joining student unions, participating in volunteering programs, and tutoring peers build outstanding soft skills and fulfill the criteria to secure prestigious scholarships.</li>
+            </ul>
+          </div>
+
+        </article>
+
+        <!-- Back to Blog Button Footer -->
+        <div class="mt-12 pt-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-indigo-700 dark:hover:text-indigo-400 transition">
+            <i class="fas fa-arrow-left"></i>
+            <span id="back-to-articles-text">Quay lại danh sách bài viết</span>
+          </a>
+          <span class="text-xs text-slate-400">© 2026 Phu Kiet</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Scripts -->
+    <script>
+      // Theme Toggle Logic
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") html.classList.add("dark");
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+
+      // Reading progress bar logic
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById("reading-progress").style.width = percentage + "%";
+      });
+
+      // Language Switcher Logic
+      const articleTitles = {
+        vi: "Hành trình \"lội ngược dòng\" ngoạn mục: Từ lơ là năm nhất đến 6 lần học bổng liên tiếp",
+        en: "A Remarkable Academic Comeback: From Slacking in Freshman Year to 6 Consecutive Scholarships"
+      };
+      
+      const backTexts = {
+        vi: "Quay lại danh sách bài viết",
+        en: "Back to Articles"
+      };
+
+      function switchLang(lang) {
+        const contentVi = document.getElementById("content-vi");
+        const contentEn = document.getElementById("content-en");
+        const btnVi = document.getElementById("btn-lang-vi");
+        const btnEn = document.getElementById("btn-lang-en");
+        const titleElement = document.getElementById("article-title");
+        const backTextElement = document.getElementById("back-to-articles-text");
+
+        localStorage.setItem("lang", lang);
+
+        if (lang === "en") {
+          contentVi.classList.add("hidden");
+          contentEn.classList.remove("hidden");
+          
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.en;
+          backTextElement.textContent = backTexts.en;
+        } else {
+          contentVi.classList.remove("hidden");
+          contentEn.classList.add("hidden");
+          
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.vi;
+          backTextElement.textContent = backTexts.vi;
+        }
+      }
+
+      // Collapsible Accordion logic
+      function toggleAccordion(id) {
+        const element = document.getElementById(id);
+        const icon = document.getElementById("icon-" + id);
+        if (element.classList.contains("hidden")) {
+          element.classList.remove("hidden");
+          icon.classList.add("rotate-180");
+        } else {
+          element.classList.add("hidden");
+          icon.classList.remove("rotate-180");
+        }
+      }
+
+      // Slide navigation logic - VI
+      let currentSlideVi = 0;
+      const slidesVi = document.querySelectorAll(".carousel-slide-vi");
+      const dotsVi = document.querySelectorAll("#carousel-dots-vi button");
+
+      function updateCarouselVi() {
+        slidesVi.forEach((slide, idx) => {
+          if (idx === currentSlideVi) {
+            slide.classList.remove("opacity-0");
+            slide.classList.add("opacity-100", "z-10");
+          } else {
+            slide.classList.remove("opacity-100", "z-10");
+            slide.classList.add("opacity-0");
+          }
+        });
+        
+        dotsVi.forEach((dot, idx) => {
+          if (idx === currentSlideVi) {
+            dot.className = "w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300";
+          } else {
+            dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300";
+          }
+        });
+      }
+
+      function nextSlideVi() {
+        currentSlideVi = (currentSlideVi + 1) % slidesVi.length;
+        updateCarouselVi();
+      }
+
+      function prevSlideVi() {
+        currentSlideVi = (currentSlideVi - 1 + slidesVi.length) % slidesVi.length;
+        updateCarouselVi();
+      }
+
+      function goToSlideVi(idx) {
+        currentSlideVi = idx;
+        updateCarouselVi();
+      }
+
+      // Slide navigation logic - EN
+      let currentSlideEn = 0;
+      const slidesEn = document.querySelectorAll(".carousel-slide-en");
+      const dotsEn = document.querySelectorAll("#carousel-dots-en button");
+
+      function updateCarouselEn() {
+        slidesEn.forEach((slide, idx) => {
+          if (idx === currentSlideEn) {
+            slide.classList.remove("opacity-0");
+            slide.classList.add("opacity-100", "z-10");
+          } else {
+            slide.classList.remove("opacity-100", "z-10");
+            slide.classList.add("opacity-0");
+          }
+        });
+        
+        dotsEn.forEach((dot, idx) => {
+          if (idx === currentSlideEn) {
+            dot.className = "w-2.5 h-2.5 rounded-full bg-primary transition-all duration-300";
+          } else {
+            dot.className = "w-2.5 h-2.5 rounded-full bg-slate-300 dark:bg-slate-700 transition-all duration-300";
+          }
+        });
+      }
+
+      function nextSlideEn() {
+        currentSlideEn = (currentSlideEn + 1) % slidesEn.length;
+        updateCarouselEn();
+      }
+
+      function prevSlideEn() {
+        currentSlideEn = (currentSlideEn - 1 + slidesEn.length) % slidesEn.length;
+        updateCarouselEn();
+      }
+
+      function goToSlideEn(idx) {
+        currentSlideEn = idx;
+        updateCarouselEn();
+      }
+
+      // Grade sheet tab switcher logic VI
+      function switchGradeTabVi(tabId) {
+        const tabSummary = document.getElementById("grade-tab-summary-vi");
+        const tabDetails = document.getElementById("grade-tab-details-vi");
+        const btnSummary = document.getElementById("btn-tab-summary-vi");
+        const btnDetails = document.getElementById("btn-tab-details-vi");
+        
+        if (tabId === "tab-summary-vi") {
+          tabSummary.classList.remove("hidden");
+          tabDetails.classList.add("hidden");
+          
+          btnSummary.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm";
+          btnDetails.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+        } else {
+          tabSummary.classList.add("hidden");
+          tabDetails.classList.remove("hidden");
+          
+          btnSummary.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+          btnDetails.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm";
+        }
+      }
+
+      // Grade sheet tab switcher logic EN
+      function switchGradeTabEn(tabId) {
+        const tabSummary = document.getElementById("grade-tab-summary-en");
+        const tabDetails = document.getElementById("grade-tab-details-en");
+        const btnSummary = document.getElementById("btn-tab-summary-en");
+        const btnDetails = document.getElementById("btn-tab-details-en");
+        
+        if (tabId === "tab-summary-en") {
+          tabSummary.classList.remove("hidden");
+          tabDetails.classList.add("hidden");
+          
+          btnSummary.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm";
+          btnDetails.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+        } else {
+          tabSummary.classList.add("hidden");
+          tabDetails.classList.remove("hidden");
+          
+          btnSummary.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all";
+          btnDetails.className = "flex-1 sm:flex-none px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-primary text-white transition-all shadow-sm";
+        }
+      }
+
+      // Set initial language preference (defaults to English)
+      switchLang(localStorage.getItem("lang") || "en");
+    </script>
+  </body>
+</html>
