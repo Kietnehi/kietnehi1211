@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Certificates | Phu Kiet (Kietnehi)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1",
+              secondary: "#0f172a",
+              accent: "#ec4899",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 font-sans antialiased transition-colors duration-300">
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter">
+            Kiet<span class="text-primary">nehi</span>.
+          </a>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a
+              href="index.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span class="hidden sm:inline">Portfolio</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <section
+        id="certificates"
+        class="certificates-section py-16 sm:py-20 md:py-24 bg-white dark:bg-slate-950 relative overflow-hidden"
+      >
+        <div class="certificates-bg" aria-hidden="true"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div class="certificates-intro text-center mb-10 sm:mb-12 md:mb-16">
+            <span class="section-kicker">Certificates</span>
+            <h1 class="text-3xl sm:text-4xl md:text-5xl font-bold mt-4 text-slate-900 dark:text-white">
+              Professional Certificates
+            </h1>
+            <p class="text-slate-600 dark:text-slate-300 mt-4 text-sm sm:text-base max-w-3xl mx-auto leading-relaxed">
+              A curated gallery of AI, agentic systems, database, Google learning, and coding certificates.
+            </p>
+            <div class="mt-7 certificates-summary">
+              <span><strong>5</strong> Issuers</span>
+              <span><strong>19</strong> Certificates</span>
+              <span><strong>AI</strong> Agents</span>
+              <span><strong>Code</strong> Skills</span>
+            </div>
+          </div>
+
+          <div class="certificates-block">
+            <div class="certificates-block-heading">
+              <div class="certificate-brand-heading">
+                <span class="certificate-brand-logo">
+                  <img src="images/logo/huggingface.png" alt="Hugging Face logo" />
+                </span>
+                <div>
+                  <p class="certificates-kicker">AI Agents</p>
+                  <h2>Hugging Face</h2>
+                </div>
+              </div>
+              <span>1 certificate</span>
+            </div>
+            <div class="certificate-grid certificate-grid-featured">
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/agents_course.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/agents_course.png" alt="Hugging Face Agents Course certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Hugging Face</p>
+                  <h3>Agents Course</h3>
+                  <a href="images/certificates/agents_course.png" target="_blank" class="certificate-link">
+                    View certificate <i class="fas fa-arrow-up-right-from-square"></i>
+                  </a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="certificates-block">
+            <div class="certificates-block-heading">
+              <div class="certificate-brand-heading">
+                <span class="certificate-brand-logo">
+                  <img src="images/logo/anthropic.jpg" alt="Anthropic logo" />
+                </span>
+                <div>
+                  <p class="certificates-kicker">Claude & MCP</p>
+                  <h2>Anthropic</h2>
+                </div>
+              </div>
+              <span>6 certificates</span>
+            </div>
+            <div class="certificate-grid">
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/agents_skill_anthropic.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/agents_skill_anthropic.png" alt="Anthropic Agents Skill certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>Agents Skill</h3>
+                  <a href="images/certificates/agents_skill_anthropic.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/AI_fluency.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/AI_fluency.png" alt="Anthropic AI Fluency certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>AI Fluency</h3>
+                  <a href="images/certificates/AI_fluency.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/claude_101.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/claude_101.png" alt="Anthropic Claude 101 certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>Claude 101</h3>
+                  <a href="images/certificates/claude_101.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/mcp_advanced.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/mcp_advanced.png" alt="Anthropic MCP Advanced certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>MCP Advanced</h3>
+                  <a href="images/certificates/mcp_advanced.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/mcp_anthropic.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/mcp_anthropic.png" alt="Anthropic MCP certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>Model Context Protocol</h3>
+                  <a href="images/certificates/mcp_anthropic.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/subagents_anthropic.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/subagents_anthropic.png" alt="Anthropic Subagents certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Anthropic</p>
+                  <h3>Subagents</h3>
+                  <a href="images/certificates/subagents_anthropic.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="certificates-block">
+            <div class="certificates-block-heading">
+              <div class="certificate-brand-heading">
+                <span class="certificate-brand-logo">
+                  <img src="images/logo/mongodb.png" alt="MongoDB logo" />
+                </span>
+                <div>
+                  <p class="certificates-kicker">Database</p>
+                  <h2>MongoDB</h2>
+                </div>
+              </div>
+              <span>1 certificate</span>
+            </div>
+            <div class="certificate-grid certificate-grid-featured">
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/mongodb_instruction.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/mongodb_instruction.png" alt="MongoDB Instruction certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">MongoDB</p>
+                  <h3>MongoDB Instruction</h3>
+                  <a href="images/certificates/mongodb_instruction.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="certificates-block">
+            <div class="certificates-block-heading">
+              <div class="certificate-brand-heading">
+                <span class="certificate-brand-logo">
+                  <img src="images/logo/google.png" alt="Google logo" />
+                </span>
+                <div>
+                  <p class="certificates-kicker">Google Learning</p>
+                  <h2>Google</h2>
+                </div>
+              </div>
+              <span>3 certificates</span>
+            </div>
+            <div class="certificate-grid">
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/gemini_educator.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/gemini_educator.png" alt="Google Gemini Educator certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Google</p>
+                  <h3>Gemini Educator</h3>
+                  <a href="images/certificates/gemini_educator.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/llm.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/llm.png" alt="Google Large Language Models certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Google</p>
+                  <h3>Large Language Models</h3>
+                  <a href="images/certificates/llm.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+              <article class="certificate-card certificate-card-image">
+                <a href="images/certificates/responsible_ai.png" target="_blank" class="certificate-media">
+                  <img src="images/certificates/responsible_ai.png" alt="Google Responsible AI certificate" />
+                </a>
+                <div class="certificate-body">
+                  <p class="certificate-issuer">Google</p>
+                  <h3>Responsible AI</h3>
+                  <a href="images/certificates/responsible_ai.png" target="_blank" class="certificate-link">View certificate <i class="fas fa-arrow-up-right-from-square"></i></a>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <div class="certificates-block">
+            <div class="certificates-block-heading">
+              <div class="certificate-brand-heading">
+                <span class="certificate-brand-logo">
+                  <img src="images/logo/hackerrank.png" alt="HackerRank logo" />
+                </span>
+                <div>
+                  <p class="certificates-kicker">Coding Assessments</p>
+                  <h2>HackerRank</h2>
+                </div>
+              </div>
+              <span>8 certificates</span>
+            </div>
+            <div class="hackerrank-grid">
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/18b2d4895ecb" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 01</strong><small>ID: 18b2d4895ecb</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/d0c4c9564ca4" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 02</strong><small>ID: d0c4c9564ca4</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/a5197f739135" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 03</strong><small>ID: a5197f739135</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/bc8402eb5338" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 04</strong><small>ID: bc8402eb5338</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/97719000d1ff" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 05</strong><small>ID: 97719000d1ff</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/60c9a32dfbae" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 06</strong><small>ID: 60c9a32dfbae</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/07ceff0f3f68" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 07</strong><small>ID: 07ceff0f3f68</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+              <a class="hackerrank-card" href="https://www.hackerrank.com/certificates/iframe/6ff74ef7af12" target="_blank">
+                <span class="hackerrank-icon"><img src="images/logo/hackerrank.png" alt="" /></span>
+                <span><strong>HackerRank Certificate 08</strong><small>ID: 6ff74ef7af12</small></span>
+                <i class="fas fa-arrow-up-right-from-square"></i>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") html.classList.add("dark");
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+    </script>
+  </body>
+</html>
