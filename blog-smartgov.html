@@ -44,6 +44,28 @@
           radial-gradient(circle at 15% 15%, rgba(99,102,241,0.05), transparent 30%),
           radial-gradient(circle at 85% 85%, rgba(236,72,153,0.04), transparent 30%);
       }
+      .lightbox-diagram {
+        cursor: zoom-in;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .lightbox-diagram:hover {
+        transform: scale(1.01);
+        box-shadow: 0 10px 25px -5px rgba(99, 102, 241, 0.15);
+      }
+      /* Zoom rules for Lightbox Details */
+      #lightbox-modal {
+        overflow-y: auto;
+        overflow-x: auto;
+      }
+      #lightbox-img {
+        transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+        cursor: zoom-in;
+      }
+      #lightbox-img.zoomed {
+        max-width: 250% !important;
+        max-height: none !important;
+        cursor: zoom-out;
+      }
     </style>
   </head>
   <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
@@ -199,16 +221,14 @@
               </div>
             </div>
 
-            <!-- Pipeline Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/Pipeline.png" alt="SmartGov System Pipeline" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 1: Sơ đồ Pipeline xử lý dữ liệu của hệ thống SmartGov Copilot</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/Pipeline.png" alt="Sơ đồ Pipeline xử lý dữ liệu của hệ thống SmartGov Copilot" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Sơ đồ Pipeline xử lý dữ liệu</p>
             </div>
 
-            <!-- Feedback Flow Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/Feedback.png" alt="SmartGov Flow Feedback" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 2: Sơ đồ Luồng phản hồi và tương tác của người dùng (Flow Feedback)</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/Feedback.png" alt="Sơ đồ Luồng phản hồi và tương tác của người dùng (Flow Feedback)" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Sơ đồ Luồng phản hồi (Flow Feedback)</p>
             </div>
 
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Triển khai sản phẩm thực tế (MVP)</h2>
@@ -219,10 +239,9 @@
               Dưới đây là lộ trình phát triển và sơ đồ phân bổ các module trong giai đoạn xây dựng MVP của đề án:
             </p>
 
-            <!-- Roadmap Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="SmartGov Copilot Roadmap" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 3: Sơ đồ Lộ trình phát triển & Kiến trúc các Module trong đề án SmartGov Copilot</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="Sơ đồ Lộ trình phát triển & Kiến trúc các Module trong đề án SmartGov Copilot" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Lộ trình Module & Sơ đồ kiến trúc</p>
             </div>
 
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Kết quả & Bài học kinh nghiệm</h2>
@@ -291,16 +310,14 @@
               </div>
             </div>
 
-            <!-- Pipeline Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/Pipeline.png" alt="SmartGov System Pipeline" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 1: SmartGov Copilot System Data Processing Pipeline Diagram</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/Pipeline.png" alt="SmartGov Copilot System Data Processing Pipeline Diagram" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Data Processing Pipeline Diagram</p>
             </div>
 
-            <!-- Feedback Flow Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/Feedback.png" alt="SmartGov Flow Feedback" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 2: User interaction and feedback loop flow diagram (Flow Feedback)</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/Feedback.png" alt="User interaction and feedback loop flow diagram (Flow Feedback)" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Feedback Loop Flow Diagram</p>
             </div>
 
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Minimum Viable Product (MVP) Implementation</h2>
@@ -311,10 +328,9 @@
               The development timeline and module distribution of our MVP phase are described below:
             </p>
 
-            <!-- Roadmap Image -->
-            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
-              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="SmartGov Copilot Roadmap" class="w-full h-auto rounded-lg object-contain" />
-              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 3: Modules Architecture and Project Roadmap for the SmartGov Copilot implementation</p>
+            <div class="border border-slate-200/80 dark:border-white/5 rounded-xl p-2 bg-slate-900/5 dark:bg-slate-950/20 shadow-md">
+              <img src="images_blogs/SmartGov/SmartGov_RoadMap.png" alt="Modules Architecture and Project Roadmap for the SmartGov Copilot implementation" class="w-full h-auto rounded-lg object-contain lightbox-diagram" onclick="openLightboxForDiagram(this)" />
+              <p class="text-center text-xs text-slate-400 mt-2 font-semibold">Project Roadmap & Modules Architecture</p>
             </div>
 
             <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Results & Lessons Learned</h2>
@@ -340,6 +356,23 @@
         </div>
       </div>
     </main>
+
+    <!-- Lightbox Zoom Modal Component -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[150] bg-slate-950/95 backdrop-blur-md hidden overflow-auto items-center justify-center p-4">
+      <button id="lightbox-close" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Close (Esc)">
+        <i class="fas fa-times"></i>
+      </button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Previous (ArrowLeft)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Next (ArrowRight)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="max-w-4xl max-h-[90vh] flex flex-col items-center justify-center relative m-auto">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl transition-all duration-300" />
+        <span id="lightbox-caption" class="text-sm text-slate-300 font-medium text-center mt-4 max-w-2xl font-mono"></span>
+      </div>
+    </div>
 
     <!-- Scripts -->
     <script>
@@ -405,6 +438,94 @@
 
       // Set initial language preference (defaults to English)
       switchLang(localStorage.getItem("lang") || "en");
+
+      // Lightbox Modal Logic
+      const lightboxModal = document.getElementById("lightbox-modal");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxPrev = document.getElementById("lightbox-prev");
+      const lightboxNext = document.getElementById("lightbox-next");
+
+      let currentImagesList = [];
+      let currentImageIndex = 0;
+
+      function openLightbox() {
+        if (currentImagesList.length === 0) return;
+        const activeImg = currentImagesList[currentImageIndex];
+        lightboxImg.src = activeImg.src;
+        lightboxImg.alt = activeImg.alt;
+        lightboxCaption.textContent = activeImg.alt;
+        
+        if (currentImagesList.length > 1) {
+          lightboxPrev.classList.remove("hidden");
+          lightboxNext.classList.remove("hidden");
+        } else {
+          lightboxPrev.classList.add("hidden");
+          lightboxNext.classList.add("hidden");
+        }
+
+        lightboxModal.classList.remove("hidden");
+        lightboxModal.classList.add("flex");
+        document.body.classList.add("overflow-hidden");
+      }
+
+      function openLightboxFromSrc(src, alt) {
+        currentImagesList = [{ src: src, alt: alt }];
+        currentImageIndex = 0;
+        openLightbox();
+      }
+
+      function openLightboxForDiagram(clickedImg) {
+        const parentContainer = clickedImg.closest("#content-vi, #content-en") || document;
+        const siblings = Array.from(parentContainer.querySelectorAll(".lightbox-diagram"));
+        currentImagesList = siblings.map(img => ({
+          src: img.src || img.getAttribute("src"),
+          alt: img.alt || img.getAttribute("alt")
+        }));
+        currentImageIndex = siblings.indexOf(clickedImg);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        openLightbox();
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.add("hidden");
+        lightboxModal.classList.remove("flex");
+        document.body.classList.remove("overflow-hidden");
+        lightboxImg.classList.remove("zoomed");
+      }
+
+      function nextImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % currentImagesList.length;
+        openLightbox();
+      }
+
+      function prevImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + currentImagesList.length) % currentImagesList.length;
+        openLightbox();
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxNext.addEventListener("click", nextImage);
+      lightboxPrev.addEventListener("click", prevImage);
+      
+      lightboxImg.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxImg.classList.toggle("zoomed");
+      });
+      
+      lightboxModal.addEventListener("click", (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (lightboxModal.classList.contains("hidden")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+      });
     </script>
   </body>
 </html>

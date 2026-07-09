@@ -1,0 +1,1262 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FoodFast Drone Delivery: Production-Grade DevOps & Orchestration | Blog</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <!-- Highlight.js for beautiful code syntax highlighting -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            colors: {
+              primary: "#6366f1",
+              secondary: "#0f172a",
+              accent: "#ec4899",
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .blog-bg {
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background:
+          radial-gradient(circle at 15% 15%, rgba(99,102,241,0.05), transparent 30%),
+          radial-gradient(circle at 85% 85%, rgba(236,72,153,0.04), transparent 30%);
+      }
+      .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+        height: 0;
+        overflow: hidden;
+      }
+      .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+      }
+      .client-gallery img {
+        width: 100%;
+        height: 10rem;
+        object-fit: cover;
+        object-position: top;
+        cursor: zoom-in;
+      }
+      @media (min-width: 640px) {
+        .client-gallery img {
+          height: 13rem;
+        }
+      }
+      .desktop-gallery img {
+        width: 100%;
+        height: 7rem;
+        object-fit: cover;
+        object-position: top;
+        cursor: zoom-in;
+      }
+      @media (min-width: 640px) {
+        .desktop-gallery img {
+          height: 9rem;
+        }
+      }
+      .foodfast-carousel-main {
+        min-height: 280px;
+      }
+      @media (min-width: 640px) {
+        .foodfast-carousel-main {
+          min-height: 520px;
+        }
+      }
+      /* Zoom rules for Lightbox Details */
+      #lightbox-modal {
+        overflow-y: auto;
+        overflow-x: auto;
+      }
+      #lightbox-img {
+        transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+        cursor: zoom-in;
+      }
+      #lightbox-img.zoomed {
+        max-width: 250% !important;
+        max-height: none !important;
+        cursor: zoom-out;
+      }
+
+      /* Highlight inline code */
+      :not(pre) > code {
+        background-color: rgba(99, 102, 241, 0.08);
+        color: #ec4899; /* accent color (pink) for high contrast in light mode */
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+        font-size: 0.85em;
+        font-weight: 600;
+        padding: 0.15em 0.35em;
+        border-radius: 0.25rem;
+        border: 1px solid rgba(99, 102, 241, 0.15);
+      }
+      .dark :not(pre) > code {
+        background-color: rgba(236, 72, 153, 0.12);
+        color: #f472b6; /* pink-400 */
+        border-color: rgba(236, 72, 153, 0.2);
+      }
+
+      /* Code block styling */
+      pre {
+        position: relative;
+        background-color: #0f141c !important; /* Atom One Dark background */
+        border: 1px solid rgba(255, 255, 255, 0.06);
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        margin: 1.5rem 0;
+        overflow-x: auto;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+      }
+      pre code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace !important;
+        font-size: 0.875em !important;
+        line-height: 1.6 !important;
+      }
+    </style>
+  </head>
+  <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
+    <!-- Reading Progress Bar -->
+    <div class="fixed top-0 left-0 h-1 bg-gradient-to-r from-primary to-accent z-[100] transition-all duration-100" id="reading-progress" style="width: 0%"></div>
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 dark:bg-slate-950/90 dark:border-b dark:border-white/5 backdrop-blur-md shadow-sm">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <a href="index.html" class="text-2xl font-bold text-gray-900 dark:text-white tracking-tighter">
+            Kiet<span class="text-primary">nehi</span>.
+          </a>
+          <div class="flex items-center gap-2 sm:gap-4">
+            <a
+              href="blog.html"
+              class="inline-flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg border border-slate-200 dark:border-white/10 text-sm font-semibold text-slate-700 dark:text-slate-200 hover:border-primary hover:text-primary transition"
+            >
+              <i class="fas fa-arrow-left"></i>
+              <span>Back to Blog</span>
+            </a>
+            <button
+              id="theme-toggle"
+              class="w-10 h-10 rounded-lg bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+              title="Toggle theme"
+            >
+              <i class="fas fa-moon dark:hidden"></i>
+              <i class="fas fa-sun hidden dark:inline"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="py-12 sm:py-16 md:py-20 relative overflow-hidden min-h-[calc(100vh-4rem)]">
+      <div class="blog-bg" aria-hidden="true"></div>
+      
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 relative z-10">
+        <!-- Breadcrumb, Metadata & Language Switcher -->
+        <div class="mb-6 flex flex-wrap items-center justify-between gap-4">
+          <div class="flex flex-wrap items-center gap-2 text-xs text-slate-400">
+            <a href="blog.html" class="hover:text-primary transition">Blog</a>
+            <i class="fas fa-chevron-right text-[8px]"></i>
+            <span class="text-primary font-semibold">FoodFast</span>
+            <span class="mx-1">•</span>
+            <span>July 9, 2026</span>
+            <span class="mx-1">•</span>
+            <span>8 min read</span>
+          </div>
+          
+          <!-- Language Switcher Buttons -->
+          <div class="flex items-center gap-1.5 bg-slate-100 dark:bg-slate-900 border border-slate-200/50 dark:border-white/5 p-1 rounded-xl shadow-sm">
+            <button onclick="switchLang('vi')" id="btn-lang-vi" class="px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm">
+              VI (Tiếng Việt)
+            </button>
+            <button onclick="switchLang('en')" id="btn-lang-en" class="px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all">
+              EN (English)
+            </button>
+          </div>
+        </div>
+
+        <!-- Article Header -->
+        <h1 id="article-title" class="text-3xl sm:text-4xl md:text-5xl font-extrabold text-slate-900 dark:text-white leading-tight mb-8">
+          FoodFast Drone Delivery: Production-Grade DevOps & Orchestration
+        </h1>
+
+        <!-- Main Cover Image -->
+        <div class="relative my-10 rounded-2xl overflow-hidden shadow-2xl border border-slate-200/50 dark:border-white/10 bg-slate-950/40 dark:bg-slate-950/70 p-4 flex items-center justify-center min-h-[280px] sm:min-h-[360px]">
+          <!-- Radial glow behind the cover logo -->
+          <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.2),transparent_75%)]"></div>
+          <!-- Blur aura behind logo -->
+          <div class="absolute w-48 h-48 bg-primary/20 rounded-full blur-3xl"></div>
+          
+          <!-- Cover Image -->
+          <img src="images_blogs/foodfast/foodfast.jpg" alt="FoodFast Cover" class="relative z-10 max-h-[240px] sm:max-h-[300px] w-auto h-auto object-contain rounded-xl shadow-lg transform hover:scale-[1.02] transition-transform duration-500" />
+        </div>
+
+        <!-- Author Profile Banner -->
+        <div class="flex items-center gap-4 p-4 rounded-xl border border-slate-200/60 dark:border-white/5 bg-white/50 dark:bg-slate-900/50 backdrop-blur-md mb-10">
+          <div class="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-indigo-500/10">
+            PK
+          </div>
+          <div>
+            <h4 class="font-bold text-slate-900 dark:text-white text-sm">Phu Kiet (Kietnehi)</h4>
+            <p class="text-xs text-slate-500 dark:text-slate-400">AI Engineer & Student at SGU</p>
+          </div>
+          <div class="ml-auto flex items-center gap-2">
+            <a href="https://github.com/Kietnehi" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center transition text-slate-500 dark:text-slate-300">
+              <i class="fab fa-github"></i>
+            </a>
+            <a href="https://linkedin.com/in/kiet-truong-63b302306" target="_blank" class="w-8 h-8 rounded-lg bg-slate-100 dark:bg-white/5 hover:bg-slate-200 dark:hover:bg-white/10 flex items-center justify-center transition text-slate-500 dark:text-slate-300">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Article Body -->
+        <article class="prose prose-slate dark:prose-invert max-w-none text-slate-600 dark:text-slate-300 leading-relaxed space-y-6">
+          
+          <!-- VIETNAMESE VERSION -->
+          <div id="content-vi" class="space-y-6">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              <strong>FoodFast Drone Delivery</strong> là một hệ thống giao hàng bằng thiết bị bay không người lái (drone) hoàn chỉnh bao gồm 5 ứng dụng con chạy độc lập (monorepo). Nhằm mục tiêu tối ưu hóa vận hành thực tế, hệ thống đã được container hóa hoàn toàn bằng Docker, tích hợp quy trình phát triển và triển khai tự động qua CI/CD GitHub Actions lên đa nền tảng (AWS, Vercel, Railway), kiểm soát hệ thống real-time qua bộ đôi Prometheus + Grafana, và tự động hóa điều phối tài nguyên thông qua Kubernetes (K8s) Auto Scaling & Healing.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. Video Demo Hệ Thống</h2>
+            <p>
+              Trước khi đi sâu vào chi tiết kiến trúc kỹ thuật và hạ tầng DevOps, hãy cùng theo dõi video demo toàn bộ quy trình đặt hàng, điều hướng drone giao thức ăn real-time trong video dưới đây:
+            </p>
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <div class="video-container rounded-lg">
+                <iframe src="https://www.youtube.com/embed/vwBItmEOFMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Video 1: Demo các phân hệ ứng dụng và mô phỏng lộ trình bay của Drone giao hàng</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. Kiến Trúc Giải Pháp & Cơ Sở Dữ Liệu</h2>
+            <p>
+              FoodFast được xây dựng dựa trên sự liên kết chặt chẽ của 5 phân hệ dịch vụ:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Client App</strong> (Port 3000): Cho phép khách hàng tìm món ăn, đặt đơn và tracking drone real-time.</li>
+              <li><strong>Restaurant App</strong> (Port 3001): Nơi các nhà hàng quản lý món ăn và tiếp nhận đơn hàng tức thời.</li>
+              <li><strong>Admin App</strong> (Port 3002): Cổng quản trị phân quyền cho phép kiểm tra toàn diện hoạt động hệ thống.</li>
+              <li><strong>Drone Operations</strong> (Port 3003): Bảng điều khiển quản lý đội bay, theo dõi thời lượng pin và vị trí GPS.</li>
+              <li><strong>Backend API Server</strong> (Port 5000): Engine lõi viết bằng Node.js/Express, kết nối MongoDB và quản lý giao tiếp WebSockets (Socket.io).</li>
+            </ul>
+
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/foodfast/Solution_Alignment.png" alt="Kiến trúc giải pháp FoodFast" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 1: Mô hình kiến trúc giải pháp (Solution Alignment) của hệ thống FoodFast</p>
+            </div>
+
+            <p>
+              Toàn bộ dữ liệu được quản lý tập trung và mô hình hóa qua cơ sở dữ liệu MongoDB. Sơ đồ thực thể mối quan hệ (ERD) hiển thị cách liên kết chặt chẽ giữa Khách hàng, Đơn hàng, Nhà hàng, Sản phẩm và Drone giao vận:
+            </p>
+
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/foodfast/ERD.png" alt="Sơ đồ thực thể ERD" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Hình 2: Sơ đồ thiết kế cơ sở dữ liệu Entity Relationship Diagram (ERD)</p>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">2.3 Thiết Kế Multi-Vendor & Quản Lý Nhiều Nhà Hàng</h3>
+            <p>
+              Hệ thống FoodFast áp dụng kiến trúc <strong>Multi-Tenant Shared Database</strong> để quản lý hàng trăm nhà hàng đồng thời trên cùng một cơ sở hạ tầng mà vẫn bảo đảm tính độc lập dữ liệu:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 mt-2">
+              <li><strong>Phân tách Menu & Sản phẩm</strong>: Mỗi sản phẩm (Item) đều liên kết chặt chẽ với một <code>restaurantId</code>. Khi truy vấn danh mục món ăn, API gateway tự động routing và áp dụng filter theo ID nhà hàng để tránh rò rỉ dữ liệu chéo.</li>
+              <li><strong>Điều phối đơn hàng (Order Routing Engine)</strong>: Khi khách hàng tạo giỏ hàng chứa nhiều món từ một nhà hàng, hệ thống tạo một thực thể đơn hàng (Order) với trường <code>restaurantId</code> tương ứng. Ngay lập tức, một tiến trình nền sẽ phát tín hiệu WebSocket dành riêng cho kênh (room) của nhà hàng đó để hiển thị trên màn hình tiếp nhận (Port 3001).</li>
+              <li><strong>Báo cáo doanh thu biệt lập</strong>: Cổng nhà hàng sử dụng các pipeline aggregation của MongoDB để thống kê doanh thu, số đơn hoàn thành, tỷ lệ hủy đơn của riêng nhà hàng mình mà không ảnh hưởng tới hiệu năng tổng thể của cơ sở dữ liệu.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">2.4 Cơ Chế Real-Time (Socket.io) & Mô Phỏng Hành Trình Đội Bay Drone</h3>
+            <p>
+              Trọng tâm của tính năng giao hàng công nghệ cao trong FoodFast là sự kết hợp giữa giao thức WebSockets (Socket.io) và bộ mô phỏng tính toán động học (Kinematic Simulator):
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 mt-2">
+              <li><strong>Cấu trúc Room trong Socket.io</strong>:
+                <ul class="list-circle pl-5 mt-1 space-y-1 text-slate-400">
+                  <li><code>room:restaurant_[id]</code>: Dành riêng cho nhà hàng nhận order mới.</li>
+                  <li><code>room:order_[id]</code>: Kết nối khách hàng, admin và drone tham gia vận chuyển đơn hàng này để cập nhật tọa độ liên tục.</li>
+                  <li><code>room:admin_drones</code>: Cho phép quản trị viên giám sát trạng thái trực quan của tất cả drone trên bản đồ Mapbox.</li>
+                </ul>
+              </li>
+              <li><strong>Bộ Giả Lập Hành Trình Drone (Drone Physics Simulation Worker)</strong>:
+                Khi đơn hàng được xác nhận và drone được chỉ định, một background worker trên backend sẽ khởi chạy luồng giả lập với tần suất cập nhật <strong>1Hz (1 giây một lần)</strong>:
+                <ul class="list-circle pl-5 mt-1 space-y-1 text-slate-400">
+                  <li><strong>Tính toán đường đi</strong>: Sử dụng phương pháp nội suy tuyến tính (LERP) và lượng giác để tính toán tọa độ GPS (Latitude, Longitude) di chuyển dọc theo đường chim bay từ <em>Trạm Drone -> Nhà hàng -> Khách hàng</em>.</li>
+                  <li><strong>Giả lập trạng thái vật lý</strong>: Tiêu hao pin động theo tải trọng (khối lượng món ăn), vận tốc gió và khoảng cách di chuyển. Trạng thái nhiệt độ motor và độ cao bay (altitude) cũng được tính toán thời gian thực.</li>
+                  <li><strong>Phát sóng (Broadcasting)</strong>: Tọa độ mới nhất sẽ được ghi đè vào Redis cache để giảm tải cho DB chính, đồng thời broadcast qua Socket.io đến client hiển thị bản đồ trượt chuyển động mượt mà.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Giao Diện Thực Tế Các Phân Hệ Ứng Dụng</h3>
+            <p>
+              Để minh chứng cho quy mô hệ thống, dưới đây là toàn bộ giao diện thực tế của 3 ứng dụng chính (Client, Restaurant, Admin) hiển thị dưới dạng slide trình chiếu (lướt qua lại và phóng to xem chi tiết):
+            </p>
+
+            <!-- Client App Screenshots Carousel -->
+            <div class="space-y-3 mt-6">
+              <span class="text-sm font-semibold text-primary block font-mono">🛒 Phân Hệ Khách Hàng (Client App)</span>
+              <div class="foodfast-carousel" data-section="client-vi" data-images='[
+                {"src": "images_blogs/foodfast/Client/TrangChuClientAPP.png", "title": "Trang chủ đặt món (1)"},
+                {"src": "images_blogs/foodfast/Client/TrangChuClientAPP2.png", "title": "Món ăn đề xuất (2)"},
+                {"src": "images_blogs/foodfast/Client/CacCuaHangClient.png", "title": "Danh sách cửa hàng"},
+                {"src": "images_blogs/foodfast/Client/ThucDonClientApp.png", "title": "Chi tiết thực đơn"},
+                {"src": "images_blogs/foodfast/Client/LichSuDonHangClient.png", "title": "Lịch sử giao dịch"},
+                {"src": "images_blogs/foodfast/Client/TrangCaNhanClientAPP.png", "title": "Thông tin tài khoản"}
+              ]'></div>
+            </div>
+
+            <!-- Restaurant App Screenshots Carousel -->
+            <div class="space-y-3 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">🍴 Cổng Nhà Hàng (Restaurant App)</span>
+              <div class="foodfast-carousel" data-section="restaurant-vi" data-images='[
+                {"src": "images_blogs/foodfast/Restaurant/1.png", "title": "Dashboard thống kê doanh thu"},
+                {"src": "images_blogs/foodfast/Restaurant/2.png", "title": "Chi tiết thống kê đơn hàng"},
+                {"src": "images_blogs/foodfast/Restaurant/3.png", "title": "Danh sách đơn hàng chờ xử lý"},
+                {"src": "images_blogs/foodfast/Restaurant/4.png", "title": "Trình quản lý đơn hàng real-time"},
+                {"src": "images_blogs/foodfast/Restaurant/5.png", "title": "Quản lý thực đơn nhà hàng"},
+                {"src": "images_blogs/foodfast/Restaurant/6.png", "title": "Cập nhật trạng thái món ăn"},
+                {"src": "images_blogs/foodfast/Restaurant/7.png", "title": "Thiết lập khung giờ hoạt động"},
+                {"src": "images_blogs/foodfast/Restaurant/8.png", "title": "Quản lý thông tin nhà hàng"},
+                {"src": "images_blogs/foodfast/Restaurant/9.png", "title": "Lịch sử giao dịch nhà hàng"},
+                {"src": "images_blogs/foodfast/Restaurant/10.png", "title": "Xem doanh số và biểu đồ theo tháng"}
+              ]'></div>
+            </div>
+
+            <!-- Admin App Screenshots Carousel -->
+            <div class="space-y-3 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">👨‍💼 Cổng Quản Trị (Admin App)</span>
+              <div class="foodfast-carousel" data-section="admin-vi" data-images='[
+                {"src": "images_blogs/foodfast/Admin/1.png", "title": "Dashboard tổng trị hệ thống"},
+                {"src": "images_blogs/foodfast/Admin/2.png", "title": "Quản lý người dùng & phân quyền"},
+                {"src": "images_blogs/foodfast/Admin/3.png", "title": "Giám sát đội bay Drone real-time"},
+                {"src": "images_blogs/foodfast/Admin/4.png", "title": "Lịch sử nhiệm vụ của Drone"},
+                {"src": "images_blogs/foodfast/Admin/5.png", "title": "Quản lý danh mục món ăn toàn sàn"},
+                {"src": "images_blogs/foodfast/Admin/6.png", "title": "Quản lý danh sách nhà hàng"},
+                {"src": "images_blogs/foodfast/Admin/7.png", "title": "Quản lý tất cả đơn hàng trên sàn"},
+                {"src": "images_blogs/foodfast/Admin/8.png", "title": "Cài đặt hệ thống tổng quát"}
+              ]'></div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Đóng Gói Toàn Diện Bằng Docker</h2>
+            <p>
+              Tất cả dịch vụ được đóng gói bằng <strong>Docker Multi-stage build</strong> giúp giảm dung lượng image tối đa và tăng tính bảo mật. Sử dụng <code>npm ci</code> cùng cờ <code>--ignore-scripts</code> đảm bảo thời gian cài đặt nhanh nhất và tránh chạy các shell script độc hại từ bên thứ ba.
+            </p>
+            <p>Dưới đây là cấu trúc Dockerfile tối ưu của Backend Service:</p>
+            <pre><code class="language-dockerfile"># Stage 1: Build dependencies
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production --ignore-scripts
+
+# Stage 2: Productive runner
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+ENV NODE_ENV=production
+ENV PORT=5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5000/api/health || exit 1
+
+EXPOSE 5000
+CMD ["node", "server.js"]</code></pre>
+            <p>
+              Để khởi động môi trường local nhanh chóng, file <code>docker-compose.yml</code> liên kết tất cả 5 service kèm theo cụm monitoring gồm database MongoDB, Prometheus, Grafana, Node Exporter và cAdvisor chỉ bằng một lệnh duy nhất:
+            </p>
+            <pre><code class="language-bash">docker-compose up -d --build</code></pre>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Pipeline CI/CD Tự Động & Đa Nền Tảng (AWS, Vercel, Railway)</h2>
+            <p>
+              Quy trình tích hợp và triển khai liên tục được tự động hóa qua GitHub Actions thông qua 3 pipeline chính:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>ci-test.yml</strong>: Tự động kích hoạt khi có Pull Request, chạy bộ test Jest của backend, lint code và quét bảo mật mã nguồn bằng <em>Trivy</em>.</li>
+              <li><strong>docker-build-push.yml</strong>: Build song song 5 service cho cả hai kiến trúc phần cứng (amd64 và arm64), sau đó đẩy trực tiếp lên GitHub Container Registry (ghcr.io).</li>
+              <li><strong>deploy-production.yml</strong>: Tự động SSH vào máy chủ sản xuất, thực hiện kéo image mới và restart an toàn.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">4.1 Đi Sâu Vào Pipeline CI/CD Tiêu Chuẩn Doanh Nghiệp</h3>
+            <p>
+              Quy trình phát hành tự động của FoodFast được thiết kế để loại bỏ hoàn toàn các lỗi thủ công nhờ vào bộ ba GitHub Actions workflows tích hợp sâu:
+            </p>
+            
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 1: Tích Hợp Liên Tục (CI) & Quét Bảo Mật</span>
+              <p class="text-xs text-slate-400">
+                Mỗi khi lập trình viên thực hiện <code>git push</code> hoặc mở Pull Request trên các nhánh chính, workflow <code>ci-test.yml</code> sẽ được kích hoạt:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Khởi tạo NodeJS environment, cache lại thư mục <code>node_modules</code> qua <code>actions/cache</code> giúp tăng tốc độ build lên 200%.</li>
+                <li>Chạy công cụ Static Application Security Testing (SAST) sử dụng <strong>Trivy CLI</strong> để quét mã nguồn tìm kiếm các key bị rò rỉ (Secrets Leak) và các lỗ hổng thư viện NPM (CVEs).</li>
+                <li>Thực thi bộ unit test viết bằng <strong>Jest</strong> và chạy <strong>ESLint</strong> để kiểm tra syntax code chuẩn chỉ trước khi merge.</li>
+              </ul>
+            </div>
+
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 2: Build Image Đa Kiến Trúc (Multi-Arch Build)</span>
+              <p class="text-xs text-slate-400">
+                Khi code được merge vào nhánh <code>main</code>, GitHub runner sẽ tiến hành đóng gói Docker image thông qua workflow <code>docker-build-push.yml</code>:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Sử dụng <strong>QEMU</strong> và <strong>Docker Buildx</strong> để đóng gói image đồng thời cho 2 kiến trúc CPU thông dụng: <code>linux/amd64</code> (dành cho server x86 truyền thống) và <code>linux/arm64</code> (tương thích máy chủ Apple Silicon M1/M2/M3 hoặc AWS Graviton tiết kiệm chi phí).</li>
+                <li>Đẩy Docker images có tag định dạng SHA-commit và tag <code>latest</code> lên <strong>GitHub Container Registry (ghcr.io)</strong>.</li>
+              </ul>
+            </div>
+
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 3: Zero-Downtime Deploy Trực Tiếp Qua SSH</span>
+              <p class="text-xs text-slate-400">
+                Khi Docker images đã sẵn sàng trên registry, workflow <code>deploy-production.yml</code> tiến hành cập nhật máy chủ sản xuất:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Mở kết nối SSH bảo mật bằng SSH Private Key (được mã hóa trong GitHub Secrets) đến VPS/EC2.</li>
+                <li>Gửi tệp cấu hình biến môi trường an toàn và chạy lệnh reload Docker Compose. Hệ thống kéo các image mới từ <code>ghcr.io</code> về, khởi động các container mới song song và hoán đổi port chạy mượt mà mà không gây gián đoạn dịch vụ của người dùng cuối.</li>
+              </ul>
+            </div>
+            
+            <p>
+              Nhằm tăng tính linh hoạt và giảm chi phí hạ tầng, FoodFast hỗ trợ triển khai linh hoạt qua 3 cách thức:
+            </p>
+            <div class="my-4 p-4 bg-indigo-500/10 border-l-4 border-primary rounded-r-lg">
+              <ul class="list-decimal pl-5 space-y-2 text-sm">
+                <li><strong>Deploy Tri-Platform (Hybrid)</strong>: Phân tách 3 ứng dụng frontend (Client, Restaurant, Admin) lên <strong>Vercel</strong> để tối ưu tốc độ tải trang CDN tĩnh. Backend NodeJS deploy lên <strong>Railway</strong> kết nối Cloud MongoDB Database.</li>
+                <li><strong>Triển khai Kubernetes (AWS EKS)</strong>: Phù hợp cho môi trường Production lớn, phân phối lưu lượng tải đều qua Ingress Controller và load balancer của AWS.</li>
+                <li><strong>Docker Compose On-Premise</strong>: Khởi chạy toàn bộ hệ thống ngay trên máy chủ ảo (AWS EC2 hoặc VM cá nhân) đơn giản chỉ với tệp env config.</li>
+              </ul>
+            </div>
+
+            <!-- Deploy Platforms Screenshots Grid -->
+            <div class="space-y-6 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">🌐 Hình ảnh triển khai chi tiết Multi-Platform (Slide Trình Chiếu)</span>
+              
+              <!-- Vercel -->
+              <div class="space-y-2">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 1. Cấu hình và Deployments trên Vercel</span>
+                <div class="foodfast-carousel" data-section="vercel-vi" data-images='[
+                  {"src": "images_blogs/foodfast/Vercel/1.png", "title": "Dashboard Vercel của dự án"},
+                  {"src": "images_blogs/foodfast/Vercel/2.png", "title": "Danh sách các lần Deployments"},
+                  {"src": "images_blogs/foodfast/Vercel/3.png", "title": "Cấu hình domain cho Client App"},
+                  {"src": "images_blogs/foodfast/Vercel/4.png", "title": "Cấu hình framework cho Restaurant"},
+                  {"src": "images_blogs/foodfast/Vercel/5.png", "title": "Cấu hình framework cho Admin App"},
+                  {"src": "images_blogs/foodfast/Vercel/6.png", "title": "Cấu hình framework cho Client App"},
+                  {"src": "images_blogs/foodfast/Vercel/7.png", "title": "Quản lý các Git Branches kết nối"},
+                  {"src": "images_blogs/foodfast/Vercel/8.png", "title": "Xem logs và build details"}
+                ]'></div>
+              </div>
+
+              <!-- Railway -->
+              <div class="space-y-2 mt-6">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 2. Vận hành dịch vụ trên Railway</span>
+                <div class="foodfast-carousel" data-section="railway-vi" data-images='[
+                  {"src": "images_blogs/foodfast/Railway/1.png", "title": "Project overview trên Railway"},
+                  {"src": "images_blogs/foodfast/Railway/2.png", "title": "Cấu hình biến môi trường API"},
+                  {"src": "images_blogs/foodfast/Railway/3.png", "title": "Quản lý logs Node.js Server"},
+                  {"src": "images_blogs/foodfast/Railway/4.png", "title": "Trạng thái CPU & Memory usage"},
+                  {"src": "images_blogs/foodfast/Railway/5.png", "title": "Cấu hình deployment triggers"},
+                  {"src": "images_blogs/foodfast/Railway/6.png", "title": "Lịch sử triển khai các bản build"}
+                ]'></div>
+              </div>
+
+              <!-- AWS -->
+              <div class="space-y-2 mt-6">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 3. Cấu hình máy chủ ảo AWS EC2 & Git Workflow</span>
+                <div class="foodfast-carousel" data-section="aws-vi" data-images='[
+                  {"src": "images_blogs/foodfast/AWS/1.png", "title": "Dashboard máy chủ ảo AWS EC2"},
+                  {"src": "images_blogs/foodfast/AWS/2.png", "title": "Cấu hình Security Group (Ports whitelist)"},
+                  {"src": "images_blogs/foodfast/AWS/3.png", "title": "Giao diện quản lý các máy chủ ảo"},
+                  {"src": "images_blogs/foodfast/AWS/4.png", "title": "Xem danh sách Docker containers running"},
+                  {"src": "images_blogs/foodfast/AWS/5.png", "title": "Cấu hình GitHub Actions CI/CD Pipeline"},
+                  {"src": "images_blogs/foodfast/AWS/6.png", "title": "Quản lý GitHub secrets (Credentials)"},
+                  {"src": "images_blogs/foodfast/AWS/7.png", "title": "Cấu hình Branch Protection Rules"},
+                  {"src": "images_blogs/foodfast/AWS/8.png", "title": "Các kiểm tra bảo mật bắt buộc"}
+                ]'></div>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">5. Hệ Thống Giám Sát Real-time (Prometheus + Grafana)</h2>
+            <p>
+              Để bảo đảm hệ thống vận hành trơn tru, bộ công cụ giám sát được tích hợp sâu vào mã nguồn:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Prometheus Scraper</strong>: Định kỳ kéo dữ liệu từ endpoint <code>/metrics</code> (sử dụng thư viện <code>prom-client</code> của Express) kết hợp với các chỉ số hệ điều hành từ <strong>Node Exporter</strong> và chỉ số container từ <strong>cAdvisor</strong>.</li>
+              <li><strong>Grafana Visuals</strong>: Trực quan hóa dữ liệu hiệu năng (Request Rate, P95 Latency, Network I/O) cùng các chỉ số business đặc thù như: số đơn hàng đang xử lý (Active Orders), lượng drone sẵn sàng (Available Drones) và trạng thái pin.</li>
+            </ul>
+
+            <pre><code class="language-yaml"># prometheus.yml config excerpt
+scrape_configs:
+  - job_name: 'foodfast-api'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['server_app:5000']
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']</code></pre>
+
+            <p>
+              Hệ thống cảnh báo (Alertmanager) được cấu hình tự động gửi thông báo khi phát hiện các bất thường: dịch vụ chết đột ngột (ServiceDown), CPU vượt ngưỡng 80% liên tục, thời gian phản hồi API quá 1 giây (HighAPILatency) hoặc số lượng drone khả dụng xuống mức báo động (&lt; 5).
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">6. Điều Phối K8s: Auto Scaling & Auto Healing</h2>
+            <p>
+              Khi dịch vụ được triển khai trên Kubernetes, tính năng tự động co giãn và tự chữa lành giúp duy trì sự ổn định tuyệt đối:
+            </p>
+            
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Tự Động Co Giãn (Auto Scaling với HPA)</h3>
+            <p>
+              Sử dụng <strong>Horizontal Pod Autoscaler (HPA)</strong> để tự động điều chỉnh số lượng bản sao (replicas) của client và server từ 1 đến 3 pods. Ngưỡng kích hoạt co giãn được cấu hình cực kỳ nhạy bén (CPU utilization > 20% hoặc Memory utilization > 70%) nhằm phản ứng tức thì trước các làn sóng request tải cao đột biến:
+            </p>
+            <pre><code class="language-yaml">apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: foodfast-server-hpa
+  namespace: foodfast
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: foodfast-server
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 20</code></pre>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Tự Chữa Lành (Auto Healing với Probes)</h3>
+            <p>
+              Mỗi pod server được định cấu hình <strong>Liveness Probe</strong> và <strong>Readiness Probe</strong> liên tục ping tới router kiểm tra sức khỏe <code>/api/health</code>. Nếu máy chủ bị treo do rò rỉ bộ nhớ (OOM) hoặc nghẽn thread khiến probe thất bại quá 3 lần liên tiếp, Kubernetes sẽ tự động hủy container lỗi và khởi tạo một container sạch thay thế ngay lập tức.
+            </p>
+
+            <div class="my-4 p-4 bg-pink-500/10 border-l-4 border-accent rounded-r-lg">
+              <span class="font-bold text-slate-950 dark:text-white">💡 Kịch bản stress test kiểm chứng:</span>
+              <p class="text-sm mt-1">
+                Để kiểm tra khả năng co giãn thực tế, chúng tôi đã chạy tập lệnh stress test <code>run-autoscaling-demo.sh</code>, liên tục tạo tải giả lập truy cập và ép CPU của server pod chạy vòng lặp vô hạn. HPA đã ngay lập tức ghi nhận CPU tăng vọt từ 5% lên 90% và lập tức kích hoạt cơ chế Scale Up tăng từ 1 pod lên 3 pods trong chưa đầy 15 giây, chia đều tải truy cập và bảo vệ hệ thống khỏi sập đổ.
+              </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">7. Kết Luận & Bài Học Kinh Nghiệm</h2>
+            <p>
+              Dự án FoodFast không chỉ là một ứng dụng giao hàng drone đơn thuần, mà là một bức tranh toàn cảnh về cách áp dụng các triết lý DevOps hiện đại vào môi trường microservices thực tế. Quá trình thiết kế hạ tầng này mang lại nhiều bài học giá trị:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Tối ưu hóa tài nguyên container</strong>: Dockerfile đa tầng cùng cấu hình giới hạn (resource limits/requests) trên K8s ngăn chặn việc tranh chấp tài nguyên gây sập dây chuyền.</li>
+              <li><strong>Tầm quan trọng của quan sát (Observability)</strong>: Việc theo dõi các metrics kinh doanh song song với tài nguyên phần cứng trên Grafana giúp chủ động dự đoán lưu lượng tải thay vì phản ứng bị động.</li>
+              <li><strong>Chiến lược CI/CD linh hoạt</strong>: Khả năng triển khai linh hoạt (từ docker-compose local, hybrid cloud đến Kubernetes production) giúp đẩy nhanh tốc độ kiểm thử và bàn giao sản phẩm.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">8. Tài Liệu Tham Khảo</h2>
+            <p>
+              Các tài liệu chính thức được dùng để đối chiếu và hoàn thiện phần triển khai hạ tầng của FoodFast:
+            </p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <a href="https://docs.aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">AWS Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Tài liệu về EC2, networking, security groups và hạ tầng cloud.</span>
+              </a>
+              <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Vercel Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Tài liệu deploy frontend, cấu hình domain và build settings.</span>
+              </a>
+              <a href="https://docs.railway.com/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Railway Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Tài liệu về hosting backend, biến môi trường và deployment.</span>
+              </a>
+              <a href="https://grafana.com/docs/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Grafana Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Tài liệu tạo dashboard, datasource và alerting.</span>
+              </a>
+              <a href="https://prometheus.io/docs/prometheus/latest/getting_started/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300 sm:col-span-2">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Prometheus Getting Started</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Tài liệu khởi đầu cho scraping metrics, alert rules và monitoring stack.</span>
+              </a>
+            </div>
+          </div>
+          
+          <!-- ENGLISH VERSION -->
+          <div id="content-en" class="hidden space-y-6">
+            <p class="text-lg leading-relaxed font-medium text-slate-700 dark:text-slate-200 mb-6">
+              <strong>FoodFast Drone Delivery</strong> is a comprehensive drone-assisted food delivery platform structured as a monorepo consisting of 5 autonomous applications. Built for production-grade robustness and optimal resources operation, the system is fully containerized using Docker, integrated with automated CI/CD pipelines via GitHub Actions targeting multiple deployment modes (AWS, Vercel, Railway), observed in real-time using Prometheus + Grafana, and automatedly orchestrated under Kubernetes (K8s) Auto Scaling & Auto Healing.
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">1. System Demo Video</h2>
+            <p>
+              Before diving deep into the technical architecture and DevOps configuration, check out the live demo showing customer ordering, real-time drone route planning, and navigation monitoring:
+            </p>
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <div class="video-container rounded-lg">
+                <iframe src="https://www.youtube.com/embed/vwBItmEOFMM" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+              </div>
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Video 1: Platform modules walkthrough and drone delivery path simulation</p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">2. Solution Architecture & Database Design</h2>
+            <p>
+              FoodFast is composed of five interconnected services working in unison:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Client App</strong> (Port 3000): For customers to browse menus, place orders, and track drone locations.</li>
+              <li><strong>Restaurant App</strong> (Port 3001): Portal for restaurant owners to manage dishes and receive instant order notifications.</li>
+              <li><strong>Admin App</strong> (Port 3002): High-level system overview with role-based access control.</li>
+              <li><strong>Drone Operations</strong> (Port 3003): Dashboard monitoring GPS location, battery levels, and active delivery tasks.</li>
+              <li><strong>Backend API Server</strong> (Port 5000): Central Node.js/Express application connecting to MongoDB and orchestrating WebSockets (Socket.io).</li>
+            </ul>
+
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/foodfast/Solution_Alignment.png" alt="FoodFast Solution Alignment" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 1: Solution Alignment architecture of the FoodFast platform</p>
+            </div>
+
+            <p>
+              The system data is structured cleanly inside a MongoDB database. The Entity Relationship Diagram (ERD) showcases how users, orders, restaurants, items, and delivery drones interact:
+            </p>
+
+            <div class="my-6 border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden shadow-lg bg-slate-900/5 dark:bg-slate-950/20 backdrop-blur-md p-2">
+              <img src="images_blogs/foodfast/ERD.png" alt="Entity Relationship Diagram" class="w-full h-auto rounded-lg object-contain" />
+              <p class="text-center text-xs text-slate-400 mt-2 italic">Figure 2: Data model Entity Relationship Diagram (ERD)</p>
+            </div>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">2.3 Multi-Vendor Tenant Architecture</h3>
+            <p>
+              FoodFast uses a <strong>Multi-Tenant Shared Database</strong> structure to handle hundreds of restaurants on the same cluster, while enforcing strict logical separation of tenant data:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 mt-2">
+              <li><strong>Catalog & Menu Isolation</strong>: Every menu item contains a `restaurantId` attribute. The API Gateway applies queries targeting only the respective restaurant ID to prevent cross-tenant data leakage.</li>
+              <li><strong>Order Routing Engine</strong>: When a customer checks out, the backend creates an Order object flagged with the target `restaurantId`. Immediately, a WebSocket signal broadcasts specifically to that restaurant's private channel (`room:restaurant_[id]`), popping up on their live terminal screen (Port 3001).</li>
+              <li><strong>Siloed Revenue Analytics</strong>: The restaurant dashboard aggregates metrics using MongoDB aggregation pipelines, querying only their own transaction logs to calculate revenue charts and order statistics without hitting other tenants' data pools.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">2.4 Real-time Synchronization (Socket.io) & Drone Simulation Engine</h3>
+            <p>
+              The key highlight of FoodFast's delivery pipeline is the integration of WebSockets (Socket.io) with an active physical simulation worker:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5 mt-2">
+              <li><strong>Socket.io Channel Matrix</strong>:
+                <ul class="list-circle pl-5 mt-1 space-y-1 text-slate-400">
+                  <li><code>room:restaurant_[id]</code>: Receives immediate notifications when orders are placed.</li>
+                  <li><code>room:order_[id]</code>: Synces the customer, restaurant manager, and delivery drone during transit.</li>
+                  <li><code>room:admin_drones</code>: Streams active GPS locations of the entire fleet to the admin map tower.</li>
+                </ul>
+              </li>
+              <li><strong>Drone Kinematics & Physics Simulator</strong>:
+                When a drone is dispatched, a dedicated background daemon starts a <strong>1Hz (1 update per second)</strong> simulation loop:
+                <ul class="list-circle pl-5 mt-1 space-y-1 text-slate-400">
+                  <li><strong>Navigation Mathematics</strong>: Computes GPS coordinates (Latitude, Longitude) using linear interpolation (LERP) and Haversine equations along the flight path (Hub -> Restaurant -> Customer).</li>
+                  <li><strong>Physical Constraints Simulation</strong>: Simulates dynamic battery discharge curves based on payload weight (mass of dishes), flight speed, and headwind resistance, alongside motor temperatures.</li>
+                  <li><strong>Redis Broadcasting</strong>: The latest calculated telemetry is saved in Redis for low-latency queries and broadcast to all connected clients via Socket.io for smooth map animations.</li>
+                </ul>
+              </li>
+            </ul>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Sub-Application UI Demonstrations</h3>
+            <p>
+              To demonstrate the scale of the system, here is a collection of screenshots of the three main frontends (Client, Restaurant, Admin) presented in slides (slide to navigate, click to zoom full-size):
+            </p>
+
+            <!-- Client App Screenshots Carousel (EN) -->
+            <div class="space-y-3 mt-6">
+              <span class="text-sm font-semibold text-primary block font-mono">🛒 Customer Portal (Client App)</span>
+              <div class="foodfast-carousel" data-section="client-en" data-images='[
+                {"src": "images_blogs/foodfast/Client/TrangChuClientAPP.png", "title": "Homepage & Ordering (1)"},
+                {"src": "images_blogs/foodfast/Client/TrangChuClientAPP2.png", "title": "Recommended dishes (2)"},
+                {"src": "images_blogs/foodfast/Client/CacCuaHangClient.png", "title": "Restaurant listing"},
+                {"src": "images_blogs/foodfast/Client/ThucDonClientApp.png", "title": "Menu selections"},
+                {"src": "images_blogs/foodfast/Client/LichSuDonHangClient.png", "title": "Order purchase history"},
+                {"src": "images_blogs/foodfast/Client/TrangCaNhanClientAPP.png", "title": "User profile settings"}
+              ]'></div>
+            </div>
+
+            <!-- Restaurant App Screenshots Carousel (EN) -->
+            <div class="space-y-3 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">🍴 Restaurant Dashboard (Restaurant App)</span>
+              <div class="foodfast-carousel" data-section="restaurant-en" data-images='[
+                {"src": "images_blogs/foodfast/Restaurant/1.png", "title": "Revenue & analytics dashboard"},
+                {"src": "images_blogs/foodfast/Restaurant/2.png", "title": "Detailed order statistics"},
+                {"src": "images_blogs/foodfast/Restaurant/3.png", "title": "Order queue & status"},
+                {"src": "images_blogs/foodfast/Restaurant/4.png", "title": "Real-time order processing panel"},
+                {"src": "images_blogs/foodfast/Restaurant/5.png", "title": "Restaurant menu manager"},
+                {"src": "images_blogs/foodfast/Restaurant/6.png", "title": "Update food availability status"},
+                {"src": "images_blogs/foodfast/Restaurant/7.png", "title": "Store hours configuration"},
+                {"src": "images_blogs/foodfast/Restaurant/8.png", "title": "Restaurant profile settings"},
+                {"src": "images_blogs/foodfast/Restaurant/9.png", "title": "Restaurant transaction history"},
+                {"src": "images_blogs/foodfast/Restaurant/10.png", "title": "Monthly revenue and charts"}
+              ]'></div>
+            </div>
+
+            <!-- Admin App Screenshots Carousel (EN) -->
+            <div class="space-y-3 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">👨‍💼 Control Center (Admin App)</span>
+              <div class="foodfast-carousel" data-section="admin-en" data-images='[
+                {"src": "images_blogs/foodfast/Admin/1.png", "title": "Overall system diagnostics dashboard"},
+                {"src": "images_blogs/foodfast/Admin/2.png", "title": "User & role permission manager"},
+                {"src": "images_blogs/foodfast/Admin/3.png", "title": "Drone fleet real-time operations"},
+                {"src": "images_blogs/foodfast/Admin/4.png", "title": "Drone flight mission logs history"},
+                {"src": "images_blogs/foodfast/Admin/5.png", "title": "Global platform food categories manager"},
+                {"src": "images_blogs/foodfast/Admin/6.png", "title": "Platform-wide restaurants manager"},
+                {"src": "images_blogs/foodfast/Admin/7.png", "title": "Platform orders monitor & list"},
+                {"src": "images_blogs/foodfast/Admin/8.png", "title": "Global system preferences configuration"}
+              ]'></div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">3. Package Everything in Docker</h2>
+            <p>
+              To ensure system predictability across environments, we utilize **Docker Multi-stage builds** to keep image sizes small while maintaining security. Running <code>npm ci</code> with <code>--ignore-scripts</code> minimizes installation times and mitigates the risk of malicious third-party post-install scripts.
+            </p>
+            <p>Here is the optimized backend Dockerfile configuration:</p>
+            <pre><code class="language-dockerfile"># Stage 1: Build dependencies
+FROM node:18-alpine AS builder
+WORKDIR /app
+COPY package*.json ./
+RUN npm ci --only=production --ignore-scripts
+
+# Stage 2: Productive runner
+FROM node:18-alpine AS runner
+WORKDIR /app
+COPY --from=builder /app/node_modules ./node_modules
+COPY . .
+ENV NODE_ENV=production
+ENV PORT=5000
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+  CMD wget --no-verbose --tries=1 --spider http://localhost:5000/api/health || exit 1
+
+EXPOSE 5000
+CMD ["node", "server.js"]</code></pre>
+            <p>
+              For rapid local testing, the root <code>docker-compose.yml</code> coordinates all 5 services alongside the database and monitoring dependencies (MongoDB, Prometheus, Grafana, Node Exporter, cAdvisor) with a single command:
+            </p>
+            <pre><code class="language-bash">docker-compose up -d --build</code></pre>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">4. Automated CI/CD & Deployments (AWS, Vercel, Railway)</h2>
+            <p>
+              The CI/CD pipeline, powered by GitHub Actions, is broken down into three specialized workflows:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>ci-test.yml</strong>: Triggered on Pull Requests to execute Jest tests, lint configurations, and scan for CVE vulnerabilities using <em>Trivy</em>.</li>
+              <li><strong>docker-build-push.yml</strong>: Builds parallel multi-arch images (amd64/arm64) and pushes them to GitHub Container Registry (ghcr.io).</li>
+              <li><strong>deploy-production.yml</strong>: Connects to the host server via SSH to perform a zero-downtime rolling pull and deployment restart.</li>
+            </ul>
+
+            <h3 class="text-lg font-bold text-slate-800 dark:text-slate-300 mt-4 mb-2">4.1 Enterprise CI/CD Pipeline Breakdown</h3>
+            <p>
+              FoodFast enforces fully automated, zero-human-intervention deployment flows using a suite of integrated GitHub Actions workflows:
+            </p>
+            
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 1: Continuous Integration (CI) & CVE Scanning</span>
+              <p class="text-xs text-slate-400">
+                Triggered on Pull Requests or direct commits to dev branches, the <code>ci-test.yml</code> workflow runs:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Installs Node modules, leveraging <code>actions/cache</code> on <code>node_modules</code> to slash build times by 2x.</li>
+                <li>Runs static code analysis and dependency vulnerability testing using <strong>Trivy CLI</strong> to spot credentials leaks and insecure NPM dependencies.</li>
+                <li>Executes Jest unit suites and tests code syntax styling with ESLint before letting developers merge.</li>
+              </ul>
+            </div>
+
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 2: Parallel Multi-Arch Docker Builds</span>
+              <p class="text-xs text-slate-400">
+                Once updates are merged into <code>main</code>, the <code>docker-build-push.yml</code> workflow is initiated:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Leverages <strong>QEMU</strong> and <strong>Docker Buildx</strong> to compile images in parallel for <code>linux/amd64</code> (standard servers) and <code>linux/arm64</code> (AWS Graviton and M-series chips).</li>
+                <li>Pushes tagged container images directly to **GitHub Container Registry (ghcr.io)**.</li>
+              </ul>
+            </div>
+
+            <div class="my-4 p-4 bg-slate-900/50 rounded-lg border border-white/5">
+              <span class="text-xs font-bold text-indigo-400 block mb-2 font-mono">Workflow 3: SSH Zero-Downtime Deployment</span>
+              <p class="text-xs text-slate-400">
+                When new images are pushed, the <code>deploy-production.yml</code> handles updates:
+              </p>
+              <ul class="list-disc pl-5 mt-2 space-y-1 text-xs text-slate-400">
+                <li>Opens a secure SSH tunnel to the host virtual machine using public-key credentials stored in GitHub Secrets.</li>
+                <li>Pulls the latest images from <code>ghcr.io</code>, transfers updated configurations, and triggers a rolling container replacement to swap ports without dropping client traffic.</li>
+              </ul>
+            </div>
+            
+            <p>
+              For maximum flexibility, three deployment methods are supported:
+            </p>
+            <div class="my-4 p-4 bg-indigo-500/10 border-l-4 border-primary rounded-r-lg">
+              <ul class="list-decimal pl-5 space-y-2 text-sm">
+                <li><strong>Tri-Platform Hybrid Deploy</strong>: Hosts the three static React frontends on <strong>Vercel</strong> for ultra-fast CDN edge delivery, while deploying the Node Express server onto <strong>Railway</strong> connected to a cloud-managed MongoDB instance.</li>
+                <li><strong>Kubernetes Cluster (AWS EKS)</strong>: Deploys all services under a production K8s cluster distributed by an AWS ALB Ingress Controller.</li>
+                <li><strong>On-Premise Docker Compose</strong>: Runs the entire microservice ecosystem on a single VM (like AWS EC2) with full environment configuration files.</li>
+              </ul>
+            </div>
+
+            <!-- Deploy Platforms Screenshots Grid (EN) -->
+            <div class="space-y-6 mt-10">
+              <span class="text-sm font-semibold text-primary block font-mono">🌐 Detailed Multi-Platform Deployment Previews (Slideshow)</span>
+              
+              <!-- Vercel -->
+              <div class="space-y-2">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 1. Build and Deployments on Vercel</span>
+                <div class="foodfast-carousel" data-section="vercel-en" data-images='[
+                  {"src": "images_blogs/foodfast/Vercel/1.png", "title": "Vercel project overview dashboard"},
+                  {"src": "images_blogs/foodfast/Vercel/2.png", "title": "Deployments history tracking"},
+                  {"src": "images_blogs/foodfast/Vercel/3.png", "title": "Custom domain configuration for Client App"},
+                  {"src": "images_blogs/foodfast/Vercel/4.png", "title": "Framework configuration for Restaurant App"},
+                  {"src": "images_blogs/foodfast/Vercel/5.png", "title": "Framework configuration for Admin App"},
+                  {"src": "images_blogs/foodfast/Vercel/6.png", "title": "Framework configuration for Client App"},
+                  {"src": "images_blogs/foodfast/Vercel/7.png", "title": "Connected git branches dashboard"},
+                  {"src": "images_blogs/foodfast/Vercel/8.png", "title": "Build logs and deployment details"}
+                ]'></div>
+              </div>
+
+              <!-- Railway -->
+              <div class="space-y-2 mt-6">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 2. NodeJS API Hosting on Railway</span>
+                <div class="foodfast-carousel" data-section="railway-en" data-images='[
+                  {"src": "images_blogs/foodfast/Railway/1.png", "title": "Railway environment dashboard overview"},
+                  {"src": "images_blogs/foodfast/Railway/2.png", "title": "Environment variables configuration panel"},
+                  {"src": "images_blogs/foodfast/Railway/3.png", "title": "Express API Server execution logs"},
+                  {"src": "images_blogs/foodfast/Railway/4.png", "title": "CPU and Memory consumption status"},
+                  {"src": "images_blogs/foodfast/Railway/5.png", "title": "Deployment triggers setup"},
+                  {"src": "images_blogs/foodfast/Railway/6.png", "title": "Railway deployments history list"}
+                ]'></div>
+              </div>
+
+              <!-- AWS -->
+              <div class="space-y-2 mt-6">
+                <span class="text-xs font-semibold text-indigo-400 block font-mono">⚡ 3. VM & Git Workflows on AWS EC2</span>
+                <div class="foodfast-carousel" data-section="aws-en" data-images='[
+                  {"src": "images_blogs/foodfast/AWS/1.png", "title": "AWS EC2 compute instance dashboard"},
+                  {"src": "images_blogs/foodfast/AWS/2.png", "title": "Security group inbound/outbound setup"},
+                  {"src": "images_blogs/foodfast/AWS/3.png", "title": "EC2 resources searching panel"},
+                  {"src": "images_blogs/foodfast/AWS/4.png", "title": "Running Docker containers overview"},
+                  {"src": "images_blogs/foodfast/AWS/5.png", "title": "GitHub Actions workflow execution status"},
+                  {"src": "images_blogs/foodfast/AWS/6.png", "title": "GitHub secrets variables management"},
+                  {"src": "images_blogs/foodfast/AWS/7.png", "title": "Branch protection and security constraints"},
+                  {"src": "images_blogs/foodfast/AWS/8.png", "title": "Required checks validation status"}
+                ]'></div>
+              </div>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">5. Real-time Monitoring & Observability (Prometheus + Grafana)</h2>
+            <p>
+              To keep tabs on the system's operational health, we configured an intensive observability stack:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Prometheus Scraper</strong>: Pulls application metrics from the API endpoint <code>/metrics</code> (instrumented with <code>prom-client</code>), combined with server metrics from <strong>Node Exporter</strong> and Docker resource stats from <strong>cAdvisor</strong>.</li>
+              <li><strong>Grafana Dashboard</strong>: Visualizes network bandwidth, request latency percentiles, memory consumption, alongside custom business metrics (Active Orders count, Drone states, and battery charts).</li>
+            </ul>
+
+            <pre><code class="language-yaml"># prometheus.yml config excerpt
+scrape_configs:
+  - job_name: 'foodfast-api'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['server_app:5000']
+  - job_name: 'cadvisor'
+    static_configs:
+      - targets: ['cadvisor:8080']</code></pre>
+
+            <p>
+              Alertmanager rules are set up to trigger notifications for system anomalies: container health failures (ServiceDown), high average latencies (>1s), excessive HTTP errors (>5%), or critically low available drones (<5).
+            </p>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">6. Kubernetes Orchestration: Auto Scaling & Auto Healing</h2>
+            <p>
+              When deployed under Kubernetes, the system handles fluctuations in traffic and faults automatically:
+            </p>
+            
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Horizontal Pod Autoscaler (HPA)</h3>
+            <p>
+              An HPA controller dynamically scales server and client pod replicas (between 1 and 3) based on CPU (>20%) and Memory (>70%) consumption targets, allowing the system to react instantly to request surges:
+            </p>
+            <pre><code class="language-yaml">apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: foodfast-server-hpa
+  namespace: foodfast
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: foodfast-server
+  minReplicas: 1
+  maxReplicas: 3
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 20</code></pre>
+
+            <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-6 mb-3">Auto Healing</h3>
+            <p>
+              Liveness and Readiness probes are attached to the API deployment, pointing to the Express <code>/api/health</code> endpoint. If a container hangs (e.g., due to an out-of-memory leak or database blocking), the liveness probe fails 3 times, prompting Kubernetes to automatically terminate the unhealthy pod and spawn a new one.
+            </p>
+
+            <div class="my-4 p-4 bg-pink-500/10 border-l-4 border-accent rounded-r-lg">
+              <span class="font-bold text-slate-950 dark:text-white">💡 Verified Stress Scenario:</span>
+              <p class="text-sm mt-1">
+                Using our automated load-generation script <code>run-autoscaling-demo.sh</code>, we simulated high traffic and injected an infinite loop execution into the server pods. The HPA quickly detected CPU usage rising to 90%, scaling up replicas from 1 to 3 in less than 15 seconds, successfully distributing the requests and keeping the application online.
+              </p>
+            </div>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">7. Summary & Takeaways</h2>
+            <p>
+              FoodFast serves as a practical, production-level case study on applying modern DevOps patterns to a real-world microservices architecture. Key engineering takeaways include:
+            </p>
+            <ul class="list-disc pl-6 space-y-1.5">
+              <li><strong>Container Optimization</strong>: Multi-stage Docker files and Kubernetes resource limits prevent resource starvation and cascade failures.</li>
+              <li><strong>Observability is Key</strong>: Correlating system health metrics (like CPU and network) with business metrics (such as active orders) yields actionable insights for scaling.</li>
+              <li><strong>Flexible Deployment Pipelines</strong>: Supporting local docker-compose, hybrid platforms, and full Kubernetes deployments ensures development speed without sacrificing production stability.</li>
+            </ul>
+
+            <h2 class="text-2xl font-bold text-slate-900 dark:text-white mt-10 mb-4 border-b border-slate-200 dark:border-white/5 pb-2">8. References</h2>
+            <p>
+              Official documentation used to validate the infrastructure and deployment approach in FoodFast:
+            </p>
+            <div class="grid gap-3 sm:grid-cols-2">
+              <a href="https://docs.aws.amazon.com/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">AWS Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Reference for EC2, networking, security groups, and cloud infrastructure.</span>
+              </a>
+              <a href="https://vercel.com/docs" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Vercel Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Reference for frontend deploys, domain setup, and build configuration.</span>
+              </a>
+              <a href="https://docs.railway.com/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Railway Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Reference for backend hosting, environment variables, and deployments.</span>
+              </a>
+              <a href="https://grafana.com/docs/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Grafana Docs</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Reference for dashboards, datasources, and alerting.</span>
+              </a>
+              <a href="https://prometheus.io/docs/prometheus/latest/getting_started/" target="_blank" rel="noopener noreferrer" class="block p-4 rounded-xl border border-slate-200 dark:border-slate-800/80 bg-white dark:bg-slate-900 shadow-sm hover:border-primary hover:shadow-md hover:scale-[1.01] hover:bg-slate-50 dark:hover:bg-slate-800/80 transition-all duration-300 sm:col-span-2">
+                <span class="text-sm font-semibold text-slate-900 dark:text-white block">Prometheus Getting Started</span>
+                <span class="text-xs text-slate-500 dark:text-slate-400">Reference for scraping metrics, alert rules, and monitoring stack setup.</span>
+              </a>
+            </div>
+          </div>
+
+        </article>
+
+        <!-- Back to Blog Button Footer -->
+        <div class="mt-12 pt-6 border-t border-slate-200 dark:border-white/5 flex justify-between items-center">
+          <a href="blog.html" class="inline-flex items-center gap-2 text-sm font-semibold text-primary hover:text-indigo-700 dark:hover:text-indigo-400 transition">
+            <i class="fas fa-arrow-left"></i>
+            <span id="back-to-articles-text">Quay lại danh sách bài viết</span>
+          </a>
+          <span class="text-xs text-slate-400">© 2026 Phu Kiet</span>
+        </div>
+      </div>
+    </main>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[200] hidden bg-slate-950/90 backdrop-blur-md overflow-auto items-center justify-center p-4">
+      <button id="lightbox-close" class="absolute top-4 right-4 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition z-50" title="Close">
+        <i class="fas fa-times"></i>
+      </button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition animate-pulse z-50" title="Previous">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center text-xl transition animate-pulse z-50" title="Next">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="max-w-4xl max-h-[90vh] flex flex-col items-center gap-4 m-auto">
+        <img id="lightbox-img" src="" alt="Full size preview" class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl border border-white/10 transition-all duration-300" />
+        <span id="lightbox-caption" class="text-white text-sm font-medium tracking-wide bg-slate-900/80 px-4 py-2 rounded-full border border-white/5 backdrop-blur-sm"></span>
+      </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+      // Theme Toggle Logic
+      const html = document.documentElement;
+      const savedTheme = localStorage.getItem("theme") || "light";
+      if (savedTheme === "dark") html.classList.add("dark");
+
+      document.getElementById("theme-toggle").addEventListener("click", () => {
+        html.classList.toggle("dark");
+        localStorage.setItem("theme", html.classList.contains("dark") ? "dark" : "light");
+      });
+
+      // Reading progress bar logic
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const percentage = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+        document.getElementById("reading-progress").style.width = percentage + "%";
+      });
+
+      // Language Switcher Logic
+      const articleTitles = {
+        vi: "FoodFast Drone Delivery: Vận Hành Hệ Thống DevOps Tiêu Chuẩn Sản Xuất",
+        en: "FoodFast Drone Delivery: Production-Grade DevOps & Orchestration"
+      };
+      
+      const backTexts = {
+        vi: "Quay lại danh sách bài viết",
+        en: "Back to Articles"
+      };
+
+      function switchLang(lang) {
+        const contentVi = document.getElementById("content-vi");
+        const contentEn = document.getElementById("content-en");
+        const btnVi = document.getElementById("btn-lang-vi");
+        const btnEn = document.getElementById("btn-lang-en");
+        const titleElement = document.getElementById("article-title");
+        const backTextElement = document.getElementById("back-to-articles-text");
+
+        localStorage.setItem("lang", lang);
+
+        if (lang === "en") {
+          contentVi.classList.add("hidden");
+          contentEn.classList.remove("hidden");
+          
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.en;
+          backTextElement.textContent = backTexts.en;
+        } else {
+          contentVi.classList.remove("hidden");
+          contentEn.classList.add("hidden");
+          
+          btnVi.className = "px-3 py-1 rounded-lg text-xs font-bold bg-primary text-white transition-all shadow-sm";
+          btnEn.className = "px-3 py-1 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-400 hover:bg-slate-200 dark:hover:bg-slate-800 transition-all";
+          
+          titleElement.textContent = articleTitles.vi;
+          backTextElement.textContent = backTexts.vi;
+        }
+      }
+
+      // Set initial language preference (defaults to English)
+      switchLang(localStorage.getItem("lang") || "en");
+
+      // Lightbox Logic
+      const lightboxModal = document.getElementById("lightbox-modal");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxPrev = document.getElementById("lightbox-prev");
+      const lightboxNext = document.getElementById("lightbox-next");
+
+      let currentImagesList = [];
+      let currentImageIndex = 0;
+
+      function openLightbox() {
+        if (currentImagesList.length === 0) return;
+        const activeImg = currentImagesList[currentImageIndex];
+        lightboxImg.src = activeImg.src || activeImg.getAttribute("src");
+        lightboxImg.alt = activeImg.alt || activeImg.getAttribute("alt");
+        lightboxCaption.textContent = activeImg.alt || activeImg.getAttribute("alt");
+        
+        if (currentImagesList.length > 1) {
+          lightboxPrev.classList.remove("hidden");
+          lightboxNext.classList.remove("hidden");
+        } else {
+          lightboxPrev.classList.add("hidden");
+          lightboxNext.classList.add("hidden");
+        }
+
+        lightboxModal.classList.remove("hidden");
+        lightboxModal.classList.add("flex");
+        document.body.classList.add("overflow-hidden");
+      }
+
+      function openLightboxForDiagram(clickedImg) {
+        const parentContainer = clickedImg.closest("#content-vi, #content-en") || document;
+        const siblings = Array.from(parentContainer.querySelectorAll(".lightbox-diagram"));
+        currentImagesList = siblings.map(img => ({
+          src: img.src || img.getAttribute("src"),
+          alt: img.alt || img.getAttribute("alt")
+        }));
+        currentImageIndex = siblings.indexOf(clickedImg);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        openLightbox();
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.add("hidden");
+        lightboxModal.classList.remove("flex");
+        document.body.classList.remove("overflow-hidden");
+        lightboxImg.classList.remove("zoomed");
+      }
+
+      function nextImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % currentImagesList.length;
+        openLightbox();
+      }
+
+      function prevImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + currentImagesList.length) % currentImagesList.length;
+        openLightbox();
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxNext.addEventListener("click", nextImage);
+      lightboxPrev.addEventListener("click", prevImage);
+      
+      lightboxImg.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxImg.classList.toggle("zoomed");
+      });
+      
+      lightboxModal.addEventListener("click", (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (lightboxModal.classList.contains("hidden")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+      });
+
+      // Dynamic Carousel Logic
+      function initCarousels() {
+        const carouselContainers = document.querySelectorAll(".foodfast-carousel");
+        
+        carouselContainers.forEach(container => {
+          const sectionId = container.getAttribute("data-section");
+          const images = JSON.parse(container.getAttribute("data-images"));
+          if (!images || images.length === 0) return;
+
+          let activeIndex = 0;
+
+          // Build HTML structure
+          container.className = "border border-slate-200/80 dark:border-white/5 rounded-xl overflow-hidden bg-slate-950/20 p-3 flex flex-col justify-between shadow-md mt-4";
+          
+          // Viewport
+          const viewport = document.createElement("div");
+          viewport.className = "foodfast-carousel-main relative flex items-center justify-center bg-slate-950/40 rounded-lg group overflow-hidden";
+          
+          const img = document.createElement("img");
+          img.src = images[activeIndex].src;
+          img.alt = images[activeIndex].title;
+          img.className = "max-w-full max-h-full object-contain rounded cursor-zoom-in hover:scale-[1.01] transition-transform duration-300";
+          viewport.appendChild(img);
+
+          // Left/Right buttons
+          const prevBtn = document.createElement("button");
+          prevBtn.className = "absolute left-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg";
+          prevBtn.innerHTML = '<i class="fas fa-chevron-left"></i>';
+          viewport.appendChild(prevBtn);
+
+          const nextBtn = document.createElement("button");
+          nextBtn.className = "absolute right-3 top-1/2 -translate-y-1/2 w-10 h-10 rounded-full bg-slate-900/60 hover:bg-slate-900/85 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg";
+          nextBtn.innerHTML = '<i class="fas fa-chevron-right"></i>';
+          viewport.appendChild(nextBtn);
+
+          container.appendChild(viewport);
+
+          // Caption & Indicator
+          const infoDiv = document.createElement("div");
+          infoDiv.className = "mt-3 flex justify-between items-center px-2 gap-2";
+          
+          const caption = document.createElement("span");
+          caption.className = "text-xs sm:text-sm font-semibold text-slate-700 dark:text-slate-300 text-left font-mono";
+          caption.textContent = images[activeIndex].title;
+          infoDiv.appendChild(caption);
+
+          const indicator = document.createElement("span");
+          indicator.className = "text-xs text-slate-400 font-medium whitespace-nowrap bg-slate-800/40 px-2 py-0.5 rounded font-mono";
+          indicator.textContent = `1 / ${images.length}`;
+          infoDiv.appendChild(indicator);
+
+          container.appendChild(infoDiv);
+
+          // Thumbnails
+          const thumbsDiv = document.createElement("div");
+          thumbsDiv.className = "flex gap-2 overflow-x-auto py-2 px-1 mt-2 max-w-full justify-start scrollbar-thin";
+          
+          images.forEach((imgData, idx) => {
+            const thumb = document.createElement("img");
+            thumb.src = imgData.src;
+            thumb.alt = imgData.title;
+            thumb.className = `w-14 h-10 sm:w-16 sm:h-12 object-contain bg-slate-950/60 rounded border-2 cursor-pointer hover:opacity-100 transition-all ${idx === 0 ? 'border-primary opacity-100' : 'border-transparent opacity-60'}`;
+            
+            thumb.addEventListener("click", () => {
+              updateCarousel(idx);
+            });
+            thumbsDiv.appendChild(thumb);
+          });
+          container.appendChild(thumbsDiv);
+
+          // Update function
+          function updateCarousel(newIdx) {
+            activeIndex = (newIdx + images.length) % images.length;
+            img.src = images[activeIndex].src;
+            img.alt = images[activeIndex].title;
+            caption.textContent = images[activeIndex].title;
+            indicator.textContent = `${activeIndex + 1} / ${images.length}`;
+
+            // Update active thumbnail
+            const thumbs = thumbsDiv.querySelectorAll("img");
+            thumbs.forEach((t, i) => {
+              if (i === activeIndex) {
+                t.className = "w-14 h-10 sm:w-16 sm:h-12 object-contain bg-slate-950/60 rounded border-2 cursor-pointer hover:opacity-100 transition-all border-primary opacity-100";
+                t.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+              } else {
+                t.className = "w-14 h-10 sm:w-16 sm:h-12 object-contain bg-slate-950/60 rounded border-2 cursor-pointer hover:opacity-100 transition-all border-transparent opacity-60";
+              }
+            });
+          }
+
+          // Handlers
+          prevBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            updateCarousel(activeIndex - 1);
+          });
+          nextBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            updateCarousel(activeIndex + 1);
+          });
+
+          // Zoom image -> opens Lightbox with the current active images array!
+          img.addEventListener("click", () => {
+            currentImagesList = images.map(imgData => {
+              const dummyImg = document.createElement("img");
+              dummyImg.src = imgData.src;
+              dummyImg.alt = imgData.title;
+              return dummyImg;
+            });
+            currentImageIndex = activeIndex;
+            openLightbox();
+          });
+        });
+      }
+
+      initCarousels();
+    </script>
+  </body>
+</html>

@@ -40,6 +40,20 @@
           radial-gradient(circle at 15% 15%, rgba(99,102,241,0.05), transparent 30%),
           radial-gradient(circle at 85% 85%, rgba(236,72,153,0.04), transparent 30%);
       }
+      /* Zoom rules for Lightbox Details */
+      #lightbox-modal {
+        overflow-y: auto;
+        overflow-x: auto;
+      }
+      #lightbox-img {
+        transition: transform 0.3s ease, max-width 0.3s ease, max-height 0.3s ease;
+        cursor: zoom-in;
+      }
+      #lightbox-img.zoomed {
+        max-width: 250% !important;
+        max-height: none !important;
+        cursor: zoom-out;
+      }
     </style>
   </head>
   <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
@@ -167,22 +181,22 @@
               <div class="relative h-[250px] sm:h-[400px] overflow-hidden rounded-xl flex items-center justify-center bg-slate-950/10">
                 <!-- Slides -->
                 <div class="carousel-slide-vi absolute inset-0 opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Học bổng 1" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Học bổng 1" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Học bổng 2" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Học bổng 2" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Học bổng 3" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Học bổng 3" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Học bổng 4" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Học bổng 4" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Học bổng 5" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Học bổng 5" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-vi absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Học bổng 6" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Học bổng 6" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 
                 <!-- Navigation Arrows -->
@@ -1338,22 +1352,22 @@
               <div class="relative h-[250px] sm:h-[400px] overflow-hidden rounded-xl flex items-center justify-center bg-slate-950/10">
                 <!-- Slides -->
                 <div class="carousel-slide-en absolute inset-0 opacity-100 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Scholarship 1" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar1.png" alt="Scholarship 1" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Scholarship 2" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar2.jpg" alt="Scholarship 2" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Scholarship 3" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar3.jpg" alt="Scholarship 3" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Scholarship 4" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar4.jpg" alt="Scholarship 4" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Scholarship 5" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar5.jpg" alt="Scholarship 5" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 <div class="carousel-slide-en absolute inset-0 opacity-0 transition-opacity duration-500 flex items-center justify-center">
-                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Scholarship 6" class="max-w-full max-h-full object-contain" />
+                  <img src="images_blogs/scholar_in_university/scholar6.png" alt="Scholarship 6" class="max-w-full max-h-full object-contain cursor-zoom-in lightbox-diagram" onclick="openLightboxForDiagram(this)" />
                 </div>
                 
                 <!-- Navigation Arrows -->
@@ -2688,6 +2702,111 @@
 
       // Set initial language preference (defaults to English)
       switchLang(localStorage.getItem("lang") || "en");
+
+      // Lightbox Modal Logic
+      const lightboxModal = document.getElementById("lightbox-modal");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxCaption = document.getElementById("lightbox-caption");
+      const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxPrev = document.getElementById("lightbox-prev");
+      const lightboxNext = document.getElementById("lightbox-next");
+
+      let currentImagesList = [];
+      let currentImageIndex = 0;
+
+      function openLightbox() {
+        if (currentImagesList.length === 0) return;
+        const activeImg = currentImagesList[currentImageIndex];
+        lightboxImg.src = activeImg.src;
+        lightboxImg.alt = activeImg.alt;
+        lightboxCaption.textContent = activeImg.alt;
+        
+        if (currentImagesList.length > 1) {
+          lightboxPrev.classList.remove("hidden");
+          lightboxNext.classList.remove("hidden");
+        } else {
+          lightboxPrev.classList.add("hidden");
+          lightboxNext.classList.add("hidden");
+        }
+
+        lightboxModal.classList.remove("hidden");
+        lightboxModal.classList.add("flex");
+        document.body.classList.add("overflow-hidden");
+      }
+
+      function openLightboxFromSrc(src, alt) {
+        currentImagesList = [{ src: src, alt: alt }];
+        currentImageIndex = 0;
+        openLightbox();
+      }
+
+      function openLightboxForDiagram(clickedImg) {
+        const parentContainer = clickedImg.closest("#content-vi, #content-en") || document;
+        const siblings = Array.from(parentContainer.querySelectorAll(".lightbox-diagram"));
+        currentImagesList = siblings.map(img => ({
+          src: img.src || img.getAttribute("src"),
+          alt: img.alt || img.getAttribute("alt")
+        }));
+        currentImageIndex = siblings.indexOf(clickedImg);
+        if (currentImageIndex === -1) currentImageIndex = 0;
+        openLightbox();
+      }
+
+      function closeLightbox() {
+        lightboxModal.classList.add("hidden");
+        lightboxModal.classList.remove("flex");
+        document.body.classList.remove("overflow-hidden");
+        lightboxImg.classList.remove("zoomed");
+      }
+
+      function nextImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % currentImagesList.length;
+        openLightbox();
+      }
+
+      function prevImage() {
+        if (currentImagesList.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + currentImagesList.length) % currentImagesList.length;
+        openLightbox();
+      }
+
+      lightboxClose.addEventListener("click", closeLightbox);
+      lightboxNext.addEventListener("click", nextImage);
+      lightboxPrev.addEventListener("click", prevImage);
+      
+      lightboxImg.addEventListener("click", (e) => {
+        e.stopPropagation();
+        lightboxImg.classList.toggle("zoomed");
+      });
+      
+      lightboxModal.addEventListener("click", (e) => {
+        if (e.target === lightboxModal) closeLightbox();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (lightboxModal.classList.contains("hidden")) return;
+        if (e.key === "Escape") closeLightbox();
+        if (e.key === "ArrowRight") nextImage();
+        if (e.key === "ArrowLeft") prevImage();
+      });
     </script>
+
+    <!-- Lightbox Zoom Modal Component -->
+    <div id="lightbox-modal" class="fixed inset-0 z-[150] bg-slate-950/95 backdrop-blur-md hidden overflow-auto items-center justify-center p-4">
+      <button id="lightbox-close" class="absolute top-6 right-6 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Close (Esc)">
+        <i class="fas fa-times"></i>
+      </button>
+      <button id="lightbox-prev" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Previous (ArrowLeft)">
+        <i class="fas fa-chevron-left"></i>
+      </button>
+      <button id="lightbox-next" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 text-white text-xl flex items-center justify-center transition cursor-pointer z-50" title="Next (ArrowRight)">
+        <i class="fas fa-chevron-right"></i>
+      </button>
+      <div class="max-w-4xl max-h-[90vh] flex flex-col items-center justify-center relative m-auto">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[75vh] object-contain rounded-lg shadow-2xl transition-all duration-300" />
+        <span id="lightbox-caption" class="text-sm text-slate-300 font-medium text-center mt-4 max-w-2xl font-mono"></span>
+      </div>
+    </div>
   </body>
 </html>
