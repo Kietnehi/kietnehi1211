@@ -458,69 +458,221 @@
   const canvas = document.getElementById("loader-particles");
   const progressBar = document.getElementById("loader-progress-bar");
   const percentEl = document.getElementById("loader-percent");
-  const ringCircle = document.getElementById("loader-ring-circle");
 
-  // --- Particle system ---
+  // --- Particle & Neural Network system ---
   if (canvas) {
     const ctx = canvas.getContext("2d");
-    let W, H, particles = [];
-    const PARTICLE_COUNT = window.innerWidth < 768 ? 50 : 90;
+    let W, H;
+    let particles = [];
+    let pulses = [];
+    const MAX_PULSES = 7;
+    const CONNECTION_DIST = 130;
+    let PARTICLE_COUNT = window.innerWidth < 768 ? 25 : 50;
+
+    let mouse = { x: 0, y: 0, active: false };
+
+    // Capture mouse moves inside the preloader container
+    loader.addEventListener("mousemove", (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+      mouse.active = true;
+    });
+
+    loader.addEventListener("mouseleave", () => {
+      mouse.active = false;
+    });
+
+    // Custom colors matching the design system
+    const COLORS = [
+      { r: 0, g: 242, b: 254 },   // Cyan
+      { r: 124, g: 58, b: 237 },  // Violet
+      { r: 59, g: 130, b: 246 },  // Blue
+      { r: 255, g: 255, b: 255 }  // White/Highlight
+    ];
 
     function resizeCanvas() {
       W = canvas.width = window.innerWidth;
       H = canvas.height = window.innerHeight;
+      PARTICLE_COUNT = window.innerWidth < 768 ? 25 : 50;
+    }
+
+    function getRandomColor() {
+      return COLORS[Math.floor(Math.random() * COLORS.length)];
     }
 
     function createParticle() {
+      const color = getRandomColor();
       return {
         x: Math.random() * W,
         y: Math.random() * H,
-        vx: (Math.random() - 0.5) * 0.4,
-        vy: (Math.random() - 0.5) * 0.4,
-        r: Math.random() * 2 + 0.5,
-        alpha: Math.random() * 0.4 + 0.1,
+        vx: (Math.random() - 0.5) * 0.25,
+        vy: (Math.random() - 0.5) * 0.25,
+        r: Math.random() * 1.8 + 1, // 1 to 2.8
+        color: color,
+        alpha: Math.random() * 0.4 + 0.35, // 0.35 to 0.75
+        isGlowNode: Math.random() > 0.88 // ~12% chance to be a glowing neural hub node
       };
     }
 
     function initParticles() {
       resizeCanvas();
       particles = Array.from({ length: PARTICLE_COUNT }, createParticle);
+      pulses = [];
     }
 
     function drawParticles() {
       ctx.clearRect(0, 0, W, H);
 
-      // Draw connections
+      const activeConnections = [];
+      const CONNECTION_DIST_SQ = CONNECTION_DIST * CONNECTION_DIST;
+
+      // OPTIMIZATION: Batch connection line drawing into a single path
+      ctx.beginPath();
+      ctx.strokeStyle = "rgba(0, 242, 254, 0.08)";
+      ctx.lineWidth = 0.5;
+
       for (let i = 0; i < particles.length; i++) {
         for (let j = i + 1; j < particles.length; j++) {
           const dx = particles[i].x - particles[j].x;
           const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            const alpha = (1 - dist / 120) * 0.12;
-            ctx.strokeStyle = `rgba(99,102,241,${alpha})`;
-            ctx.lineWidth = 0.5;
-            ctx.beginPath();
+          const distSq = dx * dx + dy * dy;
+          
+          if (distSq < CONNECTION_DIST_SQ) {
+            const dist = Math.sqrt(distSq);
+            activeConnections.push({ p1: particles[i], p2: particles[j], dist: dist });
+            
+            // Add connection line segment to batch path
             ctx.moveTo(particles[i].x, particles[i].y);
             ctx.lineTo(particles[j].x, particles[j].y);
-            ctx.stroke();
           }
         }
+      }
+      ctx.stroke(); // Draw all connection lines in one single call!
+
+      // OPTIMIZATION: Batch mouse connections
+      if (mouse.active) {
+        ctx.beginPath();
+        ctx.strokeStyle = "rgba(0, 242, 254, 0.07)";
+        ctx.lineWidth = 0.5;
+        const MOUSE_DIST_SQ = 150 * 150;
+        const MOUSE_PULL_SQ = 180 * 180;
+
+        particles.forEach((p) => {
+          const mdx = mouse.x - p.x;
+          const mdy = mouse.y - p.y;
+          const mdistSq = mdx * mdx + mdy * mdy;
+          
+          if (mdistSq < MOUSE_PULL_SQ) {
+            const mdist = Math.sqrt(mdistSq);
+            // Apply gentle gravity pull
+            const force = (180 - mdist) / 180;
+            p.vx += (mdx / mdist) * force * 0.02;
+            p.vy += (mdy / mdist) * force * 0.02;
+            
+            if (mdistSq < MOUSE_DIST_SQ) {
+              ctx.moveTo(p.x, p.y);
+              ctx.lineTo(mouse.x, mouse.y);
+            }
+          }
+        });
+        ctx.stroke(); // Draw all mouse connection lines in one call!
       }
 
       // Draw & move particles
       particles.forEach((p) => {
+        // Apply velocity
         p.x += p.vx;
         p.y += p.vy;
-        if (p.x < 0 || p.x > W) p.vx *= -1;
-        if (p.y < 0 || p.y > H) p.vy *= -1;
+        
+        // Damp velocity to keep movement smooth and prevent acceleration explosion
+        p.vx *= 0.98;
+        p.vy *= 0.98;
 
+        // Caps max speed
+        const speed = Math.sqrt(p.vx * p.vx + p.vy * p.vy);
+        const maxSpeed = 0.5;
+        if (speed > maxSpeed) {
+          p.vx = (p.vx / speed) * maxSpeed;
+          p.vy = (p.vy / speed) * maxSpeed;
+        }
+
+        // Bounce on boundaries
+        if (p.x < 0) { p.x = 0; p.vx *= -1; }
+        else if (p.x > W) { p.x = W; p.vx *= -1; }
+        
+        if (p.y < 0) { p.y = 0; p.vy *= -1; }
+        else if (p.y > H) { p.y = H; p.vy *= -1; }
+
+        // Draw node glow (double circle)
+        if (p.isGlowNode) {
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 2.5, 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${(p.alpha * 0.12).toFixed(3)})`;
+          ctx.fill();
+        }
+
+        // Draw node core
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(139,92,246,${p.alpha})`;
+        ctx.fillStyle = `rgba(${p.color.r}, ${p.color.g}, ${p.color.b}, ${p.alpha.toFixed(3)})`;
         ctx.fill();
       });
 
+      // Spawn pulses randomly on active connections
+      if (activeConnections.length > 0 && pulses.length < MAX_PULSES && Math.random() < 0.04) {
+        const conn = activeConnections[Math.floor(Math.random() * activeConnections.length)];
+        const startNode = Math.random() > 0.5 ? conn.p1 : conn.p2;
+        const endNode = startNode === conn.p1 ? conn.p2 : conn.p1;
+        
+        pulses.push({
+          from: startNode,
+          to: endNode,
+          progress: 0,
+          speed: 0.007 + Math.random() * 0.008,
+          color: startNode.color,
+          r: Math.random() * 1.0 + 1.0,
+          history: [] // positions trail
+        });
+      }
+
+      // Update and draw active pulses with fading trails (shorter trails for performance)
+      for (let i = pulses.length - 1; i >= 0; i--) {
+        const pulse = pulses[i];
+        
+        // Calculate current position
+        const px = pulse.from.x + (pulse.to.x - pulse.from.x) * pulse.progress;
+        const py = pulse.from.y + (pulse.to.y - pulse.from.y) * pulse.progress;
+
+        // Update trail history (max 4 points for performance)
+        pulse.history.push({ x: px, y: py });
+        if (pulse.history.length > 4) {
+          pulse.history.shift();
+        }
+
+        // Draw trail dots
+        pulse.history.forEach((pt, idx) => {
+          const ratio = idx / pulse.history.length;
+          const trailAlpha = 0.4 * ratio;
+          ctx.beginPath();
+          ctx.arc(pt.x, pt.y, pulse.r * (0.5 + 0.5 * ratio), 0, Math.PI * 2);
+          ctx.fillStyle = `rgba(${pulse.color.r}, ${pulse.color.g}, ${pulse.color.b}, ${trailAlpha.toFixed(3)})`;
+          ctx.fill();
+        });
+
+        // Draw primary pulse core
+        ctx.beginPath();
+        ctx.arc(px, py, pulse.r * 1.1, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${pulse.color.r}, ${pulse.color.g}, ${pulse.color.b}, 0.9)`;
+        ctx.fill();
+
+        // Increment progress
+        pulse.progress += pulse.speed;
+        if (pulse.progress >= 1) {
+          pulses.splice(i, 1);
+        }
+      }
+
+      // Loop if not hidden
       if (!loader.classList.contains("hide")) {
         requestAnimationFrame(drawParticles);
       }
@@ -532,7 +684,6 @@
   }
 
   // --- Progress animation ---
-  const CIRCUMFERENCE = 2 * Math.PI * 54; // r=54 from SVG
   const DURATION = 2200; // ms
   let startTime = null;
 
@@ -549,10 +700,6 @@
 
     if (progressBar) progressBar.style.width = percent + "%";
     if (percentEl) percentEl.textContent = percent + "%";
-    if (ringCircle) {
-      ringCircle.style.strokeDashoffset =
-        CIRCUMFERENCE - progress * CIRCUMFERENCE;
-    }
 
     if (rawProgress < 1) {
       requestAnimationFrame(animateProgress);
@@ -566,12 +713,11 @@
     }
   }
 
-  // Start the progress after a short delay so the entrance animation plays first
+  // Start progress bar animation after a short entrance delay
   setTimeout(() => {
     requestAnimationFrame(animateProgress);
   }, 600);
 })();
-
 
 // ===== PROJECT PAGINATION =====
 const projectCards = document.querySelectorAll('.project-card');

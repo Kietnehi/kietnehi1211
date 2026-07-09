@@ -13,7 +13,7 @@
     />
     <!-- Google Fonts -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;800&family=JetBrains+Mono:wght@400;600&display=swap"
       rel="stylesheet"
     />
 <link rel="stylesheet" href="style.css">
@@ -51,32 +51,84 @@
     <div class="loader-orb loader-orb-3" aria-hidden="true"></div>
 
     <div class="loader-content">
-      <!-- Animated logo ring -->
-      <div class="loader-ring-wrap">
-        <svg class="loader-ring" viewBox="0 0 120 120" fill="none">
-          <circle class="loader-ring-track" cx="60" cy="60" r="54" stroke-width="3"/>
-          <circle class="loader-ring-progress" cx="60" cy="60" r="54" stroke-width="3" id="loader-ring-circle"/>
-        </svg>
-        <div class="loader-ring-icon">
-          <span class="loader-code-icon">&lt;/&gt;</span>
+      <div class="loader-card">
+        <!-- Animated AI Neural Icon -->
+        <div class="loader-ai-icon-wrap">
+          <svg class="loader-ai-icon" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="loader-ai-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#00f2fe" />
+                <stop offset="100%" stop-color="#7c3aed" />
+              </linearGradient>
+              <filter id="loader-glow-heavy" x="-30%" y="-30%" width="160%" height="160%">
+                <feGaussianBlur stdDeviation="4" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+              <filter id="loader-glow-subtle" x="-20%" y="-20%" width="140%" height="140%">
+                <feGaussianBlur stdDeviation="2" result="blur" />
+                <feComposite in="SourceGraphic" in2="blur" operator="over" />
+              </filter>
+            </defs>
+            
+            <!-- Outer orbital path (rotating) -->
+            <circle class="ai-orbit-outer" cx="50" cy="50" r="42" stroke="rgba(0, 242, 254, 0.12)" stroke-width="1" stroke-dasharray="10 8" />
+            <circle class="ai-orbit-outer-dot" cx="50" cy="50" r="42" stroke="url(#loader-ai-grad)" stroke-width="2" stroke-dasharray="1 131" stroke-linecap="round" />
+            
+            <!-- Inner orbital path (counter-rotating) -->
+            <circle class="ai-orbit-inner" cx="50" cy="50" r="32" stroke="rgba(124, 58, 237, 0.15)" stroke-width="0.8" stroke-dasharray="6 6" />
+            <circle class="ai-orbit-inner-dot" cx="50" cy="50" r="32" stroke="#00f2fe" stroke-width="1.5" stroke-dasharray="1 100" stroke-linecap="round" />
+            
+            <!-- Complex Neural network grid connections -->
+            <g class="neural-network-grid" opacity="0.6">
+              <!-- Center connections -->
+              <line x1="50" y1="50" x2="38" y2="38" stroke="rgba(0, 242, 254, 0.4)" stroke-width="0.8" />
+              <line x1="50" y1="50" x2="62" y2="38" stroke="rgba(0, 242, 254, 0.4)" stroke-width="0.8" />
+              <line x1="50" y1="50" x2="38" y2="62" stroke="rgba(124, 58, 237, 0.4)" stroke-width="0.8" />
+              <line x1="50" y1="50" x2="62" y2="62" stroke="rgba(124, 58, 237, 0.4)" stroke-width="0.8" />
+              <line x1="50" y1="50" x2="32" y2="50" stroke="rgba(0, 242, 254, 0.3)" stroke-width="0.8" />
+              <line x1="50" y1="50" x2="68" y2="50" stroke="rgba(124, 58, 237, 0.3)" stroke-width="0.8" />
+              
+              <!-- Outer border ring connections -->
+              <path d="M38 38 L62 38 L68 50 L62 62 L38 62 L32 50 Z" stroke="rgba(255, 255, 255, 0.15)" stroke-width="1" stroke-linejoin="round" />
+              
+              <!-- Inner cross connections -->
+              <line x1="38" y1="38" x2="38" y2="62" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.8" />
+              <line x1="62" y1="38" x2="62" y2="62" stroke="rgba(255, 255, 255, 0.08)" stroke-width="0.8" />
+            </g>
+            
+            <!-- Expanding Radar Pulse Ring -->
+            <circle class="node-pulse-ring" cx="50" cy="50" r="8" stroke="url(#loader-ai-grad)" stroke-width="1" fill="none" opacity="0.6" />
+            
+            <!-- Node rings (glowing orbits) -->
+            <circle class="ai-node-glow" cx="50" cy="50" r="8" fill="url(#loader-ai-grad)" opacity="0.3" filter="url(#loader-glow-heavy)" />
+            
+            <!-- Core Nodes -->
+            <circle class="ai-node node-c" cx="50" cy="50" r="5" fill="url(#loader-ai-grad)" filter="url(#loader-glow-subtle)" />
+            <circle class="ai-node node-t-l" cx="38" cy="38" r="3" fill="#00f2fe" filter="url(#loader-glow-subtle)" />
+            <circle class="ai-node node-t-r" cx="62" cy="38" r="3" fill="#3b82f6" />
+            <circle class="ai-node node-m-l" cx="32" cy="50" r="3" fill="#7c3aed" />
+            <circle class="ai-node node-m-r" cx="68" cy="50" r="3" fill="#00f2fe" filter="url(#loader-glow-subtle)" />
+            <circle class="ai-node node-b-l" cx="38" cy="62" r="3" fill="#7c3aed" />
+            <circle class="ai-node node-b-r" cx="62" cy="62" r="3" fill="#3b82f6" filter="url(#loader-glow-subtle)" />
+          </svg>
         </div>
-      </div>
 
-      <!-- Brand text with reveal animation -->
-      <div class="loader-brand-wrap">
-        <h1 class="loader-brand">
-          <span class="loader-char" style="--i:0">K</span><span class="loader-char" style="--i:1">i</span><span class="loader-char" style="--i:2">e</span><span class="loader-char" style="--i:3">t</span><span class="loader-char loader-char-accent" style="--i:4">n</span><span class="loader-char loader-char-accent" style="--i:5">e</span><span class="loader-char loader-char-accent" style="--i:6">h</span><span class="loader-char loader-char-accent" style="--i:7">i</span><span class="loader-char" style="--i:8">.</span>
-        </h1>
-      </div>
+        <!-- Brand text with reveal animation -->
+        <div class="loader-brand-wrap">
+          <h1 class="loader-brand">
+            <span class="loader-char loader-char-white" style="--i:0">K</span><span class="loader-char loader-char-white" style="--i:1">i</span><span class="loader-char loader-char-white" style="--i:2">e</span><span class="loader-char loader-char-white" style="--i:3">t</span><span class="loader-char loader-char-violet" style="--i:4">n</span><span class="loader-char loader-char-violet" style="--i:5">e</span><span class="loader-char loader-char-violet" style="--i:6">h</span><span class="loader-char loader-char-violet" style="--i:7">i</span><span class="loader-char loader-char-dot" style="--i:8">.</span>
+          </h1>
+        </div>
 
-      <!-- Subtitle -->
-      <p class="loader-subtitle">Crafting AI-powered experiences</p>
+        <!-- Subtitle -->
+        <p class="loader-subtitle">AI-Powered Digital Intelligence</p>
 
-      <!-- Progress bar -->
-      <div class="loader-progress-wrap">
-        <div class="loader-progress-bar" id="loader-progress-bar"></div>
+        <!-- Progress bar -->
+        <div class="loader-progress-wrap">
+          <div class="loader-progress-bar" id="loader-progress-bar"></div>
+        </div>
+        <div class="loader-percent" id="loader-percent">0%</div>
       </div>
-      <div class="loader-percent" id="loader-percent">0%</div>
     </div>
   </div>
 
