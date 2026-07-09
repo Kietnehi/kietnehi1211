@@ -46,6 +46,12 @@
       .blog-card:hover {
         transform: translateY(-6px);
       }
+      .blog-card.dragging {
+        opacity: 0.45;
+        transform: scale(0.98);
+        border-style: dashed;
+        border-color: #6366f1 !important;
+      }
     </style>
   </head>
   <body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-300">
@@ -107,39 +113,72 @@
         </div>
 
         <!-- Search & Filter Controls -->
-        <div class="max-w-4xl mx-auto mb-10 sm:mb-12 flex flex-col md:flex-row items-center gap-4">
-          <!-- Search input -->
-          <div class="relative w-full md:w-80">
-            <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
-              <i class="fas fa-search"></i>
-            </span>
-            <input 
-              id="blog-search" 
-              type="text" 
-              placeholder="Search articles..." 
-              class="w-full pl-10 pr-4 py-2 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md outline-none focus:border-primary dark:focus:border-primary transition text-sm"
-            />
+        <div class="max-w-6xl mx-auto mb-10 sm:mb-12 flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4">
+          <!-- Left side: Search & Categories -->
+          <div class="flex flex-col md:flex-row items-center gap-4 flex-1">
+            <!-- Search input -->
+            <div class="relative w-full md:w-72">
+              <span class="absolute inset-y-0 left-0 pl-3 flex items-center text-slate-400">
+                <i class="fas fa-search"></i>
+              </span>
+              <input 
+                id="blog-search" 
+                type="text" 
+                placeholder="Search articles..." 
+                class="w-full pl-10 pr-4 py-2.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 backdrop-blur-md outline-none focus:border-primary dark:focus:border-primary transition text-sm"
+              />
+            </div>
+            
+            <!-- Category filters -->
+            <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
+              <button class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-primary text-white transition" data-cat="all">All</button>
+              <button class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="ai-ml">AI & ML</button>
+              <button class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="cv">Computer Vision</button>
+              <button class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="web">Web Dev</button>
+              <button class="filter-btn px-4 py-2.5 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="academic">Academic</button>
+            </div>
           </div>
-          
-          <!-- Category filters -->
-          <div class="flex flex-wrap items-center gap-2 w-full md:w-auto">
-            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-primary text-white transition" data-cat="all">All</button>
-            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="ai-ml">AI & ML</button>
-            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="cv">Computer Vision</button>
-            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="web">Web Dev</button>
-            <button class="filter-btn px-4 py-2 rounded-xl text-xs font-semibold bg-white/70 dark:bg-slate-900/70 border border-slate-200 dark:border-white/10 text-slate-600 dark:text-slate-300 hover:border-primary transition" data-cat="academic">Academic</button>
+
+          <!-- Right side: View controls (Sorting & Items per page) -->
+          <div class="flex items-center gap-4 self-end lg:self-auto w-full lg:w-auto justify-between sm:justify-end">
+            <!-- Sort controls -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Sort by:" data-vi="Sắp xếp:">Sort by:</span>
+              <select 
+                id="blog-sort" 
+                class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none transition cursor-pointer"
+              >
+                <option value="priority" data-en="Featured" data-vi="Nổi bật">Featured</option>
+                <option value="newest" data-en="Newest" data-vi="Mới nhất">Newest</option>
+                <option value="oldest" data-en="Oldest" data-vi="Cũ nhất">Oldest</option>
+              </select>
+            </div>
+
+            <!-- Page size selector -->
+            <div class="flex items-center gap-2">
+              <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Per page:" data-vi="Hiển thị:">Per page:</span>
+              <select 
+                id="per-page-select" 
+                class="px-3 py-1.5 rounded-xl border border-slate-200 dark:border-white/10 bg-white/70 dark:bg-slate-900/70 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none transition cursor-pointer"
+              >
+                <option value="3">3</option>
+                <option value="6">6</option>
+                <option value="9">9</option>
+                <option value="all" data-en="All" data-vi="Tất cả">All</option>
+              </select>
+            </div>
           </div>
         </div>
 
         <!-- Blog Grid -->
         <div id="blog-grid" class="flex flex-wrap justify-center gap-8 max-w-6xl mx-auto">
           <!-- Article 1 Wrapper -->
-          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="ai-ml">
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col" data-category="ai-ml" data-page="1" data-date="2026-07-08">
             <!-- Ambient background glow (violet/purple) -->
             <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
             
             <!-- The Card itself -->
-            <a href="blog-smartgov.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+            <a href="blog-smartgov.html" class="relative flex flex-col w-full rounded-t-2xl border-t border-x border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
               <div class="relative aspect-[16/10] bg-slate-50/80 dark:bg-slate-950/60 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
                 <!-- Radial Glow Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
@@ -174,14 +213,30 @@
                 </div>
               </div>
             </a>
+
+            <!-- Page assignment control (Outside the link, at the bottom of the card) -->
+            <div class="w-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border-b border-x border-t border-slate-200/50 dark:border-white/10 rounded-b-2xl px-6 py-2.5 flex items-center justify-between z-30 text-left">
+              <div class="flex items-center gap-2.5">
+                <div class="drag-handle cursor-grab active:cursor-grabbing text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition py-1 px-0.5 select-none touch-none" title="Drag to reorder">
+                  <i class="fas fa-grip-vertical text-xs"></i>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Assign to page:" data-vi="Chuyển sang trang:">Assign to page:</span>
+              </div>
+              <input 
+                type="number" 
+                min="1" 
+                class="card-page-input w-16 px-2 py-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none text-center transition"
+                title="Enter page number"
+              />
+            </div>
           </div>
           <!-- Article 2 Wrapper (Scholarship Comeback) -->
-          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="academic">
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col" data-category="academic" data-page="1" data-date="2026-07-08">
             <!-- Ambient background glow (violet/purple) -->
             <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
             
             <!-- The Card itself -->
-            <a href="blog-scholarship.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+            <a href="blog-scholarship.html" class="relative flex flex-col w-full rounded-t-2xl border-t border-x border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
               <div class="relative aspect-[16/10] bg-slate-50/80 dark:bg-slate-950/60 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
                 <!-- Radial Glow Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
@@ -216,14 +271,30 @@
                 </div>
               </div>
             </a>
+
+            <!-- Page assignment control (Outside the link, at the bottom of the card) -->
+            <div class="w-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border-b border-x border-t border-slate-200/50 dark:border-white/10 rounded-b-2xl px-6 py-2.5 flex items-center justify-between z-30 text-left">
+              <div class="flex items-center gap-2.5">
+                <div class="drag-handle cursor-grab active:cursor-grabbing text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition py-1 px-0.5 select-none touch-none" title="Drag to reorder">
+                  <i class="fas fa-grip-vertical text-xs"></i>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Assign to page:" data-vi="Chuyển sang trang:">Assign to page:</span>
+              </div>
+              <input 
+                type="number" 
+                min="1" 
+                class="card-page-input w-16 px-2 py-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none text-center transition"
+                title="Enter page number"
+              />
+            </div>
           </div>
           <!-- Article 3 Wrapper (FoodFast Drone Delivery) -->
-          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="web">
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col" data-category="web" data-page="1" data-date="2026-07-09">
             <!-- Ambient background glow (violet/purple) -->
             <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
             
             <!-- The Card itself -->
-            <a href="blog-foodfast.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+            <a href="blog-foodfast.html" class="relative flex flex-col w-full rounded-t-2xl border-t border-x border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
               <div class="relative aspect-[16/10] bg-slate-50/80 dark:bg-slate-950/60 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
                 <!-- Radial Glow Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(99,102,241,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
@@ -258,15 +329,31 @@
                 </div>
               </div>
             </a>
+
+            <!-- Page assignment control (Outside the link, at the bottom of the card) -->
+            <div class="w-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border-b border-x border-t border-slate-200/50 dark:border-white/10 rounded-b-2xl px-6 py-2.5 flex items-center justify-between z-30 text-left">
+              <div class="flex items-center gap-2.5">
+                <div class="drag-handle cursor-grab active:cursor-grabbing text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition py-1 px-0.5 select-none touch-none" title="Drag to reorder">
+                  <i class="fas fa-grip-vertical text-xs"></i>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Assign to page:" data-vi="Chuyển sang trang:">Assign to page:</span>
+              </div>
+              <input 
+                type="number" 
+                min="1" 
+                class="card-page-input w-16 px-2 py-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none text-center transition"
+                title="Enter page number"
+              />
+            </div>
           </div>
 
           <!-- Article 4 Wrapper (Software Testing) -->
-          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex" data-category="academic">
+          <div class="blog-card relative group w-full sm:w-[calc(50%-1rem)] lg:w-[calc(33.333%-1.5rem)] max-w-sm flex flex-col" data-category="academic" data-page="2" data-date="2026-07-09">
             <!-- Ambient background glow (violet/purple) -->
             <div class="absolute -inset-1 rounded-3xl bg-gradient-to-r from-primary to-accent opacity-15 blur-xl group-hover:opacity-30 transition duration-1000 group-hover:duration-200"></div>
             
             <!-- The Card itself -->
-            <a href="blog-testing.html" class="relative flex flex-col w-full rounded-2xl border border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
+            <a href="blog-testing.html" class="relative flex flex-col w-full rounded-t-2xl border-t border-x border-slate-200/50 dark:border-white/10 bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl overflow-hidden hover:border-primary transition-all duration-300 text-left">
               <div class="relative aspect-[16/10] bg-slate-50/80 dark:bg-slate-950/60 border-b border-slate-100 dark:border-white/5 overflow-hidden flex-shrink-0">
                 <!-- Radial Glow Background -->
                 <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.08),transparent_60%)] dark:bg-[radial-gradient(circle_at_center,rgba(236,72,153,0.18),transparent_60%)] group-hover:scale-110 transition-transform duration-700"></div>
@@ -301,6 +388,22 @@
                 </div>
               </div>
             </a>
+
+            <!-- Page assignment control (Outside the link, at the bottom of the card) -->
+            <div class="w-full bg-white/70 dark:bg-slate-900/60 backdrop-blur-xl border-b border-x border-t border-slate-200/50 dark:border-white/10 rounded-b-2xl px-6 py-2.5 flex items-center justify-between z-30 text-left">
+              <div class="flex items-center gap-2.5">
+                <div class="drag-handle cursor-grab active:cursor-grabbing text-slate-400 dark:text-slate-500 hover:text-primary dark:hover:text-primary transition py-1 px-0.5" title="Drag to reorder">
+                  <i class="fas fa-grip-vertical text-xs"></i>
+                </div>
+                <span class="text-xs text-slate-500 dark:text-slate-400 font-semibold" data-en="Assign to page:" data-vi="Chuyển sang trang:">Assign to page:</span>
+              </div>
+              <input 
+                type="number" 
+                min="1" 
+                class="card-page-input w-16 px-2 py-1 rounded-lg border border-slate-200 dark:border-white/10 bg-white dark:bg-slate-950 text-slate-700 dark:text-slate-300 text-xs font-semibold focus:border-primary dark:focus:border-primary outline-none text-center transition"
+                title="Enter page number"
+              />
+            </div>
           </div>
         </div>
 
@@ -471,18 +574,33 @@
       // Filter & Search Logic
       const searchInput = document.getElementById("blog-search");
       const filterButtons = document.querySelectorAll(".filter-btn");
-      const blogCards = document.querySelectorAll(".blog-card");
+      let blogCards = Array.from(document.querySelectorAll(".blog-card"));
       const prevPageBtn = document.getElementById("prev-page");
       const nextPageBtn = document.getElementById("next-page");
       const pageNumbers = document.getElementById("page-numbers");
-      const cardsPerPage = 3;
+      const perPageSelect = document.getElementById("per-page-select");
+      const sortSelect = document.getElementById("blog-sort");
+      
+      // Load saved pagination config from localStorage
+      const savedPerPage = localStorage.getItem("blog-per-page");
+      if (savedPerPage) {
+        perPageSelect.value = savedPerPage;
+      }
+      const savedSort = localStorage.getItem("blog-sort-select");
+      if (savedSort) {
+        sortSelect.value = savedSort;
+      }
+      
+      let cardsPerPage = perPageSelect.value === "all" ? 9999 : (parseInt(perPageSelect.value) || 3);
       let activeCategory = "all";
       let currentPage = 1;
+      let totalPages = 1;
 
       function getVisibleCards() {
         const query = searchInput.value.toLowerCase().trim();
 
-        return Array.from(blogCards).filter(card => {
+        // 1. Filter based on search query and category
+        const filtered = Array.from(blogCards).filter(card => {
           const title = card.querySelector("h3").textContent.toLowerCase();
           const desc = card.querySelector("p").textContent.toLowerCase();
           const category = card.dataset.category;
@@ -492,15 +610,34 @@
 
           return matchesSearch && matchesCategory;
         });
+
+        // 2. Sort based on sorting criteria
+        const sortType = sortSelect.value;
+        return filtered.sort((a, b) => {
+          if (sortType === "newest") {
+            const dateA = new Date(a.dataset.date || "");
+            const dateB = new Date(b.dataset.date || "");
+            return dateB - dateA; // Newest first
+          } else if (sortType === "oldest") {
+            const dateA = new Date(a.dataset.date || "");
+            const dateB = new Date(b.dataset.date || "");
+            return dateA - dateB; // Oldest first
+          } else {
+            // Default: "priority" (using data-page attribute)
+            const pageA = parseInt(a.dataset.page) || 9999;
+            const pageB = parseInt(b.dataset.page) || 9999;
+            if (pageA !== pageB) {
+              return pageA - pageB; // Lower page number first
+            }
+            return blogCards.indexOf(a) - blogCards.indexOf(b); // Preserve custom drag-and-drop order within the same page
+          }
+        });
       }
 
-      function renderPagination(totalCards) {
-        const totalPages = Math.max(1, Math.ceil(totalCards / cardsPerPage));
-        currentPage = Math.min(currentPage, totalPages);
-
+      function renderPaginationButtons(computedTotalPages) {
         pageNumbers.innerHTML = "";
 
-        for (let i = 1; i <= totalPages; i++) {
+        for (let i = 1; i <= computedTotalPages; i++) {
           const pageBtn = document.createElement("button");
           pageBtn.type = "button";
           pageBtn.textContent = i;
@@ -517,34 +654,121 @@
         }
 
         prevPageBtn.disabled = currentPage <= 1;
-        nextPageBtn.disabled = currentPage >= totalPages;
+        nextPageBtn.disabled = currentPage >= computedTotalPages;
       }
 
       function filterBlogs() {
+        const query = searchInput.value.toLowerCase().trim();
+        const isFilteringOrSearching = query !== "" || activeCategory !== "all";
+
         const visibleCards = getVisibleCards();
-        const totalPages = Math.max(1, Math.ceil(visibleCards.length / cardsPerPage));
 
-        if (currentPage > totalPages) {
-          currentPage = totalPages;
-        }
+        // Group cards into pages
+        const pagesMap = {};
+        let computedTotalPages = 1;
 
+        // Hide all cards first
         blogCards.forEach(card => {
           card.style.display = "none";
           card.style.opacity = "0";
           card.style.transform = "scale(0.95)";
         });
 
-        const startIndex = (currentPage - 1) * cardsPerPage;
-        visibleCards.slice(startIndex, startIndex + cardsPerPage).forEach(card => {
+        if (isFilteringOrSearching) {
+          // If searching/filtering, pack sequentially starting from Page 1 to avoid empty pages
+          visibleCards.forEach((card, index) => {
+            const pageNum = Math.floor(index / cardsPerPage) + 1;
+            if (!pagesMap[pageNum]) pagesMap[pageNum] = [];
+            pagesMap[pageNum].push(card);
+          });
+          computedTotalPages = Math.max(1, Math.ceil(visibleCards.length / cardsPerPage));
+        } else {
+          // Default view: place cards on their assigned pages (data-page) and apply spill-over
+          let maxAssignedPage = 1;
+          visibleCards.forEach(card => {
+            const pageNum = parseInt(card.dataset.page) || 1;
+            if (pageNum > maxAssignedPage) maxAssignedPage = pageNum;
+            if (!pagesMap[pageNum]) pagesMap[pageNum] = [];
+            pagesMap[pageNum].push(card);
+          });
+
+          // Run spill-over logic
+          let p = 1;
+          while (true) {
+            const currentPageItems = pagesMap[p] || [];
+            if (currentPageItems.length > cardsPerPage) {
+              const keep = currentPageItems.slice(0, cardsPerPage);
+              const spill = currentPageItems.slice(cardsPerPage);
+              pagesMap[p] = keep;
+              
+              if (!pagesMap[p + 1]) pagesMap[p + 1] = [];
+              pagesMap[p + 1] = spill.concat(pagesMap[p + 1]);
+            }
+
+            if (p >= maxAssignedPage && (!pagesMap[p + 1] || pagesMap[p + 1].length === 0)) {
+              break;
+            }
+            p++;
+          }
+          computedTotalPages = p;
+        }
+
+        // Keep currentPage within bounds
+        totalPages = computedTotalPages;
+        currentPage = Math.min(currentPage, totalPages);
+
+        // Assign CSS flex order and sync page inputs to match computed page-by-page list.
+        // This avoids detaching/re-appending DOM nodes and keeps displayed page values accurate under spill-overs or search filters.
+        let orderIndex = 1;
+        for (let p = 1; p <= totalPages; p++) {
+          const pageItems = pagesMap[p] || [];
+          pageItems.forEach(card => {
+            card.style.order = orderIndex++;
+            
+            // Sync input value with actual computed page location (unless user is typing)
+            const input = card.querySelector(".card-page-input");
+            if (input && document.activeElement !== input) {
+              input.value = p;
+            }
+          });
+        }
+
+        // Display items on the current page
+        const currentPageItems = pagesMap[currentPage] || [];
+        currentPageItems.forEach((card, index) => {
           card.style.display = "flex";
-          card.style.opacity = "1";
-          card.style.transform = "scale(1)";
+          // Micro-animation for visual polish
+          setTimeout(() => {
+            card.style.opacity = "1";
+            card.style.transform = "scale(1)";
+          }, 30 * index);
         });
 
-        renderPagination(visibleCards.length);
+        renderPaginationButtons(totalPages);
       }
 
-      searchInput.addEventListener("input", filterBlogs);
+      searchInput.addEventListener("input", () => {
+        currentPage = 1;
+        filterBlogs();
+      });
+
+      perPageSelect.addEventListener("change", (e) => {
+        const val = e.target.value;
+        localStorage.setItem("blog-per-page", val);
+        if (val === "all") {
+          cardsPerPage = 9999;
+        } else {
+          cardsPerPage = parseInt(val) || 3;
+        }
+        currentPage = 1;
+        filterBlogs();
+      });
+
+      sortSelect.addEventListener("change", (e) => {
+        localStorage.setItem("blog-sort-select", e.target.value);
+        currentPage = 1;
+        filterBlogs();
+      });
 
       const footerRevealObserver = new IntersectionObserver(
         (entries) => {
@@ -567,8 +791,6 @@
       });
 
       nextPageBtn.addEventListener("click", () => {
-        const visibleCards = getVisibleCards();
-        const totalPages = Math.max(1, Math.ceil(visibleCards.length / cardsPerPage));
         if (currentPage < totalPages) {
           currentPage += 1;
           filterBlogs();
@@ -587,6 +809,312 @@
           currentPage = 1;
           filterBlogs();
         });
+      });
+
+      // Initialize Visual Card Page Inputs
+      const savedPages = JSON.parse(localStorage.getItem("blog-page-assignments")) || {};
+      
+      // Update each card dataset page from savedPages
+      blogCards.forEach(card => {
+        const articleId = card.querySelector("a").getAttribute("href");
+        if (savedPages[articleId]) {
+          card.dataset.page = savedPages[articleId];
+        } else {
+          card.dataset.page = card.dataset.page || "1";
+        }
+      });
+
+      // Helper function to get maximum page among other cards
+      function getOtherMaxPage(currentCard) {
+        let maxVal = 1;
+        blogCards.forEach(card => {
+          if (card !== currentCard) {
+            const pageNum = parseInt(card.dataset.page) || 1;
+            if (pageNum > maxVal) {
+              maxVal = pageNum;
+            }
+          }
+        });
+        return maxVal;
+      }
+
+      // Initialize inputs on load
+      blogCards.forEach(card => {
+        const input = card.querySelector(".card-page-input");
+        if (input) {
+          input.value = card.dataset.page;
+          const maxAllowed = getOtherMaxPage(card) + 1;
+          input.setAttribute("max", maxAllowed);
+        }
+      });
+
+      document.querySelectorAll(".card-page-input").forEach(input => {
+        input.addEventListener("click", (e) => e.stopPropagation());
+        input.addEventListener("mousedown", (e) => e.stopPropagation());
+        
+        const triggerUpdate = (target) => {
+          const card = target.closest(".blog-card");
+          const articleId = card.querySelector("a").getAttribute("href");
+          
+          let val = parseInt(target.value) || 1;
+          const otherMax = getOtherMaxPage(card);
+          const maxAllowed = otherMax + 1;
+          
+          // Clamp values
+          if (val < 1) val = 1;
+          if (val > maxAllowed) val = maxAllowed;
+          
+          target.value = val;
+          card.dataset.page = val.toString();
+          
+          // Save to localStorage
+          const saved = JSON.parse(localStorage.getItem("blog-page-assignments")) || {};
+          saved[articleId] = val.toString();
+          localStorage.setItem("blog-page-assignments", JSON.stringify(saved));
+          
+          // Dynamically update max boundaries of all other inputs
+          blogCards.forEach(c => {
+            const otherInput = c.querySelector(".card-page-input");
+            if (otherInput) {
+              otherInput.setAttribute("max", getOtherMaxPage(c) + 1);
+            }
+          });
+          
+          filterBlogs();
+        };
+
+        // Listen to Enter keypress
+        input.addEventListener("keydown", (e) => {
+          if (e.key === "Enter") {
+            e.stopPropagation();
+            triggerUpdate(e.target);
+            e.target.blur(); // Remove focus after pressing Enter
+          }
+        });
+
+        // Listen to Blur event (when focus leaves)
+        input.addEventListener("blur", (e) => {
+          e.stopPropagation();
+          triggerUpdate(e.target);
+        });
+      });
+
+      // ================= Drag and Drop Article Reordering =================
+      
+      // Restore Article Order from localStorage on load
+      const savedOrder = JSON.parse(localStorage.getItem("blog-article-order"));
+      if (savedOrder && Array.isArray(savedOrder)) {
+        blogCards.sort((a, b) => {
+          const idA = a.querySelector("a").getAttribute("href");
+          const idB = b.querySelector("a").getAttribute("href");
+          
+          let idxA = savedOrder.indexOf(idA);
+          let idxB = savedOrder.indexOf(idB);
+          
+          // Place unsaved/new items at the end
+          if (idxA === -1) idxA = 999;
+          if (idxB === -1) idxB = 999;
+          
+          return idxA - idxB;
+        });
+      }
+
+      function saveArticleOrder() {
+        const order = blogCards.map(card => card.querySelector("a").getAttribute("href"));
+        localStorage.setItem("blog-article-order", JSON.stringify(order));
+      }
+
+      let draggedCard = null;
+      let lastSwapTime = 0;
+
+      // FLIP animation helper for smooth card swaps
+      function swapWithAnimation(actionFn) {
+        // First: record bounding boxes
+        const firstPositions = blogCards.map(card => {
+          const rect = card.getBoundingClientRect();
+          return { left: rect.left, top: rect.top };
+        });
+
+        // Last: execute structural swap
+        actionFn();
+
+        // Invert & Play
+        blogCards.forEach((card, idx) => {
+          const first = firstPositions[idx];
+          const rect = card.getBoundingClientRect();
+          const last = { left: rect.left, top: rect.top };
+
+          const dx = first.left - last.left;
+          const dy = first.top - last.top;
+
+          if (dx !== 0 || dy !== 0) {
+            // Temporarily disable standard transitions and translate to inverted position
+            card.style.transition = "none";
+            card.style.transform = `translate(${dx}px, ${dy}px)`;
+            
+            // Reflow
+            card.offsetHeight;
+            
+            // Play slide back to normal
+            card.style.transition = "transform 600ms cubic-bezier(0.16, 1, 0.3, 1)";
+            card.style.transform = "translate(0, 0)";
+            
+            // Clean up inline styles after transition to restore default hover lift effects
+            setTimeout(() => {
+              card.style.transition = "";
+              card.style.transform = "";
+            }, 600);
+          }
+        });
+      }
+
+      let currentMouseY = null;
+      const scrollThreshold = 120; // viewport edge offset in pixels
+      const maxScrollSpeed = 15;
+      let autoScrollInterval = null;
+
+      function startAutoScroll() {
+        if (autoScrollInterval) return;
+        autoScrollInterval = setInterval(() => {
+          if (currentMouseY === null || !draggedCard) return;
+          
+          const viewportHeight = window.innerHeight;
+          if (currentMouseY < scrollThreshold) {
+            // Scroll UP
+            const intensity = (scrollThreshold - currentMouseY) / scrollThreshold;
+            const speed = Math.round(intensity * maxScrollSpeed);
+            window.scrollBy(0, -Math.max(1, speed));
+          } else if (currentMouseY > viewportHeight - scrollThreshold) {
+            // Scroll DOWN
+            const intensity = (currentMouseY - (viewportHeight - scrollThreshold)) / scrollThreshold;
+            const speed = Math.round(intensity * maxScrollSpeed);
+            window.scrollBy(0, Math.max(1, speed));
+          }
+        }, 16);
+      }
+
+      function stopAutoScroll() {
+        if (autoScrollInterval) {
+          clearInterval(autoScrollInterval);
+          autoScrollInterval = null;
+        }
+        currentMouseY = null;
+      }
+
+      blogCards.forEach(card => {
+        const handle = card.querySelector(".drag-handle");
+        if (handle) {
+          // Use PointerEvents to support mouse wheel scrolling and touchscreen gestures
+          handle.addEventListener("pointerdown", (e) => {
+            // Only allow left click dragging
+            if (e.button !== 0) return;
+            
+            // Prevent text selection and default browser drag
+            e.preventDefault();
+            draggedCard = card;
+            
+            const rect = card.getBoundingClientRect();
+            const offsetX = e.clientX - rect.left;
+            const offsetY = e.clientY - rect.top;
+            
+            // Get visible cards in the active view
+            const activeCards = Array.from(document.querySelectorAll(".blog-card")).filter(c => c.style.display !== "none");
+            
+            // Create a placeholder card to preserve the grid slot space
+            const placeholder = document.createElement("div");
+            placeholder.className = card.className + " opacity-0 pointer-events-none";
+            placeholder.style.width = rect.width + "px";
+            placeholder.style.height = rect.height + "px";
+            placeholder.id = "drag-placeholder";
+            
+            card.parentNode.insertBefore(placeholder, card.nextSibling);
+            
+            // Put the dragged card in a floating fixed state
+            card.classList.add("dragging");
+            card.style.width = rect.width + "px";
+            card.style.height = rect.height + "px";
+            card.style.position = "fixed";
+            card.style.left = rect.left + "px";
+            card.style.top = rect.top + "px";
+            card.style.zIndex = "1000";
+            card.style.pointerEvents = "none";
+            
+            currentMouseY = e.clientY;
+            startAutoScroll();
+            
+            function onPointerMove(moveEvent) {
+              if (!draggedCard) return;
+              
+              currentMouseY = moveEvent.clientY;
+              
+              // Position the card exactly relative to the pointer
+              card.style.left = (moveEvent.clientX - offsetX) + "px";
+              card.style.top = (moveEvent.clientY - offsetY) + "px";
+              
+              const now = Date.now();
+              if (now - lastSwapTime < 350) return; // Swap throttling
+              
+              // Determine card overlap
+              activeCards.forEach(otherCard => {
+                if (otherCard === card || otherCard === placeholder) return;
+                
+                const otherRect = otherCard.getBoundingClientRect();
+                
+                if (moveEvent.clientX > otherRect.left && moveEvent.clientX < otherRect.right &&
+                    moveEvent.clientY > otherRect.top && moveEvent.clientY < otherRect.bottom) {
+                  
+                  lastSwapTime = now;
+                  
+                  swapWithAnimation(() => {
+                    const parent = otherCard.parentNode;
+                    // Move placeholder inside the DOM
+                    if (placeholder.compareDocumentPosition(otherCard) & Node.DOCUMENT_POSITION_FOLLOWING) {
+                      parent.insertBefore(placeholder, otherCard.nextSibling);
+                    } else {
+                      parent.insertBefore(placeholder, otherCard);
+                    }
+                    
+                    // Keep the blogCards array updated to match DOM sequence
+                    const allCards = Array.from(document.querySelectorAll(".blog-card"));
+                    blogCards.sort((a, b) => allCards.indexOf(a) - allCards.indexOf(b));
+                  });
+                }
+              });
+            }
+            
+            function onPointerUp(upEvent) {
+              document.removeEventListener("pointermove", onPointerMove);
+              document.removeEventListener("pointerup", onPointerUp);
+              
+              if (!draggedCard) return;
+              
+              stopAutoScroll();
+              
+              // Re-insert card at placeholder's position
+              placeholder.parentNode.insertBefore(card, placeholder);
+              placeholder.remove();
+              
+              // Restore inline styles
+              card.classList.remove("dragging");
+              card.style.width = "";
+              card.style.height = "";
+              card.style.position = "";
+              card.style.left = "";
+              card.style.top = "";
+              card.style.zIndex = "";
+              card.style.pointerEvents = "";
+              
+              draggedCard = null;
+              
+              // Save layout state
+              saveArticleOrder();
+              filterBlogs();
+            }
+            
+            document.addEventListener("pointermove", onPointerMove);
+            document.addEventListener("pointerup", onPointerUp);
+          });
+        }
       });
 
       filterBlogs();
