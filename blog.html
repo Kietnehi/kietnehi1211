@@ -658,14 +658,7 @@
       }
 
       function filterBlogs() {
-        const query = searchInput.value.toLowerCase().trim();
-        const isFilteringOrSearching = query !== "" || activeCategory !== "all";
-
         const visibleCards = getVisibleCards();
-
-        // Group cards into pages
-        const pagesMap = {};
-        let computedTotalPages = 1;
 
         // Hide all cards first
         blogCards.forEach(card => {
@@ -674,44 +667,17 @@
           card.style.transform = "scale(0.95)";
         });
 
-        if (isFilteringOrSearching) {
-          // If searching/filtering, pack sequentially starting from Page 1 to avoid empty pages
-          visibleCards.forEach((card, index) => {
-            const pageNum = Math.floor(index / cardsPerPage) + 1;
-            if (!pagesMap[pageNum]) pagesMap[pageNum] = [];
-            pagesMap[pageNum].push(card);
-          });
-          computedTotalPages = Math.max(1, Math.ceil(visibleCards.length / cardsPerPage));
-        } else {
-          // Default view: place cards on their assigned pages (data-page) and apply spill-over
-          let maxAssignedPage = 1;
-          visibleCards.forEach(card => {
-            const pageNum = parseInt(card.dataset.page) || 1;
-            if (pageNum > maxAssignedPage) maxAssignedPage = pageNum;
-            if (!pagesMap[pageNum]) pagesMap[pageNum] = [];
-            pagesMap[pageNum].push(card);
-          });
-
-          // Run spill-over logic
-          let p = 1;
-          while (true) {
-            const currentPageItems = pagesMap[p] || [];
-            if (currentPageItems.length > cardsPerPage) {
-              const keep = currentPageItems.slice(0, cardsPerPage);
-              const spill = currentPageItems.slice(cardsPerPage);
-              pagesMap[p] = keep;
-              
-              if (!pagesMap[p + 1]) pagesMap[p + 1] = [];
-              pagesMap[p + 1] = spill.concat(pagesMap[p + 1]);
-            }
-
-            if (p >= maxAssignedPage && (!pagesMap[p + 1] || pagesMap[p + 1].length === 0)) {
-              break;
-            }
-            p++;
-          }
-          computedTotalPages = p;
-        }
+        // Pack cards sequentially into pages of size cardsPerPage, in the order
+        // produced by getVisibleCards() (which already honors "Assign to page"
+        // as a priority/order hint via the "priority" sort). This keeps perPage
+        // authoritative for how many cards land on each page, in every mode.
+        const pagesMap = {};
+        visibleCards.forEach((card, index) => {
+          const pageNum = Math.floor(index / cardsPerPage) + 1;
+          if (!pagesMap[pageNum]) pagesMap[pageNum] = [];
+          pagesMap[pageNum].push(card);
+        });
+        const computedTotalPages = Math.max(1, Math.ceil(visibleCards.length / cardsPerPage));
 
         // Keep currentPage within bounds
         totalPages = computedTotalPages;
