@@ -123,6 +123,6 @@ python -m http.server 8000   # → http://localhost:8000
 
 <div align="center">
 
-### ⭐ Star this repo if you like it!
+### ⭐ Star this repo if you like it!!
 
 </div>
